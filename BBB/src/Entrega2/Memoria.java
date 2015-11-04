@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Entrega2;
-import Entrega3.Data;
+import Entrega3.DATA;
 import Entrega4.Cuadruplo;
 import java.util.HashMap;
 

@@ -1,6 +1,6 @@
 package Entrega3;
 
-public class Data {
+public class DATA {
     //Error
     public static final int ERR = -1;   // Error general
     public static final int ERR1 = -2;  // Error Asignacion de tipo de dato de memoria
