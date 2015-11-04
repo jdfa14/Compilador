@@ -9,8 +9,6 @@ import Entrega1.*;
 public class Compilador {
 
     public static void main(String[] args) throws IOException {
-        ANTLRInputStream input = new ANTLRInputStream(new FileInputStream(args[1]));
-        GramaticaLexer lexer = new GramaticaLexer(input);
     }
     
 }

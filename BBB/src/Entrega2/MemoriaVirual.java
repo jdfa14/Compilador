@@ -5,7 +5,7 @@ public class MemoriaVirual {
     Memoria memT;   // Memoria Temporal
     Memoria memL;   // Memoria Local
     
-    MemoriaVirual(){
+    public MemoriaVirual(){
         memG = new Memoria();
         memT = new Memoria();
         memL = new Memoria();

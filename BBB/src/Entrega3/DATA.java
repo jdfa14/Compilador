@@ -28,4 +28,10 @@ public class DATA {
     public static final int GOE = 15;	// Greater or Equal >=
     public static final int LOE = 16;	// Less or Equal <=
     public static final int EQS = 17;	// Equals =
+    
+    public static final int GOT = 18;   // GOTO
+    public static final int GTT = 19;   // GOTO True
+    public static final int GTF = 20;   // GOTO False
+    public static final int ACTE = 21;  // Agregar Constantes
+    public static final int EOF = 22;   // End of File
 }
