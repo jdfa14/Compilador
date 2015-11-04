@@ -77,7 +77,7 @@ public class Cubo {
         cube[INT][BOL][OOR] = ERR;
 
         cube[INT][INT][OLT] = BOL;
-        cube[INT][DBL][OLT] = ERR;
+        cube[INT][DBL][OLT] = BOL;
         cube[INT][STR][OLT] = ERR;
         cube[INT][BOL][OLT] = ERR;
 
@@ -87,29 +87,29 @@ public class Cubo {
         cube[INT][BOL][OGT] = ERR;
 
         cube[INT][INT][EQT] = BOL;
-        cube[INT][DBL][EQT] = ERR;
+        cube[INT][DBL][EQT] = BOL;
         cube[INT][STR][EQT] = ERR;
         cube[INT][BOL][EQT] = ERR;
 
         cube[INT][INT][DIF] = BOL;
-        cube[INT][DBL][DIF] = ERR;
+        cube[INT][DBL][DIF] = BOL;
         cube[INT][STR][DIF] = ERR;
         cube[INT][BOL][DIF] = ERR;
 
         cube[INT][INT][GOE] = BOL;
-        cube[INT][DBL][GOE] = ERR;
+        cube[INT][DBL][GOE] = BOL;
         cube[INT][STR][GOE] = ERR;
         cube[INT][BOL][GOE] = ERR;
 
     	cube[INT][INT][LOE] = BOL;
-        cube[INT][DBL][LOE] = ERR;
+        cube[INT][DBL][LOE] = BOL;
         cube[INT][STR][LOE] = ERR;
         cube[INT][BOL][LOE] = ERR;
 
         cube[INT][INT][EQS] = INT;
-        cube[INT][DBL][EQS] = DBL;
-        cube[INT][STR][EQS] = STR;
-        cube[INT][BOL][EQS] = BOL;
+        cube[INT][DBL][EQS] = ERR;
+        cube[INT][STR][EQS] = ERR;
+        cube[INT][BOL][EQS] = ERR;
 
         // Double Operations
         cube[DBL][INT][ADD] = DBL;
@@ -147,7 +147,7 @@ public class Cubo {
         cube[DBL][STR][OOR] = ERR;
         cube[DBL][BOL][OOR] = ERR;
 
-        cube[DBL][INT][OLT] = ERR;
+        cube[DBL][INT][OLT] = BOL;
         cube[DBL][DBL][OLT] = BOL;
         cube[DBL][STR][OLT] = ERR;
         cube[DBL][BOL][OLT] = ERR;
@@ -157,30 +157,30 @@ public class Cubo {
         cube[DBL][STR][OGT] = ERR;
         cube[DBL][BOL][OGT] = ERR;
 
-        cube[DBL][INT][EQT] = ERR;
+        cube[DBL][INT][EQT] = BOL;
         cube[DBL][DBL][EQT] = BOL;
         cube[DBL][STR][EQT] = ERR;
         cube[DBL][BOL][EQT] = ERR;
 
-        cube[DBL][INT][DIF] = ERR;
+        cube[DBL][INT][DIF] = BOL;
         cube[DBL][DBL][DIF] = BOL;
         cube[DBL][STR][DIF] = ERR;
         cube[DBL][BOL][DIF] = ERR;
 
-        cube[DBL][INT][GOE] = ERR;
+        cube[DBL][INT][GOE] = BOL;
         cube[DBL][DBL][GOE] = BOL;
         cube[DBL][STR][GOE] = ERR;
         cube[DBL][BOL][GOE] = ERR;
 
-    	cube[DBL][INT][LOE] = ERR;
+    	cube[DBL][INT][LOE] = BOL;
         cube[DBL][DBL][LOE] = BOL;
         cube[DBL][STR][LOE] = ERR;
         cube[DBL][BOL][LOE] = ERR;
 
-        cube[DBL][INT][EQS] = INT;
+        cube[DBL][INT][EQS] = ERR;
         cube[DBL][DBL][EQS] = DBL;
-        cube[DBL][STR][EQS] = STR;
-        cube[DBL][BOL][EQS] = BOL;
+        cube[DBL][STR][EQS] = ERR;
+        cube[DBL][BOL][EQS] = ERR;
 
         // String Operations
         cube[STR][INT][ADD] = ERR;
@@ -248,10 +248,10 @@ public class Cubo {
         cube[STR][STR][LOE] = ERR;
         cube[STR][BOL][LOE] = ERR;
 
-        cube[STR][INT][EQS] = INT;
-        cube[STR][DBL][EQS] = DBL;
+        cube[STR][INT][EQS] = ERR;
+        cube[STR][DBL][EQS] = ERR;
         cube[STR][STR][EQS] = STR;
-        cube[STR][BOL][EQS] = BOL;
+        cube[STR][BOL][EQS] = ERR;
 
         // Boolean Operations
         cube[BOL][INT][ADD] = ERR;
@@ -319,9 +319,9 @@ public class Cubo {
         cube[BOL][STR][LOE] = ERR;
         cube[BOL][BOL][LOE] = ERR;
 
-        cube[BOL][INT][EQS] = INT;
-        cube[BOL][DBL][EQS] = DBL;
-        cube[BOL][STR][EQS] = STR;
+        cube[BOL][INT][EQS] = ERR;
+        cube[BOL][DBL][EQS] = ERR;
+        cube[BOL][STR][EQS] = ERR;
         cube[BOL][BOL][EQS] = BOL;
     }
 
