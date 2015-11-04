@@ -1,7 +1,18 @@
 package Entrega3;
 
-public class DATA {
-
+public class Data {
+    //Error
+    public static final int ERR = -1;   // Error general
+    public static final int ERR1 = -2;  // Error Asignacion de tipo de dato de memoria
+    public static final int ERR2 = -3;  // Error de asignacion de memoria
+    public static final int ERR3 = -4;  // Error direccion de variable no asignada
+    
+    //Tipos de dato
+    public static final int INT = 0;	// Integer
+    public static final int DBL = 1;	// Double
+    public static final int STR = 2;	// String
+    public static final int BOL = 3;	// Boolean
+    
     // Operadores
     public static final int ADD = 4;	// Add +
     public static final int SUB = 5;	// Subtract -
