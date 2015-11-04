@@ -13,6 +13,21 @@ import java.util.HashMap;
  * @author JesusDavid
  */
 public class Memoria{
+    public static enum SCOPE_TYPE{
+        GLOBAL,
+        TEMPORAL,
+        LOCAL,
+        CONSTANTE
+    }
+    
+    public static enum DATA_TYPE{
+        UNKNOWN,
+        INT,
+        FLOAT,
+        STRING,
+        BOOLEAN
+    }
+    
     public static enum TYPE{
         UNKNOWN,
         GLOBAL_INT,
@@ -36,68 +51,68 @@ public class Memoria{
     private HashMap<Integer,Object> memData;    // Conjunto de variables globales, locales y temporales
     
     //3000
-    private static final int igi = 0;       // Init Global Int
-    private static final int fgi = 2999;    // Final Global Int
+    public static final int igi = 0;       // Init Global Int
+    public static final int fgi = 2999;    // Final Global Int
     
     //3000
-    private static final int igf = 3000;    // Init Global Float
-    private static final int fgf = 5999;    // Final Global Float
+    public static final int igf = 3000;    // Init Global Float
+    public static final int fgf = 5999;    // Final Global Float
     
     //2000
-    private static final int igs = 6000;    // Init Global String
-    private static final int fgs = 7999;    // Final Global String
+    public static final int igs = 6000;    // Init Global String
+    public static final int fgs = 7999;    // Final Global String
     
     //1000
-    private static final int igb = 8000;    // Init Global Boolean
-    private static final int fgb = 8999;    // Final Global Boolean
+    public static final int igb = 8000;    // Init Global Boolean
+    public static final int fgb = 8999;    // Final Global Boolean
 
     //3000
-    private static final int ili = 9000;    // Init Local Int
-    private static final int fli = 11999;   // Final Local Int
+    public static final int ili = 9000;    // Init Local Int
+    public static final int fli = 11999;   // Final Local Int
     
     //3000
-    private static final int ilf = 12000;   // Init Local Float
-    private static final int flf = 14999;   // Final Local Float
+    public static final int ilf = 12000;   // Init Local Float
+    public static final int flf = 14999;   // Final Local Float
     
     //2000
-    private static final int ils = 15000;   // Init Local String
-    private static final int fls = 16999;   // Final Local String
+    public static final int ils = 15000;   // Init Local String
+    public static final int fls = 16999;   // Final Local String
     
     //1000
-    private static final int ilb = 17000;   // Init Local Boolean
-    private static final int flb = 17999;   // Final Local Boolean
+    public static final int ilb = 17000;   // Init Local Boolean
+    public static final int flb = 17999;   // Final Local Boolean
     
     //3000
-    private static final int iti = 18000; // Init Temporal Int
-    private static final int fti = 20999; // Final Temporal Int
+    public static final int iti = 18000; // Init Temporal Int
+    public static final int fti = 20999; // Final Temporal Int
     
     //3000
-    private static final int itf = 21000; // Init Temporal Float
-    private static final int ftf = 23999; // Final Temporal Float
+    public static final int itf = 21000; // Init Temporal Float
+    public static final int ftf = 23999; // Final Temporal Float
     
     //2000
-    private static final int its = 24000; // Init Temporal String
-    private static final int fts = 25999; // Final Temporal String
+    public static final int its = 24000; // Init Temporal String
+    public static final int fts = 25999; // Final Temporal String
     
     //1000
-    private static final int itb = 26000; // Init Temporal Boolean
-    private static final int ftb = 26999; // Final Temporal Boolean
+    public static final int itb = 26000; // Init Temporal Boolean
+    public static final int ftb = 26999; // Final Temporal Boolean
     
     //3000
-    private static final int ici = 27000; // Init Constant Int
-    private static final int fci = 29999; // Final Constant Int
+    public static final int ici = 27000; // Init Constant Int
+    public static final int fci = 29999; // Final Constant Int
     
     //3000
-    private static final int icf = 30000; // Init Constant Float
-    private static final int fcf = 32999; // Final Constant Float
+    public static final int icf = 30000; // Init Constant Float
+    public static final int fcf = 32999; // Final Constant Float
     
     //2000
-    private static final int ics = 33000; // Init Constant String
-    private static final int fcs = 34999; // Final Constant String
+    public static final int ics = 33000; // Init Constant String
+    public static final int fcs = 34999; // Final Constant String
     
     //1000
-    private static final int icb = 35000; // Init Constant Boolean
-    private static final int fcb = 35999; // Final Constant Boolean
+    public static final int icb = 35000; // Init Constant Boolean
+    public static final int fcb = 35999; // Final Constant Boolean
     
     public Memoria(){
         memData = new HashMap<>();
@@ -137,6 +152,39 @@ public class Memoria{
     
     public void wipeMemory(){
         memData.clear();
+    }
+    
+    /**
+     * Obtienes el tipo de variable segun la direccion dada
+     * @param dir
+     * @return Tipo de variable
+     */
+    public static DATA_TYPE getDataType(int dir){
+        if(dir <= fgi && dir >= igi
+                || dir <= fli && dir >= ili
+                || dir <= fti && dir >= iti
+                || dir <= fci && dir >= ici){
+            return DATA_TYPE.INT;
+        }
+        if(dir <= fgf && dir >= igf
+                || dir <= flf && dir >= ilf
+                || dir <= ftf && dir >= itf
+                || dir <= fcf && dir >= icf){
+            return DATA_TYPE.FLOAT;
+        }
+        if(dir <= fgb && dir >= igb
+                || dir <= flb && dir >= ilb
+                || dir <= ftb && dir >= itb
+                || dir <= fcb && dir >= icb){
+            return DATA_TYPE.BOOLEAN;
+        }
+        if(dir <= fgs && dir >= igs
+                || dir <= fls && dir >= ils
+                || dir <= fts && dir >= its
+                || dir <= fcs && dir >= ics){
+            return DATA_TYPE.STRING;
+        }
+        return DATA_TYPE.UNKNOWN;
     }
     
     public static TYPE getType(int dir){
