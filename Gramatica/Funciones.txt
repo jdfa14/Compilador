@@ -1,0 +1,37 @@
+FUNCTIONDECL:
+	[TYPE]-->(id)-->(()-->[PARAMS]-->())-->({)-->[ESTATUTOS]-->(})-->
+				  ^						  ^						  ^
+				  1						  2						  6
+
+MAINDECL:
+	(ent)-->(main)-->(()-->())-->({)-->[ESTATUTOS]-->(})-->
+				   ^
+				   3
+
+FUNCTIONCALL:
+	(id)-->(()-->[PARAMS]-->())-->(;)-->
+		^						^
+		4						5
+
+--- Generar codigo
+
+1) Checar si ID no esta ya declarada
+	Si si-> prender bandera parametrica para diferenciar por catidad de parametros
+2) Checar la cantidad de parametros
+	Si la bandera parametrica esta encendida, verificar que no exista un ID con la misma cantidad de parametros
+		Si si-> Error "Funcion ya declarada " ID "\" Cant
+		Si no-> Declarar funcion en tablas con direccion y cantidad de parametros
+6) Generar return null
+
+3) Checar si ID no esta ya declarada
+	Si si-> Error Main ya declarado
+	Si no-> Declarar funcion en tablas ID sin parametros
+
+4) Verificar que el ID esta declarado
+	Si no -> Error Funcion desconocida
+	
+5) Verificar que la cantidad de parametros en conjunto con el ID existan en la tabla de funciones
+	Si no existe funcion con misma cantidad de parametros -> Error  "Funcion no declarada " ID "\" Cant
+	Si si existe -> Verificar match de tipos de parametros
+		Si no matchean Error "Parametros con tipos de datos distintos"
+		Si si matchean Generar cuadruplo goto -> Funcion

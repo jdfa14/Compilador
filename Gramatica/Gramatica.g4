@@ -6,6 +6,8 @@ AP: '(';
 CP: ')';
 AL: '{';
 CL: '}';
+AC: '[';
+CC: ']';
 COM: ',';
 
 INT: 'ent';
@@ -92,6 +94,29 @@ asignations:
 
 asignation:
 	ID IGU exp DEL
+	;
+
+declaration:
+	type declaration2;
+
+declaration2:
+	ID declaration3
+	| AC CC declaration4 ID declaration5
+
+declaration3:
+	| IGU exp DEL
+	;
+
+declaration4:
+	| AC CC declaration4
+	;
+
+declaration5:
+	| IGU type declaration6
+	;
+
+declaration6:
+	| AC exp CC declaration6
 	;
 
 print:
