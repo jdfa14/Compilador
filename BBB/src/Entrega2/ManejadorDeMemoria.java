@@ -8,10 +8,10 @@ public class ManejadorDeMemoria {
     MemoryIndex memC;
     
     public ManejadorDeMemoria(){
-        memG = new MemoryIndex(SCOPE_TYPE.GLOBAL);
-        memT = new MemoryIndex(SCOPE_TYPE.TEMPORAL);
-        memL = new MemoryIndex(SCOPE_TYPE.LOCAL);
-        memC = new MemoryIndex(SCOPE_TYPE.CONSTANTE);
+        memG = new MemoryIndex(Memoria.SCOPE_TYPE.GLOBAL);
+        memT = new MemoryIndex(Memoria.SCOPE_TYPE.TEMPORAL);
+        memL = new MemoryIndex(Memoria.SCOPE_TYPE.LOCAL);
+        memC = new MemoryIndex(Memoria.SCOPE_TYPE.CONSTANTE);
     }
     
     public int crearDir(Memoria.SCOPE_TYPE scope, Memoria.DATA_TYPE data){

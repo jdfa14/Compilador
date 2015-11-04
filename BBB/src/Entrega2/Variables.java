@@ -22,5 +22,4 @@ public class Variables {
     public boolean isDeclared(String name){
         return variables.containsKey(name);
     }
-    
 }
