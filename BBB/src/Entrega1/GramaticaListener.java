@@ -1,4 +1,6 @@
 // Generated from Gramatica.g4 by ANTLR 4.5.1
+package Entrega1;
+
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
