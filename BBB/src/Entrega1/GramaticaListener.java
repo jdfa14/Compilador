@@ -148,26 +148,6 @@ public interface GramaticaListener extends ParseTreeListener {
 	 */
 	void exitDeclaration(GramaticaParser.DeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GramaticaParser#declaration2}.
-	 * @param ctx the parse tree
-	 */
-	void enterDeclaration2(GramaticaParser.Declaration2Context ctx);
-	/**
-	 * Exit a parse tree produced by {@link GramaticaParser#declaration2}.
-	 * @param ctx the parse tree
-	 */
-	void exitDeclaration2(GramaticaParser.Declaration2Context ctx);
-	/**
-	 * Enter a parse tree produced by {@link GramaticaParser#singledim}.
-	 * @param ctx the parse tree
-	 */
-	void enterSingledim(GramaticaParser.SingledimContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GramaticaParser#singledim}.
-	 * @param ctx the parse tree
-	 */
-	void exitSingledim(GramaticaParser.SingledimContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link GramaticaParser#multidim}.
 	 * @param ctx the parse tree
 	 */

@@ -11,6 +11,10 @@ public class Variables {
         variables = new HashMap<>();
     }
     
+    public void wipe(){
+        variables.clear();
+    }
+    
     public boolean add(Variable var){
         if(!variables.containsKey(var.nombre)){
             variables.put(var.nombre, var);

@@ -124,20 +124,11 @@ declarations:
 	;
 
 declaration:
-	type declaration2
-	;
-
-declaration2:
-	singledim
-	| multidim
-	;
-
-singledim:
-	ID DEL
+	type ID multidim  DEL
 	;
 
 multidim:
-	OB dimd CB ID DEL
+	| OB dimd CB
 	;
 
 dimd:

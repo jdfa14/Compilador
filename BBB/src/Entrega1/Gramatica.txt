@@ -50,17 +50,11 @@ DECLARATIONS:
 	|->[DECLARATION]-->[DECLARATIONS]--^
 
 DECLARATION:
-	[TYPE]-->[DECLARATION2]-->
-
-DECLARATION2:
-	|->[SINGLEDIM]-->
-	|->[MULTIDIM]--^
-
-SINGLEDIM:
-	|->(id)----->(;)
+	[TYPE]-->(id)-->[MULTI]-->(;)-->
 
 MULTIDIM:
-	|->([)-->[DIMD]-->(])-->(id)-->(;)-->
+	|----------------------->
+	|->([)-->[DIMD]-->(])--^
 
 DIMD:
 	|->[EXP]->[DIMD2]->
