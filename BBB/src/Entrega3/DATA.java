@@ -34,4 +34,8 @@ public class DATA {
     public static final int GTF = 20;   // GOTO False
     public static final int ACTE = 21;  // Agregar Constantes
     public static final int EOF = 22;   // End of File
+    public static final int PC = 23;    // Prepara cambio de contexto
+    public static final int CC = 24;    // Cambio de contexto
+    public static final int TC = 25;    // Termina el cambio de contexto
+
 }

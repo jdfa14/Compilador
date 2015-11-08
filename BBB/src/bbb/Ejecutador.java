@@ -291,15 +291,15 @@ public class Ejecutador {
                             mv.saveVar(cuad.getResultado(), mv.getBoolean(cuad.getOperando1()));
                         break;
                     case DATA.GOT:
-                        i = mv.getInt(cuad.getResultado()) - 1;
+                        i = cuad.getResultado() - 1;
                         break;
                     case DATA.GTF:
                         if (!mv.getBoolean(cuad.getOperando1()))
-                            i = mv.getInt(cuad.getResultado()) - 1;
+                            i = cuad.getResultado() - 1;
                         break;
                     case DATA.GTT:
                         if (mv.getBoolean(cuad.getOperando1()))
-                            i = mv.getInt(cuad.getResultado()) - 1;
+                            i = cuad.getResultado() - 1;
                         break;
                     case DATA.ACTE:
                         mv.saveVar(cuad.getResultado(), cuad.getOperando1());
@@ -307,7 +307,7 @@ public class Ejecutador {
                 }
             i++;    
             }
-            System.out.println(mv.getBoolean(18000));
+            System.out.println(mv.getInt(27003));
             bufferedReader.close();
         }
         catch(FileNotFoundException ex) {

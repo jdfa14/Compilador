@@ -1,20 +1,29 @@
 package Entrega2;
+import java.util.*;
 
 public class MemoriaVirtual {
     Memoria memG;   // Memoria Global
-    Memoria memT;   // Memoria Temporal
-    Memoria memL;   // Memoria Local
+    Stack <Memoria> memT;   // Memoria Temporal
+    Stack <Memoria> memL;   // Memoria Local
     Memoria memC;   // Memoria Constante
-    
+
     public MemoriaVirtual(){
         memG = new Memoria();
-        memT = new Memoria();
-        memL = new Memoria();
+        memT = new Stack <>();
+        memL = new Stack <>();
         memC = new Memoria();
     }
     
-    public void wipeLocal(){
-        memL.wipeMemory();
+    public void prepararCambio(){
+        
+    }
+    
+    public void cambiarContexto(){
+        
+    }
+    
+    public void terminarCambio(){
+        
     }
     
     public void saveVar(int dir, Object value){ // Asignaciones
@@ -34,28 +43,28 @@ public class MemoriaVirtual {
                 memG.saveBoolean(dir, (boolean) value);
                 break;
             case LOCAL_INT:
-                memL.saveInt(dir, (int)value);
+                memL.peek().saveInt(dir, (int)value);
                 break;
             case LOCAL_FLOAT:
-                memL.saveFloat(dir, (double) value);
+                memL.peek().saveFloat(dir, (double) value);
                 break;
             case LOCAL_STRING: 
-                memL.saveString(dir, (String) value);
+                memL.peek().saveString(dir, (String) value);
                 break;
             case LOCAL_BOOLEAN:
-                memL.saveBoolean(dir, (boolean) value);
+                memL.peek().saveBoolean(dir, (boolean) value);
                 break;
             case TEMPORAL_INT:
-                memT.saveInt(dir, (int)value);
+                memT.peek().saveInt(dir, (int)value);
                 break;
             case TEMPORAL_FLOAT:
-                memT.saveFloat(dir, (double) value);
+                memT.peek().saveFloat(dir, (double) value);
                 break;
             case TEMPORAL_STRING: 
-                memT.saveString(dir, (String) value);
+                memT.peek().saveString(dir, (String) value);
                 break;
             case TEMPORAL_BOOLEAN:
-                memT.saveBoolean(dir, (boolean) value);
+                memT.peek().saveBoolean(dir, (boolean) value);
                 break;
             case CONSTANT_INT:
                 memC.saveInt(dir, (int)value);
@@ -77,9 +86,9 @@ public class MemoriaVirtual {
             case GLOBAL_STRING: 
                 return memG.getString(dir);
             case LOCAL_STRING: 
-                return memL.getString(dir);
+                return memL.peek().getString(dir);
             case TEMPORAL_STRING: 
-                return memT.getString(dir);
+                return memT.peek().getString(dir);
             case CONSTANT_STRING:
                 return memC.getString(dir);
         }
@@ -92,9 +101,9 @@ public class MemoriaVirtual {
             case GLOBAL_INT: 
                 return memG.getInt(dir);
             case LOCAL_INT: 
-                return memL.getInt(dir);
+                return memL.peek().getInt(dir);
             case TEMPORAL_INT: 
-                return memT.getInt(dir);
+                return memT.peek().getInt(dir);
             case CONSTANT_INT:
                 return memC.getInt(dir);
         }
@@ -107,9 +116,9 @@ public class MemoriaVirtual {
             case GLOBAL_FLOAT: 
                 return memG.getFloat(dir);
             case LOCAL_FLOAT: 
-                return memL.getFloat(dir);
+                return memL.peek().getFloat(dir);
             case TEMPORAL_FLOAT: 
-                return memT.getFloat(dir);
+                return memT.peek().getFloat(dir);
             case CONSTANT_FLOAT:
                 return memC.getFloat(dir);
         }
@@ -122,9 +131,9 @@ public class MemoriaVirtual {
             case GLOBAL_BOOLEAN: 
                 return memG.getBoolean(dir);
             case LOCAL_BOOLEAN: 
-                return memL.getBoolean(dir);
+                return memL.peek().getBoolean(dir);
             case TEMPORAL_BOOLEAN: 
-                return memT.getBoolean(dir);
+                return memT.peek().getBoolean(dir);
             case CONSTANT_BOOLEAN:
                 return memC.getBoolean(dir);
         }
