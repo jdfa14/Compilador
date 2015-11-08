@@ -6,6 +6,9 @@ public class MemoriaVirtual {
     Stack <Memoria> memT;   // Memoria Temporal
     Stack <Memoria> memL;   // Memoria Local
     Memoria memC;   // Memoria Constante
+    int PC = 0;     // Bandera del cambio
+    Memoria tempMT;
+    Memoria tempML;
 
     public MemoriaVirtual(){
         memG = new Memoria();
@@ -15,15 +18,20 @@ public class MemoriaVirtual {
     }
     
     public void prepararCambio(){
-        
+        PC = 1;
+        tempMT = new Memoria();
+        tempML = new Memoria();
     }
     
     public void cambiarContexto(){
-        
+        PC = 0;
+        memT.push(tempMT);
+        memL.push(tempML);
     }
     
     public void terminarCambio(){
-        
+        memT.pop();
+        memT.pop();
     }
     
     public void saveVar(int dir, Object value){ // Asignaciones
@@ -43,28 +51,52 @@ public class MemoriaVirtual {
                 memG.saveBoolean(dir, (boolean) value);
                 break;
             case LOCAL_INT:
-                memL.peek().saveInt(dir, (int)value);
+                if (PC == 0)
+                    memL.peek().saveInt(dir, (int)value);
+                else
+                    tempML.saveInt(dir, (int) value);
                 break;
             case LOCAL_FLOAT:
-                memL.peek().saveFloat(dir, (double) value);
+                if (PC == 0)
+                    memL.peek().saveFloat(dir, (double) value);
+                else
+                    tempML.saveFloat(dir, (double)value);
                 break;
-            case LOCAL_STRING: 
-                memL.peek().saveString(dir, (String) value);
+            case LOCAL_STRING:
+                if (PC == 0)
+                    memL.peek().saveString(dir, (String) value);
+                else
+                    tempML.saveString(dir, (String) value);
                 break;
             case LOCAL_BOOLEAN:
-                memL.peek().saveBoolean(dir, (boolean) value);
+                if (PC == 0)
+                    memL.peek().saveBoolean(dir, (boolean) value);
+                else
+                    tempML.saveBoolean(dir, (boolean)value);
                 break;
             case TEMPORAL_INT:
-                memT.peek().saveInt(dir, (int)value);
+                if (PC == 0)
+                    memT.peek().saveInt(dir, (int)value);
+                else
+                    tempMT.saveInt(dir, (int) value);
                 break;
             case TEMPORAL_FLOAT:
-                memT.peek().saveFloat(dir, (double) value);
+                if (PC == 0)
+                    memT.peek().saveFloat(dir, (double) value);
+                else
+                    tempMT.saveFloat(dir, (double) value);
                 break;
-            case TEMPORAL_STRING: 
-                memT.peek().saveString(dir, (String) value);
+            case TEMPORAL_STRING:
+                if (PC == 0)
+                    memT.peek().saveString(dir, (String) value);
+                else
+                    tempMT.saveString(dir, (String) value);
                 break;
             case TEMPORAL_BOOLEAN:
-                memT.peek().saveBoolean(dir, (boolean) value);
+                if (PC == 0)
+                    memT.peek().saveBoolean(dir, (boolean) value);
+                else
+                    tempMT.saveBoolean(dir, (boolean)value);
                 break;
             case CONSTANT_INT:
                 memC.saveInt(dir, (int)value);
