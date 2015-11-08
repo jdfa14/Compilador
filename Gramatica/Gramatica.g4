@@ -2,12 +2,12 @@ grammar Gramatica;
 
 WS: [ \n\t\r]+ -> skip;
 
-AP: '(';
+OP: '(';
 CP: ')';
-AL: '{';
-CL: '}';
-AC: '[';
-CC: ']';
+OK: '{';
+CK: '}';
+OB: '[';
+CB: ']';
 COM: ',';
 
 INT: 'ent';
@@ -17,22 +17,27 @@ CHA: 'cad';
 STR: 'car';
 VOID: 'nada';
 
-PRNT: 'imprime';
-COL: 'color';
-MOV: 'mover';
 INCL: 'incluir';
 MAIN: 'main';
 
 LWHILE: 'mientras';
 LDO: 'hacer';
 LFOR: 'para';
-IF: 'si';
+CIF: 'si';
+CELSE: 'sino';
 
 BRK: 'romper';
 RTRN: 'regresar';
 
 PINU: 'pintar';
 PIND: 'flotar';
+COL: 'color';
+PRNT: 'imprime';
+MOV: 'mover';
+
+OAND: '&&';
+OOR: '||';
+ONOT: '!';
 
 HT: '#';
 
@@ -59,9 +64,41 @@ CTEI: [0-9]+;
 
 ID: [a-zA-Z0-9]+;
 
+init:
+	includes functions maindecl
+	;
+
 includes:
-	| HT INCL CTES DEL includes
-	| HT INCL MEN CTES MAY DEL includes
+	| include includes
+	;
+
+include:
+	HT INCL include2
+	;
+
+include2:
+	CTES
+	| MEN CTES MAY
+	;
+
+functions:
+	| functiondecl functions
+	;
+
+functiondecl:
+	type ID OP params CP OK estatutos CK
+	;
+
+maindecl:
+	INT MAIN OP CP OK estatutos CK
+	;
+
+type:
+	INT
+	| FLT
+	| BOL
+	| STR
+	| VOID
 	;
 
 params:
@@ -69,119 +106,163 @@ params:
 	;
 
 params2:
-	exp
+	declaration params3
 	;
 
 params3:
 	| COM params2
 	;
 
-functioncall:
-	ID AP params CP DEL
+declaration:
+	type declaration2
 	;
 
-functiondecl:
-	type ID AP params CP AL estatutos CL
+declaration2:
+	singledim
+	| multidim
 	;
 
-main:
-	INT MAIN AP params CP AL estatutos CL
+singledim:
+	ID DEL
+	;
+
+multidim:
+	OB dimd CB ID DEL
+	;
+
+dimd:
+	exp dimd2
+	;
+
+dimd2:
+	| COM dimd
 	;
 
 asignations:
-	| asignation asignations
+	asignation asignations2
+	;
+
+asignations2:
+	| asignation
 	;
 
 asignation:
-	ID IGU exp DEL
+	ID asignation2
 	;
 
-declaration:
-	type declaration2;
-
-declaration2:
-	ID declaration3
-	| AC CC declaration4 ID declaration5
-
-declaration3:
-	| IGU exp DEL
+asignation2:
+	IGU exp
+	| OB dima CB IGU exp
 	;
 
-declaration4:
-	| AC CC declaration4
+dima:
+	exp dima2
 	;
 
-declaration5:
-	| IGU type declaration6
+dima2:
+	| COM dima
 	;
 
-declaration6:
-	| AC exp CC declaration6
+estatutos:
+	| estatuto estatutos
+	;
+
+estatuto:
+	BRK
+	| RTRN
+	| functioncall
+	| asignation
+	| declaration
+	| print
+	| instructions
+	| loops
+	| conditional
+	;
+
+loops:
+	llwhile
+	| lldowhile
+	| llfor
+	;
+
+llwhile:
+	LWHILE OP exp CP OK estatutos CK
+	;
+
+llfor:
+	LFOR OP asignation DEL exp DEL asignations CP OK estatutos CK
+	;
+
+lldowhile:
+	LDO OK estatutos CK LWHILE OP exp CP
+	;
+
+functioncall:
+	ID OP params CP DEL
+	;
+
+conditional:
+	CIF OP exp CP OK estatutos CK conditional2
+	;
+
+conditional2:
+	| CELSE OK estatutos CK
 	;
 
 print:
 	PRNT exp DEL
 	;
 
-condition:
-	IF AP exp CP AL estatutos CL DEL
-	;
-
-loops:
-	whle
-	| fr
-	| dowhle
-	;
-
-whle:
-	LWHILE AP exp CP AL estatutos CL
-	;
-
-dowhle:
-	LDO AL estatutos CL LWHILE AP exp CP
-	;
-
-fr:
-	LFOR AP asignations DEL exp DEL estatutos CP AL estatutos CL
-	;
-
 instructions:
 	PINU DEL
 	| PIND DEL
-	| COL AP exp COM exp COM exp CP DEL
-	| MOV AP exp COM exp CP DEL
-	;
-
-estatutos:
-	| estatuto estatutos;
-
-estatuto:
-	functioncall
-	| functiondecl
-	| asignation
-	| print
-	| instructions
-	| loops
-	| condition
-	| BRK
-	| RTRN
-	;
-
-opc:
-	MAY
-	| MEN
-	| MAI
-	| MEI
-	| OIG
-	| DIF
+	| COL OP CTEI COM CTEI COM CTEI CP
+	| MOV OP CTEI COM CTEI CP
 	;
 
 exp:
-	ex exp2
+	exo exp2
 	;
 
 exp2:
-	| opc ex
+	| OAND exp
+	;
+
+exo:
+	exn exo2
+	;
+
+exo2:
+	| OOR exo
+	;
+
+exn:
+	exi exn2
+	;
+
+exn2:
+	| ONOT exn
+	;
+
+exi:
+	exm exp2
+	;
+
+exi2:
+	MAI exm
+	| MEI exm
+	| OIG exm
+	| DIF exm
+	| MAY exm
+	| MEN exm
+	;
+
+exm:
+	ex exm2
+	;
+
+exm2:
+	| MOD exm
 	;
 
 ex:
@@ -194,7 +275,7 @@ ex2:
 	;
 
 termino:
-	factor termino2
+	factor  termino2
 	;
 
 termino2:
@@ -203,25 +284,19 @@ termino2:
 	;
 
 factor:
-	AP exp CP
-	| val
-	| PLS val
-	| SUB val
+	OP exp CP
+	| PLS var
+	| SUB var
+	| var
 	;
 
-val:
+var:
 	ID
-	| CTES
-	| CTEC
-	| CTEI
-	| CTEF
+	| cte
 	;
 
-type:
-	INT
-	| FLT
-	| BOL
-	| CHA
-	| STR
-	| VOID
+cte:
+	CTEF
+	| CTEI
+	| CTES
 	;

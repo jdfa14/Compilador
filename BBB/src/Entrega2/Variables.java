@@ -22,4 +22,12 @@ public class Variables {
     public boolean isDeclared(String name){
         return variables.containsKey(name);
     }
+    
+    public int getDir(String name){
+        return variables.get(name).dir;
+    }
+    
+    public int getDataType(String name){
+        return variables.get(name).tipo;
+    }
 }
