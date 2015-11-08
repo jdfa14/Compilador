@@ -1,78 +1,106 @@
-TYPE:
-	|-->(ent)--->
-	|-->(dec)--^
-	|-->(bool)--|
-	|-->(cad)--|
-	|-->(car)--|
-	|-->(nada)-|
+INIT:
+	|->[INCLUDES]-->[BODY]-->[MAINDECL]-->
 
-CTE:
-	|->(ctef)-->
-	|->(ctei)-^
-	|->(ctes)-|
-	|->(ctec)-|
-
-PARAMS:
-	|-------------->
-		|		  ^
-		|->[EXP]--|
-		^--(,)<---|
-
-DECLARATION:
-	TYPE-->(id)-->[DECLARATION2]-->(;)
-
-DECLARATION2:
-	|---------------------->
-	|->([)-->[EXP]--->(])--^
-		   ^		|
-		   |--(,)---|
-
-ASIGNATION:
-	|
-	|->(id)-->[ASIGNATION2]-->(=)-->[EXP]-->(;)-->
-	|->
-
-ASIGNATION2:
-	|->(=)-->[EXP]-->(;)-->
-	|->([)-->[EXP]--->(])-->
-		   |		|
-		   |--(,)---|
-
-PRINT:
-	(print)-->(ctes)-->(;)-->
-
-INSTRUCTIONS:
-	|
-	|->(pinD)------------------------------------------------------>(;)-->
-	|->(pinU)------------------------------------------------------>(;)-^
-	|->(color)-->(()-->(ctei)-->(,)-->(ctei)-->(,)-->(ctei)-->())-->(;)-|
-	|->(move)-->(()-->(ctei)-->(,)-->(ctei)-->())------------------>(;)-|
-
-INCLUDE
-	(#)-->(incl)-->(ctes)-->
+BODY:
+	|->[FUNCTIONS]------>
+	|->[DECLARATIONS]--^
+	|->[ASIGNATIONS]---|
 
 INCLUDES
 	|-------------------------->
-	|					      ^
-	|->[INCLUDE]-->[INCLUDES]-|
+	|->[INCLUDE]-->[INCLUDES]-^
+
+INCLUDE
+	|->(#)-->(incl)-->[INCLUDE2]-->
+
+INCLUDE2
+	|->(ctes)-------------->
+	|->(<)-->(ctes)-->(>)-^
 
 FUNCTIONS
 	|-------------------------------->
-	|								^
-	|->[FUNCTIONDECL]-->[FUNCTIONS]-|
+	|->[FUNCTIONDECL]-->[FUNCTIONS]-^
 
 FUNCTIONDECL:
-	[TYPE]-->(id)-->(()-->[PARAMS]-->())-->({)-->[ESTATUTOS]-->(})-->
+	|->[TYPE]-->(id)-->(()-->[PARAMS]-->())-->({)-->[ESTATUTOS]-->(})-->
 
 MAINDECL:
-	(ent)-->(main)-->(()-->())-->({)-->[ESTATUTOS]-->(})-->
+	|->(int)-->(main)-->(()-->())-->({)-->[ESTATUTOS]-->(})-->
 
-FUNCTIONCALL:
-	(id)-->(()-->[PARAMS]-->())-->(;)-->
+TYPE:
+	|-->(int)------>
+	|-->(double)--^
+	|-->(boolean)-|
+	|-->(string)--|
+	|-->(nada)----|
 
-CONDICION:
-	(if)-->(()-->[EXP]-->())-->({)-->[ESTATUTOS]-->(})---------------------------------------------->
-														|->(else)-->())-->({)-->[ESTATUTOS]-->(})--^
+PARAMS:
+	|------------->
+	|->[PARAMS2]-^
+
+PARAMS2:
+	|->[DECLARATION]-->[PARAMS3]-->
+
+PARAMS3:
+	|-------------------->
+	|->(,)-->[PARAMS2]--^
+
+DECLARATIONS:
+	|----------------------------------->
+	|->[DECLARATION]-->[DECLARATIONS]--^
+
+DECLARATION:
+	[TYPE]-->[DECLARATION2]-->
+
+DECLARATION2:
+	|->[SINGLEDIM]-->
+	|->[MULTIDIM]--^
+
+SINGLEDIM:
+	|->(id)----->(;)
+
+MULTIDIM:
+	|->([)-->[DIMD]-->(])-->(id)-->(;)-->
+
+DIMD:
+	|->[EXP]->[DIMD2]->
+
+DIMD2:
+	|----------------->
+	|->(,)-->[DIMD]--^
+
+ASIGNATIONS:
+	|--------------------------------->
+	|->[ASIGNATION]-->[ASIGNATIONS]--^
+
+ASIGNATION:
+	|->(id)-->[ASIGNATION2]-->
+
+ASIGNATION2:
+	|->(=)-->[EXP]-->
+	|->([)-->[DIMA]-->(])-->(=)-->[EXP]-->
+
+DIMA:
+	|->[EXP]->[DIMA2]->
+
+DIMA2:
+	|----------------->
+	|->(,)-->[DIMA]--^
+
+ESTATUTOS:
+	|----------------------------->
+	|->[ESTATUTO]-->[ESTATUTOS]--^
+
+ESTATUTO:
+	|->[FUNCTIONCALL]--->
+	|->[ASIGNATION]----^
+	|->[DECLARATION]---|
+	|->[PRINT]---------|
+	|->[INSTRUCTIONS]--|
+	|->[LOOPS]---------|
+	|->[CONDITIONAL]---|
+	|->(break)---------|
+	|->(return)--------|
 
 LOOPS:
 	|->[WHILE]---->
@@ -80,62 +108,99 @@ LOOPS:
 	|->[DOWHILE]-|
 
 WHILE:
-	(while)-->(()-->[EXP]-->())-->({)-->[ESTATUTOS]-->(})-->
+	|->(while)-->(()-->[EXP]-->())-->({)-->[ESTATUTOS]-->(})-->
 
 FOR:
-	(for)-->(()-->[ASIGNATIONS]-->(;)-->[EXP]-->(;)-->[ESTATUTOS]-->())-->({)-->[ESTATUTOS]-->(})-->
+	|->(for)-->(()-->[ASIGNATIONS]-->(;)-->[EXP]-->(;)-->[ASIGNATIONS]-->())-->({)-->[ESTATUTOS]-->(})-->
 
 DOWHILE:
-	(do)-->({)-->[ESTATUTOS]-->(})-->(while)-->(()-->[EXP]-->())-->
+	|->(do)-->({)-->[ESTATUTOS]-->(})-->(while)-->(()-->[EXP]-->())-->
 
-ESTATUTOS:
-	|------------------------------>
-	|							 ^
-	|->[ESTATUTO]--->[ESTATUTOS]-|
+FUNCTIONCALL:
+	|->(id)-->(()-->[PARAMS]-->())-->(;)-->
 
-ESTATUTO:
-	|				   
-	|->[FUNCTIONCALL]--->
-	|->[ASIGNATION]----^
-	|->[PRINT]---------|
-	|->[INSTRUCTIONS]--|
-	|->[LOOPS]---------|
-	|->[CONDICION]-----|
-	|->(break)---------|
-	|->(return)--------|
+CONDITIONAL:
+	|->(if)-->(()-->[EXP]-->())-->({)-->[ESTATUTOS]-->(})-->[CONDITIONAL2]-->
 
-INIT:
-	[INCLUDES]-->[FUNCTIONS]-->[MAINDECL]-->
+CONDITIONAL2:
+	|------------------------------------->
+	|->(else)-->({)-->[ESTATUTOS]-->(})--^
+
+PRINT:
+	(print)-->[EXP]-->(;)-->
+
+INSTRUCTIONS:
+	|->(pinD)------------------------------------------------------>(;)-->
+	|->(pinU)------------------------------------------------------>(;)-^
+	|->(color)-->(()-->(ctei)-->(,)-->(ctei)-->(,)-->(ctei)-->())-->(;)-|
+	|->(move)-->(()-->(ctei)-->(,)-->(ctei)-->())------------------>(;)-|
 
 EXP:
-	[EX]------------------>
-		|				 ^
-		|->(>)----->[EX]-|
-		|->(<)-->^
-		|->(>=)->|	
-		|->(<=)->|
-		|->(!=)->|
-		|->(==)->|
+	|->[EXO]-->[EXP2]-->
+
+EXP2:
+	|------------------>
+	|->(and)-->[EXP]--^
+
+EXO:
+	|->[EXN]-->[EXO2]-->
+
+EXO2:
+	|----------------->
+	|->(or)-->[EXO]--^
+
+EXN:
+	|->[EXI]-->[EXN2]-->
+
+EXN2:
+	|------------------>
+	|->(not)-->[EXN]--^
+
+EXI:
+	|->[EXM]-->[EXI2]-->
+
+EXI2:
+	|---------------->
+	|->(>)-->[EXM]--^
+	|->(<)--^
+	|->(>=)-|
+	|->(<=)-|
+	|->(!=)-|
+	|->(==)-|
+
+EXM:
+	|->[EX]-->[EXM2]-->
+
+EXM2:
+	|->(mod)-->[EXM]-->
 
 EX:
-	|---[TERMINO]--->
-	|              |
-	|<---(+)<------|
-	|<---(-)<------|
+	|->[TERMINO]-->[EX2]-->
+
+EX2:
+	|--------------->
+	|->(+)-->[EX]--^
+	|->(-)-->[EX]--|
 
 TERMINO:
-	|---[FACTOR]--->
-	|             |
-	|<---(*)<-----|
-	|<---(/)<-----|
+	|->[FACTOR]-->[TERMINO2]-->
+
+TERMINO2:
+	|-------------------->
+	|->(*)-->[TERMINO]--^
+	|->(/)-->[TERMINO]--|
 
 FACTOR:
-	|
 	|->(()-->[EXP]-->())-->
-	|------>[VAR]--------^
-	|->(+)^
-	|->(-)|
+	|->[VAR]-------------^
+	|->(+)-->[VAR]-------|
+	|->(-)-->[VAR|-------|
 
 VAR:
-	|->(id)--->
-	|->[CTE]-^
+	|->(id)---->
+	|->[CTE]--^
+
+CTE:
+	|->(ctef)-->
+	|->(ctei)-^
+	|->(ctes)-|

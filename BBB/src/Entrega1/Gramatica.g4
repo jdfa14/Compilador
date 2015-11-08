@@ -65,7 +65,13 @@ CTEI: [0-9]+;
 ID: [a-zA-Z0-9]+;
 
 init:
-	includes functions maindecl
+	includes body maindecl
+	;
+
+body:
+	functions
+	| declarations
+	| asignations
 	;
 
 includes:
@@ -113,6 +119,10 @@ params3:
 	| COM params2
 	;
 
+declarations:
+	| declaration declarations
+	;
+
 declaration:
 	type declaration2
 	;
@@ -139,11 +149,7 @@ dimd2:
 	;
 
 asignations:
-	asignation asignations2
-	;
-
-asignations2:
-	| asignation
+	| asignation asignations
 	;
 
 asignation:
