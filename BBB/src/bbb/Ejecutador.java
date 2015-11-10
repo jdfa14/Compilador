@@ -22,6 +22,9 @@ public class Ejecutador {
              
         String fileName = "/Users/taniagarridosalido/Dropbox/ITESM-ITC Noveno Semestre/Análisis y Diseño de Compiladores/Compilador/BBB/src/cuadruplos.txt";
         String line = null;
+        Stack <Integer> pila;
+        pila = new Stack<>();
+        
         
         try {
 
@@ -304,10 +307,23 @@ public class Ejecutador {
                     case DATA.ACTE:
                         mv.saveVar(cuad.getResultado(), cuad.getOperando1());
                         break;
+                    case DATA.PC:
+                        mv.prepararCambio();
+                        break;
+                    case DATA.CC:
+                        mv.cambiarContexto();
+                        pila.push(i+1);
+                        break;
+                    case DATA.TC:
+                        mv.terminarCambio();
+                        break;
+                    case DATA.RET:
+                        i = pila.pop();
+                        break;
                 }
             i++;    
             }
-            System.out.println(mv.getInt(27003));
+            System.out.println(mv.getInt(0));
             bufferedReader.close();
         }
         catch(FileNotFoundException ex) {

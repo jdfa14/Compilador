@@ -15,6 +15,8 @@ public class MemoriaVirtual {
         memT = new Stack <>();
         memL = new Stack <>();
         memC = new Memoria();
+        memT.push(new Memoria());
+        memL.push(new Memoria());
     }
     
     public void prepararCambio(){
