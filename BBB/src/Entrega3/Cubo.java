@@ -185,7 +185,7 @@ public class Cubo {
         // String Operations
         cube[STR][INT][ADD] = ERR;
         cube[STR][DBL][ADD] = ERR;
-        cube[STR][STR][ADD] = ERR;
+        cube[STR][STR][ADD] = STR;
         cube[STR][BOL][ADD] = ERR;
 
         cube[STR][INT][SUB] = ERR;

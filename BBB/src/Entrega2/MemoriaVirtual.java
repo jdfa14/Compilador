@@ -40,6 +40,19 @@ public class MemoriaVirtual {
         memL.pop();
     }
     
+    public void str1(int value, int dir){
+        char a = (char) value;
+        String b = String.valueOf(a); 
+        saveVar(dir, b);
+    }
+    
+    public void str2(int value, int dir){
+        char a = (char) value;
+        String b = getString(dir);
+        b += a;
+        saveVar(dir, b);
+    }
+    
     public void saveVar(int dir, Object value){ // Asignaciones
         Memoria.TYPE type = Memoria.getType(dir);
         

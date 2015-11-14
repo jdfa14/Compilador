@@ -40,4 +40,8 @@ public class DATA {
     public static final int RET = 26;   // Return de una función
     public static final int PARAM = 27; // Declaration of parameters to function
     public static final int DECL = 28;  // Declare variables
+    public static final int STR1 = 29;  // Declaration of strings
+    public static final int STR2 = 30;  // Declaration of strings
+    public static final int PRNT = 31;  // Función print
+    public static final int PNTL = 32;  // Función printline
 }

@@ -64,6 +64,9 @@ public class Ejecutador {
                                 mv.saveVar(cuad.getResultado(), mv.getFloat(cuad.getOperando1()) + mv.getFloat(cuad.getOperando2()));
                             }
                         }
+                        else if ( t1 == Memoria.DATA_TYPE.STRING && t2 == Memoria.DATA_TYPE.STRING){
+                            mv.saveVar(cuad.getResultado(), mv.getString(cuad.getOperando1()) + mv.getString(cuad.getOperando2()));
+                        }
                         break;
                     case DATA.SUB:
                         t1 = Memoria.getDataType(cuad.getOperando1());
@@ -372,10 +375,22 @@ public class Ejecutador {
                                 mv.saveVar(cuad.getResultado(), mv.getBoolean(cuad.getOperando1()));
                         }
                         break;
+                    case DATA.STR1:
+                        mv.str1(cuad.getOperando1(), cuad.getResultado());
+                        break;
+                    case DATA.STR2:
+                        mv.str2(cuad.getOperando1(), cuad.getResultado());
+                        break;
+                    case DATA.PRNT:
+                        System.out.print(mv.getString(cuad.getResultado()));
+                        break;
+                    case DATA.PNTL:
+                        System.out.println(mv.getString(cuad.getResultado()));
+                        break;
                 }
             i++;    
             }
-            System.out.println(mv.getInt(0));
+            System.out.println(mv.getString(6000));
             bufferedReader.close();
         }
         catch(FileNotFoundException ex) {
