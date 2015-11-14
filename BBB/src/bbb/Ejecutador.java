@@ -387,6 +387,9 @@ public class Ejecutador {
                     case DATA.PNTL:
                         System.out.println(mv.getString(cuad.getResultado()));
                         break;
+                    case DATA.GAP:
+                        
+                        break;
                 }
             i++;    
             }
