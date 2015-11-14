@@ -14,6 +14,19 @@ public class ManejadorDeMemoria {
         memC = new MemoryIndex(Memoria.SCOPE_TYPE.CONSTANTE);
     }
     
+    public void gapDir(Memoria.SCOPE_TYPE scope, Memoria.DATA_TYPE data, int gap){
+        switch(scope){
+            case GLOBAL:
+                memG.putMany(data,gap);
+            case TEMPORAL:
+                memT.putMany(data,gap);
+            case LOCAL:
+                memL.putMany(data,gap);
+            case CONSTANTE:
+                memC.putMany(data,gap);
+        }
+    }
+    
     public int crearDir(Memoria.SCOPE_TYPE scope, Memoria.DATA_TYPE data){
         switch(scope){
             case GLOBAL:
@@ -56,6 +69,7 @@ public class ManejadorDeMemoria {
     MemoryIndex(Memoria.SCOPE_TYPE tipo){
         this.tipo = tipo;
         setType();
+        
     }
     
     public void reset(){
@@ -104,6 +118,31 @@ public class ManejadorDeMemoria {
                 stringCf = Memoria.fcs;
                 booleanCf = Memoria.fcb;
                 break;   
+        }
+    }
+    
+    public void putMany(Memoria.DATA_TYPE dt, int cant){
+        switch(dt){
+            case INT:
+                if(intCi + cant > intCf){
+                    // ERROR
+                }
+                intCi+= cant;
+            case FLOAT:
+                if(floatCi + cant > floatCf){
+                    //ERROR
+                }
+                floatCi+= cant;
+            case STRING:
+                if(stringCi + cant> stringCf){
+                    //ERROR
+                }
+                stringCi+= cant;
+            case BOOLEAN:
+                if(booleanCi + cant > booleanCf){
+                    //ERROR
+                }
+            booleanCi+= cant;
         }
     }
     

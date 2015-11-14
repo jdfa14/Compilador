@@ -4,7 +4,7 @@ public class Cuadruplo {
     private final int operador;
     private final int operando1;
     private final int operando2;
-    private final int resultado;
+    private int resultado;
 
     public Cuadruplo(int operador, int operando1, int operando2, int resultado) {
         this.operador = operador;
@@ -27,5 +27,9 @@ public class Cuadruplo {
 
     public int getResultado() {
         return resultado;
+    }
+    
+    public void setResultado(int resultado){
+        this.resultado = resultado;
     }
 }

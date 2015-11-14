@@ -62,96 +62,161 @@ public class CompiAPI {
         instance.cuadruplos.add(cuadruplo);
     }
     
-    // Variable Stuff
-    
-    // Comenzamos la creacion de una variable
-    public static void var1SetVariableType(int type){
-        instance.newVar = new Variable(type);
+    public static void addSalto(int salto){
+        instance.saltos.add(salto);
     }
     
-    public static void var2SetVariableName(String name){
-        instance.newVar.nombre = name;
-        
+    public static int getSalto(){
+        return instance.saltos.pop();
+    }
+    
+    public static void refillSalto(int gotoCuad, int gotoDir){
+        instance.cuadruplos.get(gotoCuad).setResultado(gotoDir);
+    }
+    
+    public static void declareVar(Variable var){
         if(instance.localThread){
-            if(instance.localV.has(name)){
-               //TODO ERROR aqui
-                return;
-            }
-            switch(instance.newVar.tipo){
-                case DATA.INT:
-                    instance.newVar.dir = instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.LOCAL, Memoria.DATA_TYPE.INT);
-                    break;
-                case DATA.BOL:
-                    instance.newVar.dir = instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.LOCAL, Memoria.DATA_TYPE.BOOLEAN);
-                    break;
-                case DATA.DBL:
-                    instance.newVar.dir = instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.LOCAL, Memoria.DATA_TYPE.FLOAT);
-                    break;
-                case DATA.STR:
-                    instance.newVar.dir = instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.LOCAL, Memoria.DATA_TYPE.STRING);
-                    break;
-            }
-            instance.localV.add(instance.newVar);
+            instance.localV.add(var);
         }else{
-            if(instance.globalV.has(name)){
-               //TODO ERROR aqui
-                return;
-            }
-            switch(instance.newVar.tipo){
-                case DATA.INT:
-                    instance.newVar.dir = instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.INT);
-                    break;
-                case DATA.BOL:
-                    instance.newVar.dir = instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.BOOLEAN);
-                    break;
-                case DATA.DBL:
-                    instance.newVar.dir = instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.FLOAT);
-                    break;
-                case DATA.STR:
-                    instance.newVar.dir = instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.STRING);
-                    break;
-            }
-            instance.globalV.add(instance.newVar);
+            instance.globalV.add(var);
         }
     }
     
-    public static void var3addAssignation(int dim){
-        instance.addCuadruplo(new Cuadruplo(DATA.EQS,instance.dirExpResult,-1,instance.newVar.dir));
+    public static boolean isDeclared(String id){
+        if(instance.localThread){
+            return instance.localV.has(id);
+        }else{
+            return instance.globalV.has(id);
+        }
     }
     
-    public static void var4SetVariableMs(){
-        instance.newVar.setMS();
-    }
-    
-    public static void var5SetVariableOnMemory(){
-        switch(instance.newVar.tipo){
+    public static void reserveDirs(int type, int cant){
+       switch(type){
             case DATA.INT:
-                instance.newVar.dir = instance.localThread ? 
-                        instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.LOCAL, Memoria.DATA_TYPE.INT):
-                        instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.INT);
-                break;
-            case DATA.BOL:
-                instance.newVar.dir = instance.localThread ? 
-                        instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.LOCAL, Memoria.DATA_TYPE.BOOLEAN):
-                        instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.BOOLEAN);
-                break;
+                if(instance.localThread){
+                    instance.memoryManager.gapDir(Memoria.SCOPE_TYPE.LOCAL, Memoria.DATA_TYPE.INT,cant);
+                }else{
+                    instance.memoryManager.gapDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.INT,cant);
+                }
             case DATA.DBL:
-                instance.newVar.dir = instance.localThread ? 
-                        instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.LOCAL, Memoria.DATA_TYPE.FLOAT):
-                        instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.FLOAT);
-                break;
+                if(instance.localThread){
+                    instance.memoryManager.gapDir(Memoria.SCOPE_TYPE.LOCAL, Memoria.DATA_TYPE.FLOAT,cant);
+                }else{
+                    instance.memoryManager.gapDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.FLOAT,cant);
+                }
             case DATA.STR:
-                instance.newVar.dir = instance.localThread ? 
-                        instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.LOCAL, Memoria.DATA_TYPE.STRING):
-                        instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.STRING);
-                break;
-        }
-        if(instance.localThread){
-            instance.localV.add(new Variable(instance.newVar));
-        }else{
-            instance.globalV.add(new Variable(instance.newVar));
+                if(instance.localThread){
+                    instance.memoryManager.gapDir(Memoria.SCOPE_TYPE.LOCAL, Memoria.DATA_TYPE.STRING,cant);
+                }else{
+                    instance.memoryManager.gapDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.STRING,cant);
+                }
+            case DATA.BOL:
+                if(instance.localThread){
+                    instance.memoryManager.gapDir(Memoria.SCOPE_TYPE.LOCAL, Memoria.DATA_TYPE.BOOLEAN,cant);
+                }else{
+                    instance.memoryManager.gapDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.BOOLEAN,cant);
+                }
         }
     }
+    
+    public static int requestDir(int type){
+        switch(type){
+            case DATA.INT:
+                if(instance.localThread){
+                    return instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.LOCAL, Memoria.DATA_TYPE.INT);
+                }else{
+                    return instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.INT);
+                }
+            case DATA.DBL:
+                if(instance.localThread){
+                    return instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.LOCAL, Memoria.DATA_TYPE.FLOAT);
+                }else{
+                    return instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.FLOAT);
+                }
+            case DATA.STR:
+                if(instance.localThread){
+                    return instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.LOCAL, Memoria.DATA_TYPE.STRING);
+                }else{
+                    return instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.STRING);
+                }
+            case DATA.BOL:
+                if(instance.localThread){
+                    return instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.LOCAL, Memoria.DATA_TYPE.BOOLEAN);
+                }else{
+                    return instance.memoryManager.crearDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.BOOLEAN);
+                }
+        }
+        return -1;
+    }
+    
+    public static class INIT{
+        public static void ins1(){
+            addSalto(instance.cuadruplos.size());
+            addCuadruplo(DATA.GOT,-1,-1,-1);
+        }
+        
+        public static void ins2(){
+            addCuadruplo(DATA.EOF,-1,-1,-1);
+            refillSalto(getSalto(),instance.cuadruplos.size());
+            instance.constantes.stream().forEach((Cuadruplo cuad) -> {
+                addCuadruplo(cuad);
+            });
+            if(instance.main == -1){
+                //TODO ERROR
+            }
+            addCuadruplo(DATA.GOT,-1,-1,instance.main);
+        }
+    }
+    
+    public static class DECL{
+        private static int type;
+        private static Variable var;
+        private static boolean asignation;
+        
+        public static void ins1(int type){  // Instrucion de declaracion de tipo
+            DECL.type = type;
+            
+        }
+        
+        public static void ins2(String name){   // Nombre de la variable
+            if(!isDeclared(name)){
+                DECL.var = new Variable(DECL.type);
+                DECL.var.dir = CompiAPI.requestDir(DECL.type);
+                DECL.var.nombre = name;
+                CompiAPI.declareVar(DECL.var);
+            } else {
+                //TODO ERROR variable declarada;
+            }
+            
+            DECL.asignation = false;
+        }
+        
+        public static void ins3(){// Asignacion de valor default de la variable
+            DECL.asignation = true;
+        }
+        
+        public static void ins4(){
+            if(DECL.asignation){
+                addCuadruplo(DATA.DECL,instance.dirExpResult,-1,var.dir);
+            }else{
+                addCuadruplo(DATA.DECL,-1,-1,var.dir);
+            }
+            if(DECL.var.tieneDim){
+                addCuadruplo(DATA.GAP,var.dir,-1,var.m0 - 1);
+            }
+        }
+        
+        public static void ins5(int dim){
+            DECL.var.agregaDim(dim);
+        }
+        
+        public static void ins6(){
+            DECL.var.setMS();
+            reserveDirs(type, DECL.var.m0 - 1);
+        }
+    }
+
+    // Variable Stuff
     // Validamos su nombre
     
 }
