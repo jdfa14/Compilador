@@ -50,7 +50,19 @@ DECLARATIONS:
 	|->[DECLARATION]-->[DECLARATIONS]--^
 
 DECLARATION:
-	[TYPE]-->(id)-->[MULTI]-->(;)-->
+	|->[TYPE]-->[MULTIVAR]-->(;)-->
+
+MULTIVAR:
+	|->(id)-->[DASIGN]-->[MULTIVAR2]-->
+
+MULTIVAR2:
+	|--------------------->
+	|->(,)-->[MULTIVAR]--^
+
+DASIGN:
+	|---------------->
+	|->(=)-->[EXP]--^
+	|->[MULTIDIM]---|
 
 MULTIDIM:
 	|----------------------->

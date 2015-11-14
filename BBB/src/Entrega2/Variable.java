@@ -18,6 +18,16 @@ public class Variable {
         this.dim = null;
         this.m0 = 1;
     }
+    
+    public Variable(Variable original){
+        this.nombre = original.nombre;
+        this.tipo = original.tipo;
+        this.dir = original.tipo;
+        this.tieneDim = original.tieneDim;
+        this.dim = (ArrayList<Dimension>) original.dim.clone();
+        this.m0 = original.m0;
+    }
+    
     /* Prototipo
     public Variable(String nombre, int tipo, int dir, ArrayList<Dimension> dim){
         this.nombre = nombre;

@@ -1,4 +1,4 @@
-// Generated from Gramatica.g4 by ANTLR 4.5.1
+// Generated from GramBBB.g4 by ANTLR 4.5.1
 package Entrega1;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
@@ -10,7 +10,7 @@ import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class GramaticaLexer extends Lexer {
+public class GramBBBLexer extends Lexer {
 	static { RuntimeMetaData.checkVersion("4.5.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -86,13 +86,13 @@ public class GramaticaLexer extends Lexer {
 	}
 
 
-	public GramaticaLexer(CharStream input) {
+	public GramBBBLexer(CharStream input) {
 		super(input);
 		_interp = new LexerATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
 	@Override
-	public String getGrammarFileName() { return "Gramatica.g4"; }
+	public String getGrammarFileName() { return "GramBBB.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }

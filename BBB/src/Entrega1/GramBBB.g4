@@ -1,4 +1,4 @@
-grammar Gramatica;
+grammar GramBBB;
 
 WS: [ \n\t\r]+ -> skip;
 
@@ -124,7 +124,20 @@ declarations:
 	;
 
 declaration:
-	type ID multidim  DEL
+	type multivar  DEL
+	;
+
+multivar:
+	ID dasign multivar2
+	;
+
+multivar2:
+	| COM multivar
+	;
+
+dasign:
+	| IGU exp
+	| multidim
 	;
 
 multidim:

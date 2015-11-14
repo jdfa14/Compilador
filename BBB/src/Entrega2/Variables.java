@@ -15,6 +15,10 @@ public class Variables {
         variables.clear();
     }
     
+    public boolean has(String key){
+        return variables.containsKey(key);
+    }
+    
     public boolean add(Variable var){
         if(!variables.containsKey(var.nombre)){
             variables.put(var.nombre, var);
