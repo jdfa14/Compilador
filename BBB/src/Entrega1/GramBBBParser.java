@@ -1,5 +1,7 @@
 // Generated from GramBBB.g4 by ANTLR 4.5.1
+
 package Entrega1;
+
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -847,7 +849,6 @@ public class GramBBBParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(174);
-                        CompiAPI
 			type();
 			setState(175);
 			multivar();

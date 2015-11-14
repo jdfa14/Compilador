@@ -23,7 +23,10 @@ public class CompiAPI {
     
     private ManejadorDeMemoria memoryManager;
     private LinkedList<Cuadruplo> cuadruplos;
+    private LinkedList<Cuadruplo> constantes;
+    
     private Stack<Integer> saltos;
+    private int main = -1;
     
     private Variables globalV;      // Variables globales
     private Variables localV;       // Variables locales
