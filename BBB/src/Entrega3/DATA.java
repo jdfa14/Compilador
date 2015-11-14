@@ -38,5 +38,6 @@ public class DATA {
     public static final int CC = 24;    // Cambio de contexto
     public static final int TC = 25;    // Termina el cambio de contexto
     public static final int RET = 26;   // Return de una función
-
+    public static final int PARAM = 27; // Declaration of parameters to function
+    public static final int DECL = 28;  // Declare variables
 }

@@ -318,7 +318,59 @@ public class Ejecutador {
                         mv.terminarCambio();
                         break;
                     case DATA.RET:
-                        i = pila.pop();
+                        
+                        if (cuad.getOperando1() == -1 ){
+                            mv.terminarCambio();
+                            i = pila.pop();
+                        }
+                        else{
+                            Object value = 0;
+
+                            t1 = Memoria.getDataType(cuad.getOperando1());
+
+                            if (t1 == Memoria.DATA_TYPE.INT)
+                                value = mv.getInt(cuad.getOperando1());
+                            else if (t1 == Memoria.DATA_TYPE.FLOAT)
+                                value = mv.getFloat(cuad.getOperando1());
+                            else if (t1 == Memoria.DATA_TYPE.STRING)
+                                value = mv.getString(cuad.getOperando1());
+                            else if (t1 == Memoria.DATA_TYPE.BOOLEAN)
+                                value = mv.getBoolean(cuad.getOperando1());
+
+                            mv.terminarCambio();
+                            mv.saveVar(cuad.getResultado(),value);
+                            i = pila.pop();
+                        }
+                        break;
+                    case DATA.PARAM:
+                        t1 = Memoria.getDataType(cuad.getOperando1());
+                        
+                        if (t1 == Memoria.DATA_TYPE.INT)
+                            mv.saveParam(cuad.getResultado(), mv.getInt(cuad.getOperando1()));
+                        else if (t1 == Memoria.DATA_TYPE.FLOAT)
+                            mv.saveParam(cuad.getResultado(), mv.getFloat(cuad.getOperando1()));
+                        else if (t1 == Memoria.DATA_TYPE.STRING)
+                            mv.saveParam(cuad.getResultado(), mv.getString(cuad.getOperando1()));
+                        else if (t1 == Memoria.DATA_TYPE.BOOLEAN)
+                            mv.saveParam(cuad.getResultado(), mv.getBoolean(cuad.getOperando1()));
+                        
+                        break;
+                    case DATA.DECL:
+                        if ( cuad.getOperando1() == -1 ){
+                            mv.saveVar(cuad.getResultado(), null);
+                        }
+                        else{
+                            t1 = Memoria.getDataType(cuad.getOperando1());
+
+                            if (t1 == Memoria.DATA_TYPE.INT)
+                                mv.saveVar(cuad.getResultado(), mv.getInt(cuad.getOperando1()));
+                            else if (t1 == Memoria.DATA_TYPE.FLOAT)
+                                mv.saveVar(cuad.getResultado(), mv.getFloat(cuad.getOperando1()));
+                            else if (t1 == Memoria.DATA_TYPE.STRING)
+                                mv.saveVar(cuad.getResultado(), mv.getString(cuad.getOperando1()));
+                            else if (t1 == Memoria.DATA_TYPE.BOOLEAN)
+                                mv.saveVar(cuad.getResultado(), mv.getBoolean(cuad.getOperando1()));
+                        }
                         break;
                 }
             i++;    

@@ -20,20 +20,24 @@ public class MemoriaVirtual {
     }
     
     public void prepararCambio(){
-        PC = 1;
         tempMT = new Memoria();
         tempML = new Memoria();
     }
     
-    public void cambiarContexto(){
+    public void saveParam(int dir, Object value){
+        PC = 1;
+        saveVar(dir, value);
         PC = 0;
+    }
+        
+    public void cambiarContexto(){
         memT.push(tempMT);
         memL.push(tempML);
     }
     
     public void terminarCambio(){
         memT.pop();
-        memT.pop();
+        memL.pop();
     }
     
     public void saveVar(int dir, Object value){ // Asignaciones
