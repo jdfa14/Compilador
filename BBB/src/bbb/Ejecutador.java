@@ -19,7 +19,12 @@ public class Ejecutador {
     public static void main(String[] args) throws IOException {
         MemoriaVirtual mv = new MemoriaVirtual();
         ArrayList<Cuadruplo> cuadruplos = new ArrayList<>();
-             
+        
+        Game game = new Game();
+        game.play();
+        
+        game.move(-0.02f, -0.05f);
+        
         String fileName = "/Users/taniagarridosalido/Dropbox/ITESM-ITC Noveno Semestre/Análisis y Diseño de Compiladores/Compilador/BBB/src/cuadruplos.txt";
         String line = null;
         Stack <Integer> pila;
@@ -388,7 +393,10 @@ public class Ejecutador {
                         System.out.println(mv.getString(cuad.getResultado()));
                         break;
                     case DATA.GAP:
-                        
+                        int memoria = cuad.getOperando1();
+                        for (int j = cuad.getResultado(); j > 0 ; j--,memoria++){
+                            mv.saveVar(memoria, null);
+                        }
                         break;
                 }
             i++;    

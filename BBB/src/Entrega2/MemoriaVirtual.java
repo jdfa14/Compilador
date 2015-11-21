@@ -56,79 +56,108 @@ public class MemoriaVirtual {
     public void saveVar(int dir, Object value){ // Asignaciones
         Memoria.TYPE type = Memoria.getType(dir);
         
-        switch(type){
-            case GLOBAL_INT:
-                memG.saveInt(dir, (int)value);
-                break;
-            case GLOBAL_FLOAT:
-                memG.saveFloat(dir, (double) value);
-                break;
-            case GLOBAL_STRING: 
-                memG.saveString(dir, (String) value);
-                break;
-            case GLOBAL_BOOLEAN:
-                memG.saveBoolean(dir, (boolean) value);
-                break;
-            case LOCAL_INT:
-                if (PC == 0)
-                    memL.peek().saveInt(dir, (int)value);
-                else
-                    tempML.saveInt(dir, (int) value);
-                break;
-            case LOCAL_FLOAT:
-                if (PC == 0)
-                    memL.peek().saveFloat(dir, (double) value);
-                else
-                    tempML.saveFloat(dir, (double)value);
-                break;
-            case LOCAL_STRING:
-                if (PC == 0)
-                    memL.peek().saveString(dir, (String) value);
-                else
-                    tempML.saveString(dir, (String) value);
-                break;
-            case LOCAL_BOOLEAN:
-                if (PC == 0)
-                    memL.peek().saveBoolean(dir, (boolean) value);
-                else
-                    tempML.saveBoolean(dir, (boolean)value);
-                break;
-            case TEMPORAL_INT:
-                if (PC == 0)
-                    memT.peek().saveInt(dir, (int)value);
-                else
-                    tempMT.saveInt(dir, (int) value);
-                break;
-            case TEMPORAL_FLOAT:
-                if (PC == 0)
-                    memT.peek().saveFloat(dir, (double) value);
-                else
-                    tempMT.saveFloat(dir, (double) value);
-                break;
-            case TEMPORAL_STRING:
-                if (PC == 0)
-                    memT.peek().saveString(dir, (String) value);
-                else
-                    tempMT.saveString(dir, (String) value);
-                break;
-            case TEMPORAL_BOOLEAN:
-                if (PC == 0)
-                    memT.peek().saveBoolean(dir, (boolean) value);
-                else
-                    tempMT.saveBoolean(dir, (boolean)value);
-                break;
-            case CONSTANT_INT:
-                memC.saveInt(dir, (int)value);
-                break;
-            case CONSTANT_FLOAT:
-                memC.saveFloat(dir, (double) value);
-                break;
-            case CONSTANT_STRING: 
-                memC.saveString(dir, (String) value);
-                break;
-            case CONSTANT_BOOLEAN:
-                memC.saveBoolean(dir, (boolean) value);
-                break;
+        if ( value == null){
+            switch(type){
+                case GLOBAL_INT:
+                case GLOBAL_FLOAT:
+                case GLOBAL_STRING: 
+                case GLOBAL_BOOLEAN:
+                    memG.saveNull(dir);
+                    break;
+                case LOCAL_INT:
+                case LOCAL_FLOAT:
+                case LOCAL_STRING:
+                case LOCAL_BOOLEAN:
+                    memL.peek().saveNull(dir);
+                    break;
+                case TEMPORAL_INT:
+                case TEMPORAL_FLOAT:
+                case TEMPORAL_STRING:
+                case TEMPORAL_BOOLEAN:
+                    memT.peek().saveNull(dir);
+                case CONSTANT_INT:
+                case CONSTANT_FLOAT:
+                case CONSTANT_STRING: 
+                case CONSTANT_BOOLEAN:
+                    memC.saveNull(dir);
+                    break;
+            }
+        }
+        else{
+            switch(type){
+                case GLOBAL_INT:
+                    memG.saveInt(dir, (int)value);
+                    break;
+                case GLOBAL_FLOAT:
+                    memG.saveFloat(dir, (double) value);
+                    break;
+                case GLOBAL_STRING: 
+                    memG.saveString(dir, (String) value);
+                    break;
+                case GLOBAL_BOOLEAN:
+                    memG.saveBoolean(dir, (boolean) value);
+                    break;
+                case LOCAL_INT:
+                    if (PC == 0)
+                        memL.peek().saveInt(dir, (int)value);
+                    else
+                        tempML.saveInt(dir, (int) value);
+                    break;
+                case LOCAL_FLOAT:
+                    if (PC == 0)
+                        memL.peek().saveFloat(dir, (double) value);
+                    else
+                        tempML.saveFloat(dir, (double)value);
+                    break;
+                case LOCAL_STRING:
+                    if (PC == 0)
+                        memL.peek().saveString(dir, (String) value);
+                    else
+                        tempML.saveString(dir, (String) value);
+                    break;
+                case LOCAL_BOOLEAN:
+                    if (PC == 0)
+                        memL.peek().saveBoolean(dir, (boolean) value);
+                    else
+                        tempML.saveBoolean(dir, (boolean)value);
+                    break;
+                case TEMPORAL_INT:
+                    if (PC == 0)
+                        memT.peek().saveInt(dir, (int)value);
+                    else
+                        tempMT.saveInt(dir, (int) value);
+                    break;
+                case TEMPORAL_FLOAT:
+                    if (PC == 0)
+                        memT.peek().saveFloat(dir, (double) value);
+                    else
+                        tempMT.saveFloat(dir, (double) value);
+                    break;
+                case TEMPORAL_STRING:
+                    if (PC == 0)
+                        memT.peek().saveString(dir, (String) value);
+                    else
+                        tempMT.saveString(dir, (String) value);
+                    break;
+                case TEMPORAL_BOOLEAN:
+                    if (PC == 0)
+                        memT.peek().saveBoolean(dir, (boolean) value);
+                    else
+                        tempMT.saveBoolean(dir, (boolean)value);
+                    break;
+                case CONSTANT_INT:
+                    memC.saveInt(dir, (int)value);
+                    break;
+                case CONSTANT_FLOAT:
+                    memC.saveFloat(dir, (double) value);
+                    break;
+                case CONSTANT_STRING: 
+                    memC.saveString(dir, (String) value);
+                    break;
+                case CONSTANT_BOOLEAN:
+                    memC.saveBoolean(dir, (boolean) value);
+                    break;
+            }
         }
     }
     public String getString(int dir){

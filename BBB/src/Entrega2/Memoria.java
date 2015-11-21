@@ -134,6 +134,10 @@ public class Memoria{
         memData.put(key, value);
     }
     
+     public void saveNull(int key){
+        memData.put(key, null);
+    }
+    
     public int getInt(int key){
         return (int)memData.get(key);
     }
