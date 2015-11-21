@@ -13,6 +13,9 @@ public class DATA {
     public static final int STR = 2;	// String
     public static final int BOL = 3;	// Boolean
     
+    public static final int OP = 1001;  // (
+    public static final int CP = 1002;  // )
+    
     // Operadores
     public static final int ADD = 4;	// Add +
     public static final int SUB = 5;	// Subtract -

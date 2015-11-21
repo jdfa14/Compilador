@@ -2322,21 +2322,44 @@ public class GramBBBParser extends Parser {
 		enterRule(_localctx, 74, RULE_exp2);
 		try {
 			setState(339);
-			switch ( getInterpreter().adaptivePredict(_input,19,_ctx) ) {
-			case 1:
+			switch (_input.LA(1)) {
+			case CP:
+			case CK:
+			case CB:
+			case COM:
+			case INT:
+			case FLT:
+			case BOL:
+			case STR:
+			case VOID:
+			case LWHILE:
+			case LDO:
+			case LFOR:
+			case CIF:
+			case BRK:
+			case RTRN:
+			case PINU:
+			case PIND:
+			case COL:
+			case PRNT:
+			case MOV:
+			case DEL:
+			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
 				}
 				break;
-			case 2:
+			case OAND:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(337);CompiAPI.EXP.ins9(DATA.AND);
+				setState(337);  CompiAPI.EXP.ins9(DATA.AND);
 				match(OAND);
 				setState(338);
-				exp();CompiAPI.EXP.ins10();
+				exp();          CompiAPI.EXP.ins10();
 				}
 				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2418,13 +2441,35 @@ public class GramBBBParser extends Parser {
 		enterRule(_localctx, 78, RULE_exo2);
 		try {
 			setState(347);
-			switch ( getInterpreter().adaptivePredict(_input,20,_ctx) ) {
-			case 1:
+			switch (_input.LA(1)) {
+			case CP:
+			case CK:
+			case CB:
+			case COM:
+			case INT:
+			case FLT:
+			case BOL:
+			case STR:
+			case VOID:
+			case LWHILE:
+			case LDO:
+			case LFOR:
+			case CIF:
+			case BRK:
+			case RTRN:
+			case PINU:
+			case PIND:
+			case COL:
+			case PRNT:
+			case MOV:
+			case OAND:
+			case DEL:
+			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
 				}
 				break;
-			case 2:
+			case OOR:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(345);CompiAPI.EXP.ins9(DATA.OOR);
@@ -2433,6 +2478,8 @@ public class GramBBBParser extends Parser {
 				exo();CompiAPI.EXP.ins10();
 				}
 				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2476,7 +2523,7 @@ public class GramBBBParser extends Parser {
 			setState(349);
 			exi();
 			setState(350);
-			exi2();
+			exn2();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2514,21 +2561,46 @@ public class GramBBBParser extends Parser {
 		enterRule(_localctx, 82, RULE_exn2);
 		try {
 			setState(355);
-			switch ( getInterpreter().adaptivePredict(_input,21,_ctx) ) {
-			case 1:
+			switch (_input.LA(1)) {
+			case CP:
+			case CK:
+			case CB:
+			case COM:
+			case INT:
+			case FLT:
+			case BOL:
+			case STR:
+			case VOID:
+			case LWHILE:
+			case LDO:
+			case LFOR:
+			case CIF:
+			case BRK:
+			case RTRN:
+			case PINU:
+			case PIND:
+			case COL:
+			case PRNT:
+			case MOV:
+			case OAND:
+			case OOR:
+			case DEL:
+			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
 				}
 				break;
-			case 2:
+			case ONOT:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(353);// TODO implementar este operador
+				setState(353);// TDO implementar NOT desues
 				match(ONOT);
 				setState(354);
 				exn();
 				}
 				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2546,8 +2618,8 @@ public class GramBBBParser extends Parser {
 		public ExmContext exm() {
 			return getRuleContext(ExmContext.class,0);
 		}
-		public Exp2Context exp2() {
-			return getRuleContext(Exp2Context.class,0);
+		public Exi2Context exi2() {
+			return getRuleContext(Exi2Context.class,0);
 		}
 		public ExiContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2572,7 +2644,7 @@ public class GramBBBParser extends Parser {
 			setState(357);
 			exm();
 			setState(358);
-			exp2();
+			exi2();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2619,10 +2691,10 @@ public class GramBBBParser extends Parser {
 			case MAI:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(360);
+				setState(360);CompiAPI.EXP.ins9(DATA.OGT);
 				match(MAI);
 				setState(361);
-				exm();
+				exm();CompiAPI.EXP.ins10();
 				}
 				break;
 			case MEI:
@@ -2754,10 +2826,37 @@ public class GramBBBParser extends Parser {
 		try {
 			setState(380);
 			switch (_input.LA(1)) {
-			case EOF:
+			case CP:
+			case CK:
+			case CB:
+			case COM:
+			case INT:
+			case FLT:
+			case BOL:
+			case STR:
+			case VOID:
+			case LWHILE:
+			case LDO:
+			case LFOR:
+			case CIF:
+			case BRK:
+			case RTRN:
+			case PINU:
+			case PIND:
+			case COL:
+			case PRNT:
+			case MOV:
 			case OAND:
 			case OOR:
 			case ONOT:
+			case DEL:
+			case MAI:
+			case MEI:
+			case OIG:
+			case DIF:
+			case MAY:
+			case MEN:
+			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
 				}
@@ -2856,11 +2955,38 @@ public class GramBBBParser extends Parser {
 		try {
 			setState(390);
 			switch (_input.LA(1)) {
-			case EOF:
+			case CP:
+			case CK:
+			case CB:
+			case COM:
+			case INT:
+			case FLT:
+			case BOL:
+			case STR:
+			case VOID:
+			case LWHILE:
+			case LDO:
+			case LFOR:
+			case CIF:
+			case BRK:
+			case RTRN:
+			case PINU:
+			case PIND:
+			case COL:
+			case PRNT:
+			case MOV:
 			case OAND:
 			case OOR:
 			case ONOT:
+			case DEL:
 			case MOD:
+			case MAI:
+			case MEI:
+			case OIG:
+			case DIF:
+			case MAY:
+			case MEN:
+			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
 				}
@@ -2968,13 +3094,40 @@ public class GramBBBParser extends Parser {
 		try {
 			setState(400);
 			switch (_input.LA(1)) {
-			case EOF:
+			case CP:
+			case CK:
+			case CB:
+			case COM:
+			case INT:
+			case FLT:
+			case BOL:
+			case STR:
+			case VOID:
+			case LWHILE:
+			case LDO:
+			case LFOR:
+			case CIF:
+			case BRK:
+			case RTRN:
+			case PINU:
+			case PIND:
+			case COL:
+			case PRNT:
+			case MOV:
 			case OAND:
 			case OOR:
 			case ONOT:
+			case DEL:
 			case MOD:
 			case PLS:
 			case SUB:
+			case MAI:
+			case MEI:
+			case OIG:
+			case DIF:
+			case MAY:
+			case MEN:
+			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
 				}
@@ -3316,7 +3469,7 @@ public class GramBBBParser extends Parser {
 		"\u015a\3\2\2\2\u015d\u015b\3\2\2\2\u015eQ\3\2\2\2\u015f\u0160\5V,\2\u0160"+
 		"\u0161\5T+\2\u0161S\3\2\2\2\u0162\u0166\3\2\2\2\u0163\u0164\7!\2\2\u0164"+
 		"\u0166\5R*\2\u0165\u0162\3\2\2\2\u0165\u0163\3\2\2\2\u0166U\3\2\2\2\u0167"+
-		"\u0168\5Z.\2\u0168\u0169\5L\'\2\u0169W\3\2\2\2\u016a\u016b\7*\2\2\u016b"+
+		"\u0168\5Z.\2\u0168\u0169\5X-\2\u0169W\3\2\2\2\u016a\u016b\7*\2\2\u016b"+
 		"\u0177\5Z.\2\u016c\u016d\7+\2\2\u016d\u0177\5Z.\2\u016e\u016f\7,\2\2\u016f"+
 		"\u0177\5Z.\2\u0170\u0171\7-\2\2\u0171\u0177\5Z.\2\u0172\u0173\7.\2\2\u0173"+
 		"\u0177\5Z.\2\u0174\u0175\7/\2\2\u0175\u0177\5Z.\2\u0176\u016a\3\2\2\2"+
