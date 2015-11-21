@@ -13,3 +13,13 @@ hs_err_pid*
 /BBB/nbproject/private/
 /BBB/build/
 /BBB/dist/
+/SimpleJOGL/nbproject/private/
+/SimpleJOGL/build/
+SimpleJOGL/nbproject/project.xml
+SimpleJOGL/nbproject/genfiles.properties
+SimpleJOGL/build.xml
+SimpleJOGL/manifest.mf
+SimpleJOGL/src/org/yourorghere/SimpleJOGL.java
+SimpleJOGL/nbproject/build-impl.xml
+SimpleJOGL/nbproject/build-jogl-template-impl.xml
+SimpleJOGL/nbproject/project.properties

@@ -255,7 +255,7 @@ exn2:
 	;
 
 exi:
-	exm exp2
+	exm exi2
 	;
 
 exi2:

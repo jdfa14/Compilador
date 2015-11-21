@@ -16,313 +16,313 @@ public class Cubo {
 	// Cubo[Operando1][Operando2][Operador] = TIPO
 
 	// Operandos
-    private static final int INT = 0;	// Integer
-    private static final int DBL = 1;	// Double
-    private static final int STR = 2;	// String
-    private static final int BOL = 3;	// Boolean
+    //private static final int INT = 0;	// Integer
+    //private static final int DBL = 1;	// Double
+    //private static final int STR = 2;	// String
+    //private static final int BOL = 3;	// Boolean
 
-    private static final int ERR = -1;	// Error
+    //private static final int ERR = -1;	// Error
 
     // Operadores
-    private static final int ADD = 4;	// Add +
-    private static final int SUB = 5;	// Subtract -
-    private static final int MUL = 6;	// Multiply *
-    private static final int DIV = 7;	// Divide /
-    private static final int MOD = 8;	// Modulus %
-    private static final int AND = 9;	// And &
-    private static final int OOR = 10;	// OR |
-    private static final int OLT = 11;	// Less Than <
-    private static final int OGT = 12;	// Greater Than >
-    private static final int EQT = 13;	// Equal to ==
-    private static final int DIF = 14;	// Different <>
-    private static final int GOE = 15;	// Greater or Equal >=
-    private static final int LOE = 16;	// Less or Equal <=
-    private static final int EQS = 17;	// Equals =
+    //private static final int ADD = 4;	// Add +
+    //private static final int SUB = 5;	// Subtract -
+    //private static final int MUL = 6;	// Multiply *
+    //private static final int DIV = 7;	// Divide /
+    //private static final int MOD = 8;	// Modulus %
+    //private static final int AND = 9;	// And &
+    //private static final int OOR = 10;	// OR |
+    //private static final int OLT = 11;	// Less Than <
+    //private static final int OGT = 12;	// Greater Than >
+    //private static final int EQT = 13;	// Equal to ==
+    //private static final int DIF = 14;	// Different <>
+    //private static final int GOE = 15;	// Greater or Equal >=
+    //private static final int LOE = 16;	// Less or Equal <=
+    //private static final int EQS = 17;	// Equals =
 
     public Cubo(){
         // Integer Operations
-        cube[INT][INT][ADD] = INT;
-        cube[INT][DBL][ADD] = DBL;
-        cube[INT][STR][ADD] = ERR;
-        cube[INT][BOL][ADD] = ERR;
+        cube[DATA.INT][DATA.INT][DATA.ADD] = DATA.INT;
+        cube[DATA.INT][DATA.DBL][DATA.ADD] = DATA.DBL;
+        cube[DATA.INT][DATA.STR][DATA.ADD] = DATA.ERR;
+        cube[DATA.INT][DATA.BOL][DATA.ADD] = DATA.ERR;
 
-        cube[INT][INT][SUB] = INT;
-        cube[INT][DBL][SUB] = DBL;
-        cube[INT][STR][SUB] = ERR;
-        cube[INT][BOL][SUB] = ERR;
+        cube[DATA.INT][DATA.INT][DATA.SUB] = DATA.INT;
+        cube[DATA.INT][DATA.DBL][DATA.SUB] = DATA.DBL;
+        cube[DATA.INT][DATA.STR][DATA.SUB] = DATA.ERR;
+        cube[DATA.INT][DATA.BOL][DATA.SUB] = DATA.ERR;
 
-    	cube[INT][INT][MUL] = INT;
-        cube[INT][DBL][MUL] = DBL;
-        cube[INT][STR][MUL] = ERR;
-        cube[INT][BOL][MUL] = ERR;
+    	cube[DATA.INT][DATA.INT][DATA.MUL] = DATA.INT;
+        cube[DATA.INT][DATA.DBL][DATA.MUL] = DATA.DBL;
+        cube[DATA.INT][DATA.STR][DATA.MUL] = DATA.ERR;
+        cube[DATA.INT][DATA.BOL][DATA.MUL] = DATA.ERR;
 
-        cube[INT][INT][DIV] = INT;
-        cube[INT][DBL][DIV] = DBL;
-        cube[INT][STR][DIV] = ERR;
-        cube[INT][BOL][DIV] = ERR;
+        cube[DATA.INT][DATA.INT][DATA.DIV] = DATA.INT;
+        cube[DATA.INT][DATA.DBL][DATA.DIV] = DATA.DBL;
+        cube[DATA.INT][DATA.STR][DATA.DIV] = DATA.ERR;
+        cube[DATA.INT][DATA.BOL][DATA.DIV] = DATA.ERR;
 
-    	cube[INT][INT][MOD] = INT;
-        cube[INT][DBL][MOD] = DBL;
-        cube[INT][STR][MOD] = ERR;
-        cube[INT][BOL][MOD] = ERR;
+    	cube[DATA.INT][DATA.INT][DATA.MOD] = DATA.INT;
+        cube[DATA.INT][DATA.DBL][DATA.MOD] = DATA.DBL;
+        cube[DATA.INT][DATA.STR][DATA.MOD] = DATA.ERR;
+        cube[DATA.INT][DATA.BOL][DATA.MOD] = DATA.ERR;
 
-        cube[INT][INT][AND] = ERR;
-        cube[INT][DBL][AND] = ERR;
-        cube[INT][STR][AND] = ERR;
-        cube[INT][BOL][AND] = ERR;
+        cube[DATA.INT][DATA.INT][DATA.AND] = DATA.ERR;
+        cube[DATA.INT][DATA.DBL][DATA.AND] = DATA.ERR;
+        cube[DATA.INT][DATA.STR][DATA.AND] = DATA.ERR;
+        cube[DATA.INT][DATA.BOL][DATA.AND] = DATA.ERR;
 
-    	cube[INT][INT][OOR] = ERR;
-        cube[INT][DBL][OOR] = ERR;
-        cube[INT][STR][OOR] = ERR;
-        cube[INT][BOL][OOR] = ERR;
+    	cube[DATA.INT][DATA.INT][DATA.OOR] = DATA.ERR;
+        cube[DATA.INT][DATA.DBL][DATA.OOR] = DATA.ERR;
+        cube[DATA.INT][DATA.STR][DATA.OOR] = DATA.ERR;
+        cube[DATA.INT][DATA.BOL][DATA.OOR] = DATA.ERR;
 
-        cube[INT][INT][OLT] = BOL;
-        cube[INT][DBL][OLT] = BOL;
-        cube[INT][STR][OLT] = ERR;
-        cube[INT][BOL][OLT] = ERR;
+        cube[DATA.INT][DATA.INT][DATA.OLT] = DATA.BOL;
+        cube[DATA.INT][DATA.DBL][DATA.OLT] = DATA.BOL;
+        cube[DATA.INT][DATA.STR][DATA.OLT] = DATA.ERR;
+        cube[DATA.INT][DATA.BOL][DATA.OLT] = DATA.ERR;
 
-        cube[INT][INT][OGT] = BOL;
-        cube[INT][DBL][OGT] = ERR;
-        cube[INT][STR][OGT] = ERR;
-        cube[INT][BOL][OGT] = ERR;
+        cube[DATA.INT][DATA.INT][DATA.OGT] = DATA.BOL;
+        cube[DATA.INT][DATA.DBL][DATA.OGT] = DATA.ERR;
+        cube[DATA.INT][DATA.STR][DATA.OGT] = DATA.ERR;
+        cube[DATA.INT][DATA.BOL][DATA.OGT] = DATA.ERR;
 
-        cube[INT][INT][EQT] = BOL;
-        cube[INT][DBL][EQT] = BOL;
-        cube[INT][STR][EQT] = ERR;
-        cube[INT][BOL][EQT] = ERR;
+        cube[DATA.INT][DATA.INT][DATA.EQT] = DATA.BOL;
+        cube[DATA.INT][DATA.DBL][DATA.EQT] = DATA.BOL;
+        cube[DATA.INT][DATA.STR][DATA.EQT] = DATA.ERR;
+        cube[DATA.INT][DATA.BOL][DATA.EQT] = DATA.ERR;
 
-        cube[INT][INT][DIF] = BOL;
-        cube[INT][DBL][DIF] = BOL;
-        cube[INT][STR][DIF] = ERR;
-        cube[INT][BOL][DIF] = ERR;
+        cube[DATA.INT][DATA.INT][DATA.DIF] = DATA.BOL;
+        cube[DATA.INT][DATA.DBL][DATA.DIF] = DATA.BOL;
+        cube[DATA.INT][DATA.STR][DATA.DIF] = DATA.ERR;
+        cube[DATA.INT][DATA.BOL][DATA.DIF] = DATA.ERR;
 
-        cube[INT][INT][GOE] = BOL;
-        cube[INT][DBL][GOE] = BOL;
-        cube[INT][STR][GOE] = ERR;
-        cube[INT][BOL][GOE] = ERR;
+        cube[DATA.INT][DATA.INT][DATA.GOE] = DATA.BOL;
+        cube[DATA.INT][DATA.DBL][DATA.GOE] = DATA.BOL;
+        cube[DATA.INT][DATA.STR][DATA.GOE] = DATA.ERR;
+        cube[DATA.INT][DATA.BOL][DATA.GOE] = DATA.ERR;
 
-    	cube[INT][INT][LOE] = BOL;
-        cube[INT][DBL][LOE] = BOL;
-        cube[INT][STR][LOE] = ERR;
-        cube[INT][BOL][LOE] = ERR;
+    	cube[DATA.INT][DATA.INT][DATA.LOE] = DATA.BOL;
+        cube[DATA.INT][DATA.DBL][DATA.LOE] = DATA.BOL;
+        cube[DATA.INT][DATA.STR][DATA.LOE] = DATA.ERR;
+        cube[DATA.INT][DATA.BOL][DATA.LOE] = DATA.ERR;
 
-        cube[INT][INT][EQS] = INT;
-        cube[INT][DBL][EQS] = ERR;
-        cube[INT][STR][EQS] = ERR;
-        cube[INT][BOL][EQS] = ERR;
+        cube[DATA.INT][DATA.INT][DATA.EQS] = DATA.INT;
+        cube[DATA.INT][DATA.DBL][DATA.EQS] = DATA.ERR;
+        cube[DATA.INT][DATA.STR][DATA.EQS] = DATA.ERR;
+        cube[DATA.INT][DATA.BOL][DATA.EQS] = DATA.ERR;
 
         // Double Operations
-        cube[DBL][INT][ADD] = DBL;
-        cube[DBL][DBL][ADD] = DBL;
-        cube[DBL][STR][ADD] = ERR;
-        cube[DBL][BOL][ADD] = ERR;
+        cube[DATA.DBL][DATA.INT][DATA.ADD] = DATA.DBL;
+        cube[DATA.DBL][DATA.DBL][DATA.ADD] = DATA.DBL;
+        cube[DATA.DBL][DATA.STR][DATA.ADD] = DATA.ERR;
+        cube[DATA.DBL][DATA.BOL][DATA.ADD] = DATA.ERR;
 
-        cube[DBL][INT][SUB] = DBL;
-        cube[DBL][DBL][SUB] = DBL;
-        cube[DBL][STR][SUB] = ERR;
-        cube[DBL][BOL][SUB] = ERR;
+        cube[DATA.DBL][DATA.INT][DATA.SUB] = DATA.DBL;
+        cube[DATA.DBL][DATA.DBL][DATA.SUB] = DATA.DBL;
+        cube[DATA.DBL][DATA.STR][DATA.SUB] = DATA.ERR;
+        cube[DATA.DBL][DATA.BOL][DATA.SUB] = DATA.ERR;
 
-    	cube[DBL][INT][MUL] = DBL;
-        cube[DBL][DBL][MUL] = DBL;
-        cube[DBL][STR][MUL] = ERR;
-        cube[DBL][BOL][MUL] = ERR;
+    	cube[DATA.DBL][DATA.INT][DATA.MUL] = DATA.DBL;
+        cube[DATA.DBL][DATA.DBL][DATA.MUL] = DATA.DBL;
+        cube[DATA.DBL][DATA.STR][DATA.MUL] = DATA.ERR;
+        cube[DATA.DBL][DATA.BOL][DATA.MUL] = DATA.ERR;
 
-        cube[DBL][INT][DIV] = DBL;
-        cube[DBL][DBL][DIV] = DBL;
-        cube[DBL][STR][DIV] = ERR;
-        cube[DBL][BOL][DIV] = ERR;
+        cube[DATA.DBL][DATA.INT][DATA.DIV] = DATA.DBL;
+        cube[DATA.DBL][DATA.DBL][DATA.DIV] = DATA.DBL;
+        cube[DATA.DBL][DATA.STR][DATA.DIV] = DATA.ERR;
+        cube[DATA.DBL][DATA.BOL][DATA.DIV] = DATA.ERR;
 
-    	cube[DBL][INT][MOD] = DBL;
-        cube[DBL][DBL][MOD] = DBL;
-        cube[DBL][STR][MOD] = ERR;
-        cube[DBL][BOL][MOD] = ERR;
+    	cube[DATA.DBL][DATA.INT][DATA.MOD] = DATA.DBL;
+        cube[DATA.DBL][DATA.DBL][DATA.MOD] = DATA.DBL;
+        cube[DATA.DBL][DATA.STR][DATA.MOD] = DATA.ERR;
+        cube[DATA.DBL][DATA.BOL][DATA.MOD] = DATA.ERR;
 
-        cube[DBL][INT][AND] = ERR;
-        cube[DBL][DBL][AND] = ERR;
-        cube[DBL][STR][AND] = ERR;
-        cube[DBL][BOL][AND] = ERR;
+        cube[DATA.DBL][DATA.INT][DATA.AND] = DATA.ERR;
+        cube[DATA.DBL][DATA.DBL][DATA.AND] = DATA.ERR;
+        cube[DATA.DBL][DATA.STR][DATA.AND] = DATA.ERR;
+        cube[DATA.DBL][DATA.BOL][DATA.AND] = DATA.ERR;
 
-    	cube[DBL][INT][OOR] = ERR;
-        cube[DBL][DBL][OOR] = ERR;
-        cube[DBL][STR][OOR] = ERR;
-        cube[DBL][BOL][OOR] = ERR;
+    	cube[DATA.DBL][DATA.INT][DATA.OOR] = DATA.ERR;
+        cube[DATA.DBL][DATA.DBL][DATA.OOR] = DATA.ERR;
+        cube[DATA.DBL][DATA.STR][DATA.OOR] = DATA.ERR;
+        cube[DATA.DBL][DATA.BOL][DATA.OOR] = DATA.ERR;
 
-        cube[DBL][INT][OLT] = BOL;
-        cube[DBL][DBL][OLT] = BOL;
-        cube[DBL][STR][OLT] = ERR;
-        cube[DBL][BOL][OLT] = ERR;
+        cube[DATA.DBL][DATA.INT][DATA.OLT] = DATA.BOL;
+        cube[DATA.DBL][DATA.DBL][DATA.OLT] = DATA.BOL;
+        cube[DATA.DBL][DATA.STR][DATA.OLT] = DATA.ERR;
+        cube[DATA.DBL][DATA.BOL][DATA.OLT] = DATA.ERR;
 
-        cube[DBL][INT][OGT] = ERR;
-        cube[DBL][DBL][OGT] = BOL;
-        cube[DBL][STR][OGT] = ERR;
-        cube[DBL][BOL][OGT] = ERR;
+        cube[DATA.DBL][DATA.INT][DATA.OGT] = DATA.ERR;
+        cube[DATA.DBL][DATA.DBL][DATA.OGT] = DATA.BOL;
+        cube[DATA.DBL][DATA.STR][DATA.OGT] = DATA.ERR;
+        cube[DATA.DBL][DATA.BOL][DATA.OGT] = DATA.ERR;
 
-        cube[DBL][INT][EQT] = BOL;
-        cube[DBL][DBL][EQT] = BOL;
-        cube[DBL][STR][EQT] = ERR;
-        cube[DBL][BOL][EQT] = ERR;
+        cube[DATA.DBL][DATA.INT][DATA.EQT] = DATA.BOL;
+        cube[DATA.DBL][DATA.DBL][DATA.EQT] = DATA.BOL;
+        cube[DATA.DBL][DATA.STR][DATA.EQT] = DATA.ERR;
+        cube[DATA.DBL][DATA.BOL][DATA.EQT] = DATA.ERR;
 
-        cube[DBL][INT][DIF] = BOL;
-        cube[DBL][DBL][DIF] = BOL;
-        cube[DBL][STR][DIF] = ERR;
-        cube[DBL][BOL][DIF] = ERR;
+        cube[DATA.DBL][DATA.INT][DATA.DIF] = DATA.BOL;
+        cube[DATA.DBL][DATA.DBL][DATA.DIF] = DATA.BOL;
+        cube[DATA.DBL][DATA.STR][DATA.DIF] = DATA.ERR;
+        cube[DATA.DBL][DATA.BOL][DATA.DIF] = DATA.ERR;
 
-        cube[DBL][INT][GOE] = BOL;
-        cube[DBL][DBL][GOE] = BOL;
-        cube[DBL][STR][GOE] = ERR;
-        cube[DBL][BOL][GOE] = ERR;
+        cube[DATA.DBL][DATA.INT][DATA.GOE] = DATA.BOL;
+        cube[DATA.DBL][DATA.DBL][DATA.GOE] = DATA.BOL;
+        cube[DATA.DBL][DATA.STR][DATA.GOE] = DATA.ERR;
+        cube[DATA.DBL][DATA.BOL][DATA.GOE] = DATA.ERR;
 
-    	cube[DBL][INT][LOE] = BOL;
-        cube[DBL][DBL][LOE] = BOL;
-        cube[DBL][STR][LOE] = ERR;
-        cube[DBL][BOL][LOE] = ERR;
+    	cube[DATA.DBL][DATA.INT][DATA.LOE] = DATA.BOL;
+        cube[DATA.DBL][DATA.DBL][DATA.LOE] = DATA.BOL;
+        cube[DATA.DBL][DATA.STR][DATA.LOE] = DATA.ERR;
+        cube[DATA.DBL][DATA.BOL][DATA.LOE] = DATA.ERR;
 
-        cube[DBL][INT][EQS] = ERR;
-        cube[DBL][DBL][EQS] = DBL;
-        cube[DBL][STR][EQS] = ERR;
-        cube[DBL][BOL][EQS] = ERR;
+        cube[DATA.DBL][DATA.INT][DATA.EQS] = DATA.ERR;
+        cube[DATA.DBL][DATA.DBL][DATA.EQS] = DATA.DBL;
+        cube[DATA.DBL][DATA.STR][DATA.EQS] = DATA.ERR;
+        cube[DATA.DBL][DATA.BOL][DATA.EQS] = DATA.ERR;
 
         // String Operations
-        cube[STR][INT][ADD] = ERR;
-        cube[STR][DBL][ADD] = ERR;
-        cube[STR][STR][ADD] = STR;
-        cube[STR][BOL][ADD] = ERR;
+        cube[DATA.STR][DATA.INT][DATA.ADD] = DATA.ERR;
+        cube[DATA.STR][DATA.DBL][DATA.ADD] = DATA.ERR;
+        cube[DATA.STR][DATA.STR][DATA.ADD] = DATA.STR;
+        cube[DATA.STR][DATA.BOL][DATA.ADD] = DATA.ERR;
 
-        cube[STR][INT][SUB] = ERR;
-        cube[STR][DBL][SUB] = ERR;
-        cube[STR][STR][SUB] = ERR;
-        cube[STR][BOL][SUB] = ERR;
+        cube[DATA.STR][DATA.INT][DATA.SUB] = DATA.ERR;
+        cube[DATA.STR][DATA.DBL][DATA.SUB] = DATA.ERR;
+        cube[DATA.STR][DATA.STR][DATA.SUB] = DATA.ERR;
+        cube[DATA.STR][DATA.BOL][DATA.SUB] = DATA.ERR;
 
-    	cube[STR][INT][MUL] = ERR;
-        cube[STR][DBL][MUL] = ERR;
-        cube[STR][STR][MUL] = ERR;
-        cube[STR][BOL][MUL] = ERR;
+    	cube[DATA.STR][DATA.INT][DATA.MUL] = DATA.ERR;
+        cube[DATA.STR][DATA.DBL][DATA.MUL] = DATA.ERR;
+        cube[DATA.STR][DATA.STR][DATA.MUL] = DATA.ERR;
+        cube[DATA.STR][DATA.BOL][DATA.MUL] = DATA.ERR;
 
-        cube[STR][INT][DIV] = ERR;
-        cube[STR][DBL][DIV] = ERR;
-        cube[STR][STR][DIV] = ERR;
-        cube[STR][BOL][DIV] = ERR;
+        cube[DATA.STR][DATA.INT][DATA.DIV] = DATA.ERR;
+        cube[DATA.STR][DATA.DBL][DATA.DIV] = DATA.ERR;
+        cube[DATA.STR][DATA.STR][DATA.DIV] = DATA.ERR;
+        cube[DATA.STR][DATA.BOL][DATA.DIV] = DATA.ERR;
 
-    	cube[STR][INT][MOD] = ERR;
-        cube[STR][DBL][MOD] = ERR;
-        cube[STR][STR][MOD] = ERR;
-        cube[STR][BOL][MOD] = ERR;
+    	cube[DATA.STR][DATA.INT][DATA.MOD] = DATA.ERR;
+        cube[DATA.STR][DATA.DBL][DATA.MOD] = DATA.ERR;
+        cube[DATA.STR][DATA.STR][DATA.MOD] = DATA.ERR;
+        cube[DATA.STR][DATA.BOL][DATA.MOD] = DATA.ERR;
 
-        cube[STR][INT][AND] = ERR;
-        cube[STR][DBL][AND] = ERR;
-        cube[STR][STR][AND] = ERR;
-        cube[STR][BOL][AND] = ERR;
+        cube[DATA.STR][DATA.INT][DATA.AND] = DATA.ERR;
+        cube[DATA.STR][DATA.DBL][DATA.AND] = DATA.ERR;
+        cube[DATA.STR][DATA.STR][DATA.AND] = DATA.ERR;
+        cube[DATA.STR][DATA.BOL][DATA.AND] = DATA.ERR;
 
-    	cube[STR][INT][OOR] = ERR;
-        cube[STR][DBL][OOR] = ERR;
-        cube[STR][STR][OOR] = ERR;
-        cube[STR][BOL][OOR] = ERR;
+    	cube[DATA.STR][DATA.INT][DATA.OOR] = DATA.ERR;
+        cube[DATA.STR][DATA.DBL][DATA.OOR] = DATA.ERR;
+        cube[DATA.STR][DATA.STR][DATA.OOR] = DATA.ERR;
+        cube[DATA.STR][DATA.BOL][DATA.OOR] = DATA.ERR;
 
-        cube[STR][INT][OLT] = ERR;
-        cube[STR][DBL][OLT] = ERR;
-        cube[STR][STR][OLT] = ERR;
-        cube[STR][BOL][OLT] = ERR;
+        cube[DATA.STR][DATA.INT][DATA.OLT] = DATA.ERR;
+        cube[DATA.STR][DATA.DBL][DATA.OLT] = DATA.ERR;
+        cube[DATA.STR][DATA.STR][DATA.OLT] = DATA.ERR;
+        cube[DATA.STR][DATA.BOL][DATA.OLT] = DATA.ERR;
 
-        cube[STR][INT][OGT] = ERR;
-        cube[STR][DBL][OGT] = ERR;
-        cube[STR][STR][OGT] = ERR;
-        cube[STR][BOL][OGT] = ERR;
+        cube[DATA.STR][DATA.INT][DATA.OGT] = DATA.ERR;
+        cube[DATA.STR][DATA.DBL][DATA.OGT] = DATA.ERR;
+        cube[DATA.STR][DATA.STR][DATA.OGT] = DATA.ERR;
+        cube[DATA.STR][DATA.BOL][DATA.OGT] = DATA.ERR;
 
-        cube[STR][INT][EQT] = ERR;
-        cube[STR][DBL][EQT] = ERR;
-        cube[STR][STR][EQT] = ERR;
-        cube[STR][BOL][EQT] = ERR;
+        cube[DATA.STR][DATA.INT][DATA.EQT] = DATA.ERR;
+        cube[DATA.STR][DATA.DBL][DATA.EQT] = DATA.ERR;
+        cube[DATA.STR][DATA.STR][DATA.EQT] = DATA.ERR;
+        cube[DATA.STR][DATA.BOL][DATA.EQT] = DATA.ERR;
 
-        cube[STR][INT][DIF] = ERR;
-        cube[STR][DBL][DIF] = ERR;
-        cube[STR][STR][DIF] = ERR;
-        cube[STR][BOL][DIF] = ERR;
+        cube[DATA.STR][DATA.INT][DATA.DIF] = DATA.ERR;
+        cube[DATA.STR][DATA.DBL][DATA.DIF] = DATA.ERR;
+        cube[DATA.STR][DATA.STR][DATA.DIF] = DATA.ERR;
+        cube[DATA.STR][DATA.BOL][DATA.DIF] = DATA.ERR;
 
-        cube[STR][INT][GOE] = ERR;
-        cube[STR][DBL][GOE] = ERR;
-        cube[STR][STR][GOE] = ERR;
-        cube[STR][BOL][GOE] = ERR;
+        cube[DATA.STR][DATA.INT][DATA.GOE] = DATA.ERR;
+        cube[DATA.STR][DATA.DBL][DATA.GOE] = DATA.ERR;
+        cube[DATA.STR][DATA.STR][DATA.GOE] = DATA.ERR;
+        cube[DATA.STR][DATA.BOL][DATA.GOE] = DATA.ERR;
 
-    	cube[STR][INT][LOE] = ERR;
-        cube[STR][DBL][LOE] = ERR;
-        cube[STR][STR][LOE] = ERR;
-        cube[STR][BOL][LOE] = ERR;
+    	cube[DATA.STR][DATA.INT][DATA.LOE] = DATA.ERR;
+        cube[DATA.STR][DATA.DBL][DATA.LOE] = DATA.ERR;
+        cube[DATA.STR][DATA.STR][DATA.LOE] = DATA.ERR;
+        cube[DATA.STR][DATA.BOL][DATA.LOE] = DATA.ERR;
 
-        cube[STR][INT][EQS] = ERR;
-        cube[STR][DBL][EQS] = ERR;
-        cube[STR][STR][EQS] = STR;
-        cube[STR][BOL][EQS] = ERR;
+        cube[DATA.STR][DATA.INT][DATA.EQS] = DATA.ERR;
+        cube[DATA.STR][DATA.DBL][DATA.EQS] = DATA.ERR;
+        cube[DATA.STR][DATA.STR][DATA.EQS] = DATA.STR;
+        cube[DATA.STR][DATA.BOL][DATA.EQS] = DATA.ERR;
 
         // Boolean Operations
-        cube[BOL][INT][ADD] = ERR;
-        cube[BOL][DBL][ADD] = ERR;
-        cube[BOL][STR][ADD] = ERR;
-        cube[BOL][BOL][ADD] = ERR;
+        cube[DATA.BOL][DATA.INT][DATA.ADD] = DATA.ERR;
+        cube[DATA.BOL][DATA.DBL][DATA.ADD] = DATA.ERR;
+        cube[DATA.BOL][DATA.STR][DATA.ADD] = DATA.ERR;
+        cube[DATA.BOL][DATA.BOL][DATA.ADD] = DATA.ERR;
 
-        cube[BOL][INT][SUB] = ERR;
-        cube[BOL][DBL][SUB] = ERR;
-        cube[BOL][STR][SUB] = ERR;
-        cube[BOL][BOL][SUB] = ERR;
+        cube[DATA.BOL][DATA.INT][DATA.SUB] = DATA.ERR;
+        cube[DATA.BOL][DATA.DBL][DATA.SUB] = DATA.ERR;
+        cube[DATA.BOL][DATA.STR][DATA.SUB] = DATA.ERR;
+        cube[DATA.BOL][DATA.BOL][DATA.SUB] = DATA.ERR;
 
-    	cube[BOL][INT][MUL] = ERR;
-        cube[BOL][DBL][MUL] = ERR;
-        cube[BOL][STR][MUL] = ERR;
-        cube[BOL][BOL][MUL] = ERR;
+    	cube[DATA.BOL][DATA.INT][DATA.MUL] = DATA.ERR;
+        cube[DATA.BOL][DATA.DBL][DATA.MUL] = DATA.ERR;
+        cube[DATA.BOL][DATA.STR][DATA.MUL] = DATA.ERR;
+        cube[DATA.BOL][DATA.BOL][DATA.MUL] = DATA.ERR;
 
-        cube[BOL][INT][DIV] = ERR;
-        cube[BOL][DBL][DIV] = ERR;
-        cube[BOL][STR][DIV] = ERR;
-        cube[BOL][BOL][DIV] = ERR;
+        cube[DATA.BOL][DATA.INT][DATA.DIV] = DATA.ERR;
+        cube[DATA.BOL][DATA.DBL][DATA.DIV] = DATA.ERR;
+        cube[DATA.BOL][DATA.STR][DATA.DIV] = DATA.ERR;
+        cube[DATA.BOL][DATA.BOL][DATA.DIV] = DATA.ERR;
 
-    	cube[BOL][INT][MOD] = ERR;
-        cube[BOL][DBL][MOD] = ERR;
-        cube[BOL][STR][MOD] = ERR;
-        cube[BOL][BOL][MOD] = ERR;
+    	cube[DATA.BOL][DATA.INT][DATA.MOD] = DATA.ERR;
+        cube[DATA.BOL][DATA.DBL][DATA.MOD] = DATA.ERR;
+        cube[DATA.BOL][DATA.STR][DATA.MOD] = DATA.ERR;
+        cube[DATA.BOL][DATA.BOL][DATA.MOD] = DATA.ERR;
 
-        cube[BOL][INT][AND] = ERR;
-        cube[BOL][DBL][AND] = ERR;
-        cube[BOL][STR][AND] = ERR;
-        cube[BOL][BOL][AND] = BOL;
+        cube[DATA.BOL][DATA.INT][DATA.AND] = DATA.ERR;
+        cube[DATA.BOL][DATA.DBL][DATA.AND] = DATA.ERR;
+        cube[DATA.BOL][DATA.STR][DATA.AND] = DATA.ERR;
+        cube[DATA.BOL][DATA.BOL][DATA.AND] = DATA.BOL;
 
-    	cube[BOL][INT][OOR] = ERR;
-        cube[BOL][DBL][OOR] = ERR;
-        cube[BOL][STR][OOR] = ERR;
-        cube[BOL][BOL][OOR] = BOL;
+    	cube[DATA.BOL][DATA.INT][DATA.OOR] = DATA.ERR;
+        cube[DATA.BOL][DATA.DBL][DATA.OOR] = DATA.ERR;
+        cube[DATA.BOL][DATA.STR][DATA.OOR] = DATA.ERR;
+        cube[DATA.BOL][DATA.BOL][DATA.OOR] = DATA.BOL;
 
-        cube[BOL][INT][OLT] = ERR;
-        cube[BOL][DBL][OLT] = ERR;
-        cube[BOL][STR][OLT] = ERR;
-        cube[BOL][BOL][OLT] = ERR;
+        cube[DATA.BOL][DATA.INT][DATA.OLT] = DATA.ERR;
+        cube[DATA.BOL][DATA.DBL][DATA.OLT] = DATA.ERR;
+        cube[DATA.BOL][DATA.STR][DATA.OLT] = DATA.ERR;
+        cube[DATA.BOL][DATA.BOL][DATA.OLT] = DATA.ERR;
 
-        cube[BOL][INT][OGT] = ERR;
-        cube[BOL][DBL][OGT] = ERR;
-        cube[BOL][STR][OGT] = ERR;
-        cube[BOL][BOL][OGT] = ERR;
+        cube[DATA.BOL][DATA.INT][DATA.OGT] = DATA.ERR;
+        cube[DATA.BOL][DATA.DBL][DATA.OGT] = DATA.ERR;
+        cube[DATA.BOL][DATA.STR][DATA.OGT] = DATA.ERR;
+        cube[DATA.BOL][DATA.BOL][DATA.OGT] = DATA.ERR;
 
-        cube[BOL][INT][EQT] = ERR;
-        cube[BOL][DBL][EQT] = ERR;
-        cube[BOL][STR][EQT] = ERR;
-        cube[BOL][BOL][EQT] = BOL;
+        cube[DATA.BOL][DATA.INT][DATA.EQT] = DATA.ERR;
+        cube[DATA.BOL][DATA.DBL][DATA.EQT] = DATA.ERR;
+        cube[DATA.BOL][DATA.STR][DATA.EQT] = DATA.ERR;
+        cube[DATA.BOL][DATA.BOL][DATA.EQT] = DATA.BOL;
 
-        cube[BOL][INT][DIF] = ERR;
-        cube[BOL][DBL][DIF] = ERR;
-        cube[BOL][STR][DIF] = ERR;
-        cube[BOL][BOL][DIF] = BOL;
+        cube[DATA.BOL][DATA.INT][DATA.DIF] = DATA.ERR;
+        cube[DATA.BOL][DATA.DBL][DATA.DIF] = DATA.ERR;
+        cube[DATA.BOL][DATA.STR][DATA.DIF] = DATA.ERR;
+        cube[DATA.BOL][DATA.BOL][DATA.DIF] = DATA.BOL;
 
-        cube[BOL][INT][GOE] = ERR;
-        cube[BOL][DBL][GOE] = ERR;
-        cube[BOL][STR][GOE] = ERR;
-        cube[BOL][BOL][GOE] = ERR;
+        cube[DATA.BOL][DATA.INT][DATA.GOE] = DATA.ERR;
+        cube[DATA.BOL][DATA.DBL][DATA.GOE] = DATA.ERR;
+        cube[DATA.BOL][DATA.STR][DATA.GOE] = DATA.ERR;
+        cube[DATA.BOL][DATA.BOL][DATA.GOE] = DATA.ERR;
 
-    	cube[BOL][INT][LOE] = ERR;
-        cube[BOL][DBL][LOE] = ERR;
-        cube[BOL][STR][LOE] = ERR;
-        cube[BOL][BOL][LOE] = ERR;
+    	cube[DATA.BOL][DATA.INT][DATA.LOE] = DATA.ERR;
+        cube[DATA.BOL][DATA.DBL][DATA.LOE] = DATA.ERR;
+        cube[DATA.BOL][DATA.STR][DATA.LOE] = DATA.ERR;
+        cube[DATA.BOL][DATA.BOL][DATA.LOE] = DATA.ERR;
 
-        cube[BOL][INT][EQS] = ERR;
-        cube[BOL][DBL][EQS] = ERR;
-        cube[BOL][STR][EQS] = ERR;
-        cube[BOL][BOL][EQS] = BOL;
+        cube[DATA.BOL][DATA.INT][DATA.EQS] = DATA.ERR;
+        cube[DATA.BOL][DATA.DBL][DATA.EQS] = DATA.ERR;
+        cube[DATA.BOL][DATA.STR][DATA.EQS] = DATA.ERR;
+        cube[DATA.BOL][DATA.BOL][DATA.EQS] = DATA.BOL;
     }
 
     public int parse(int op1, int op2,int operator){

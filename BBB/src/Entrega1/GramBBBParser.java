@@ -2,6 +2,8 @@
 
 package Entrega1;
 
+import API.CompiAPI;
+import Entrega3.DATA;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -145,12 +147,12 @@ public class GramBBBParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(106);
+			setState(106); CompiAPI.INIT.ins1();
 			includes();
 			setState(107);
 			body();
 			setState(108);
-			maindecl();
+			maindecl(); CompiAPI.INIT.ins2();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2130,7 +2132,7 @@ public class GramBBBParser extends Parser {
 			match(PRNT);
 			setState(310);
 			exp();
-			setState(311);
+			setState(311); CompiAPI.PRINT.ins1();
 			match(DEL);
 			}
 		}
@@ -2282,7 +2284,7 @@ public class GramBBBParser extends Parser {
 			setState(333);
 			exo();
 			setState(334);
-			exp2();
+			exp2();CompiAPI.EXP.evaluate();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2329,10 +2331,10 @@ public class GramBBBParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(337);
+				setState(337);CompiAPI.EXP.ins9(DATA.AND);
 				match(OAND);
 				setState(338);
-				exp();
+				exp();CompiAPI.EXP.ins10();
 				}
 				break;
 			}
@@ -2425,10 +2427,10 @@ public class GramBBBParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(345);
+				setState(345);CompiAPI.EXP.ins9(DATA.OOR);
 				match(OOR);
 				setState(346);
-				exo();
+				exo();CompiAPI.EXP.ins10();
 				}
 				break;
 			}
@@ -2474,7 +2476,7 @@ public class GramBBBParser extends Parser {
 			setState(349);
 			exi();
 			setState(350);
-			exn2();
+			exi2();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2521,7 +2523,7 @@ public class GramBBBParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(353);
+				setState(353);// TODO implementar este operador
 				match(ONOT);
 				setState(354);
 				exn();

@@ -187,6 +187,34 @@ public class Memoria{
         return DATA_TYPE.UNKNOWN;
     }
     
+    public static int getDataTypeAsInt(int dir){
+        if(dir <= fgi && dir >= igi
+                || dir <= fli && dir >= ili
+                || dir <= fti && dir >= iti
+                || dir <= fci && dir >= ici){
+            return DATA.INT;
+        }
+        if(dir <= fgf && dir >= igf
+                || dir <= flf && dir >= ilf
+                || dir <= ftf && dir >= itf
+                || dir <= fcf && dir >= icf){
+            return DATA.DBL;
+        }
+        if(dir <= fgb && dir >= igb
+                || dir <= flb && dir >= ilb
+                || dir <= ftb && dir >= itb
+                || dir <= fcb && dir >= icb){
+            return DATA.BOL;
+        }
+        if(dir <= fgs && dir >= igs
+                || dir <= fls && dir >= ils
+                || dir <= fts && dir >= its
+                || dir <= fcs && dir >= ics){
+            return DATA.STR;
+        }
+        return -1;
+    }
+    
     public static TYPE getType(int dir){
         if(dir <= fcb && dir >= igi){
             if(dir >= icb)

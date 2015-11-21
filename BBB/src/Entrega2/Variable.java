@@ -9,7 +9,16 @@ public class Variable {
     public int m0;                  // Dimension de la variable
     public boolean tieneDim;        // Bandera para saber si es multidimencional
     public ArrayList<Dimension> dim;// Arreglo con los datos de sus dimenciones
-
+    
+    public Variable(String nombre,int tipo,int dir){
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.dir = dir;
+        this.tieneDim = false;
+        this.dim = null;
+        this.m0 = 1;
+    }
+    
     public Variable(int tipo){
         this.nombre = "";
         this.tipo = tipo;
