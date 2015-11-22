@@ -2594,7 +2594,7 @@ public class GramBBBParser extends Parser {
 			case ONOT:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(353);// TDO implementar NOT desues
+				setState(353);// TODO implementar NOT desues
 				match(ONOT);
 				setState(354);
 				exn();
@@ -2687,59 +2687,88 @@ public class GramBBBParser extends Parser {
 		Exi2Context _localctx = new Exi2Context(_ctx, getState());
 		enterRule(_localctx, 86, RULE_exi2);
 		try {
-			setState(372);
+			setState(373);
 			switch (_input.LA(1)) {
-			case MAI:
+			case CP:
+			case CK:
+			case CB:
+			case COM:
+			case INT:
+			case FLT:
+			case BOL:
+			case STR:
+			case VOID:
+			case LWHILE:
+			case LDO:
+			case LFOR:
+			case CIF:
+			case BRK:
+			case RTRN:
+			case PINU:
+			case PIND:
+			case COL:
+			case PRNT:
+			case MOV:
+			case OAND:
+			case OOR:
+			case ONOT:
+			case DEL:
+			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(360);CompiAPI.EXP.ins9(DATA.GOE);
+				}
+				break;
+			case MAI:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(361);CompiAPI.EXP.ins9(DATA.GOE);
 				match(MAI);
-				setState(361);
+				setState(362);
 				exm();CompiAPI.EXP.ins10();
 				}
 				break;
 			case MEI:
-				enterOuterAlt(_localctx, 2);
+				enterOuterAlt(_localctx, 3);
 				{
-				setState(362);CompiAPI.EXP.ins9(DATA.LOE);
+				setState(363);CompiAPI.EXP.ins9(DATA.LOE);
 				match(MEI);
-				setState(363);
+				setState(364);
 				exm();CompiAPI.EXP.ins10();
 				}
 				break;
 			case OIG:
-				enterOuterAlt(_localctx, 3);
+				enterOuterAlt(_localctx, 4);
 				{
-				setState(364);CompiAPI.EXP.ins9(DATA.EQS);
+				setState(365);CompiAPI.EXP.ins9(DATA.EQS);
 				match(OIG);
-				setState(365);
+				setState(366);
 				exm();CompiAPI.EXP.ins10();
 				}
 				break;
 			case DIF:
-				enterOuterAlt(_localctx, 4);
+				enterOuterAlt(_localctx, 5);
 				{
-				setState(366);CompiAPI.EXP.ins9(DATA.DIF);
+				setState(367);CompiAPI.EXP.ins9(DATA.DIF);
 				match(DIF);
-				setState(367);
+				setState(368);
 				exm();CompiAPI.EXP.ins10();
 				}
 				break;
 			case MAY:
-				enterOuterAlt(_localctx, 5);
+				enterOuterAlt(_localctx, 6);
 				{
-				setState(368);CompiAPI.EXP.ins9(DATA.OGT);
+				setState(369);CompiAPI.EXP.ins9(DATA.OGT);
 				match(MAY);
-				setState(369);
+				setState(370);
 				exm();CompiAPI.EXP.ins10();
 				}
 				break;
 			case MEN:
-				enterOuterAlt(_localctx, 6);
+				enterOuterAlt(_localctx, 7);
 				{
-				setState(370);CompiAPI.EXP.ins9(DATA.OLT);
+				setState(371);CompiAPI.EXP.ins9(DATA.OLT);
 				match(MEN);
-				setState(371);
+				setState(372);
 				exm();CompiAPI.EXP.ins10();
 				}
 				break;
@@ -2785,9 +2814,9 @@ public class GramBBBParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(374);
-			ex();CompiAPI.EXP.ins8();
 			setState(375);
+			ex();CompiAPI.EXP.ins8();
+			setState(376);
 			exm2();
 			}
 		}
@@ -2825,7 +2854,7 @@ public class GramBBBParser extends Parser {
 		Exm2Context _localctx = new Exm2Context(_ctx, getState());
 		enterRule(_localctx, 90, RULE_exm2);
 		try {
-			setState(380);
+			setState(381);
 			switch (_input.LA(1)) {
 			case CP:
 			case CK:
@@ -2865,9 +2894,9 @@ public class GramBBBParser extends Parser {
 			case MOD:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(378);CompiAPI.EXP.ins9(DATA.MOD);
+				setState(379);CompiAPI.EXP.ins9(DATA.MOD);
 				match(MOD);
-				setState(379);
+				setState(380);
 				exm();CompiAPI.EXP.ins10();
 				}
 				break;
@@ -2913,9 +2942,9 @@ public class GramBBBParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(382);
-			termino();CompiAPI.EXP.ins6();
 			setState(383);
+			termino();CompiAPI.EXP.ins6();
+			setState(384);
 			ex2();
 			}
 		}
@@ -2924,9 +2953,6 @@ public class GramBBBParser extends Parser {
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
-                catch(Exception e){
-                    e.printStackTrace();
-                }
 		finally {
 			exitRule();
 		}
@@ -2957,7 +2983,7 @@ public class GramBBBParser extends Parser {
 		Ex2Context _localctx = new Ex2Context(_ctx, getState());
 		enterRule(_localctx, 94, RULE_ex2);
 		try {
-			setState(390);
+			setState(391);
 			switch (_input.LA(1)) {
 			case CP:
 			case CK:
@@ -2998,18 +3024,18 @@ public class GramBBBParser extends Parser {
 			case PLS:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(386);CompiAPI.EXP.ins7(DATA.ADD);
+				setState(387);CompiAPI.EXP.ins7(DATA.ADD);
 				match(PLS);
-				setState(387);
+				setState(388);
 				ex();
 				}
 				break;
 			case SUB:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(388);CompiAPI.EXP.ins7(DATA.SUB);
+				setState(389);CompiAPI.EXP.ins7(DATA.SUB);
 				match(SUB);
-				setState(389);
+				setState(390);
 				ex();
 				}
 				break;
@@ -3055,9 +3081,9 @@ public class GramBBBParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(392);
-			factor();
 			setState(393);
+			factor();
+			setState(394);
 			termino2();
 			}
 		}
@@ -3096,7 +3122,7 @@ public class GramBBBParser extends Parser {
 		Termino2Context _localctx = new Termino2Context(_ctx, getState());
 		enterRule(_localctx, 98, RULE_termino2);
 		try {
-			setState(400);
+			setState(401);
 			switch (_input.LA(1)) {
 			case CP:
 			case CK:
@@ -3139,18 +3165,18 @@ public class GramBBBParser extends Parser {
 			case MLT:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(396);CompiAPI.EXP.ins5(DATA.MUL);
+				setState(397);CompiAPI.EXP.ins5(DATA.MUL);
 				match(MLT);
-				setState(397);
+				setState(398);
 				termino();
 				}
 				break;
 			case DIV:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(398);CompiAPI.EXP.ins5(DATA.DIV);
+				setState(399);CompiAPI.EXP.ins5(DATA.DIV);
 				match(DIV);
-				setState(399);
+				setState(400);
 				termino();
 				}
 				break;
@@ -3198,34 +3224,34 @@ public class GramBBBParser extends Parser {
 		FactorContext _localctx = new FactorContext(_ctx, getState());
 		enterRule(_localctx, 100, RULE_factor);
 		try {
-			setState(411);
+			setState(412);
 			switch (_input.LA(1)) {
 			case OP:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(402);CompiAPI.EXP.ins1();
+				setState(403);CompiAPI.EXP.ins1();
 				match(OP);
-				setState(403);
+				setState(404);
 				exp();
-				setState(404);CompiAPI.EXP.ins2();
+				setState(405);CompiAPI.EXP.ins2();
 				match(CP);
 				}
 				break;
 			case PLS:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(406);
-				match(PLS);
 				setState(407);
+				match(PLS);
+				setState(408);
 				var();CompiAPI.EXP.ins3();
 				}
 				break;
 			case SUB:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(408);CompiAPI.EXP.ins4();
+				setState(409);CompiAPI.EXP.ins4();
 				match(SUB);
-				setState(409);
+				setState(410);
 				var();
 				}
 				break;
@@ -3235,7 +3261,7 @@ public class GramBBBParser extends Parser {
 			case ID:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(410);
+				setState(411);
 				var();
 				}
 				break;
@@ -3277,12 +3303,12 @@ public class GramBBBParser extends Parser {
 		VarContext _localctx = new VarContext(_ctx, getState());
 		enterRule(_localctx, 102, RULE_var);
 		try {
-			setState(415);
+			setState(416);
 			switch (_input.LA(1)) {
 			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(413);CompiAPI.VAR.ins2(this.getCurrentToken().getText());
+				setState(414);CompiAPI.VAR.ins2(this.getCurrentToken().getText());
 				match(ID);
 				}
 				break;
@@ -3291,7 +3317,7 @@ public class GramBBBParser extends Parser {
 			case CTEI:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(414);
+				setState(415);
 				cte();
 				}
 				break;
@@ -3335,13 +3361,13 @@ public class GramBBBParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(417);
+			setState(418);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << CTES) | (1L << CTEF) | (1L << CTEI))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			} else {
                             CompiAPI.CTE.ins1(_la,this.getCurrentToken().getText());
-                            consume();
+				consume();
 			}
 			}
 		}
@@ -3357,7 +3383,7 @@ public class GramBBBParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\64\u01a6\4\2\t\2"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\64\u01a7\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -3381,13 +3407,13 @@ public class GramBBBParser extends Parser {
 		"\3\"\3\"\3\"\3\"\3\"\3#\3#\3#\3#\3#\3#\5#\u0136\n#\3$\3$\3$\3$\3%\3%\3"+
 		"%\3%\3%\3%\3%\3%\3%\3%\3%\3%\3%\3%\3%\3%\3%\3%\5%\u014e\n%\3&\3&\3&\3"+
 		"\'\3\'\3\'\5\'\u0156\n\'\3(\3(\3(\3)\3)\3)\5)\u015e\n)\3*\3*\3*\3+\3+"+
-		"\3+\5+\u0166\n+\3,\3,\3,\3-\3-\3-\3-\3-\3-\3-\3-\3-\3-\3-\3-\5-\u0177"+
-		"\n-\3.\3.\3.\3/\3/\3/\5/\u017f\n/\3\60\3\60\3\60\3\61\3\61\3\61\3\61\3"+
-		"\61\5\61\u0189\n\61\3\62\3\62\3\62\3\63\3\63\3\63\3\63\3\63\5\63\u0193"+
-		"\n\63\3\64\3\64\3\64\3\64\3\64\3\64\3\64\3\64\3\64\5\64\u019e\n\64\3\65"+
-		"\3\65\5\65\u01a2\n\65\3\66\3\66\3\66\2\2\67\2\4\6\b\n\f\16\20\22\24\26"+
+		"\3+\5+\u0166\n+\3,\3,\3,\3-\3-\3-\3-\3-\3-\3-\3-\3-\3-\3-\3-\3-\5-\u0178"+
+		"\n-\3.\3.\3.\3/\3/\3/\5/\u0180\n/\3\60\3\60\3\60\3\61\3\61\3\61\3\61\3"+
+		"\61\5\61\u018a\n\61\3\62\3\62\3\62\3\63\3\63\3\63\3\63\3\63\5\63\u0194"+
+		"\n\63\3\64\3\64\3\64\3\64\3\64\3\64\3\64\3\64\3\64\5\64\u019f\n\64\3\65"+
+		"\3\65\5\65\u01a3\n\65\3\66\3\66\3\66\2\2\67\2\4\6\b\n\f\16\20\22\24\26"+
 		"\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJLNPRTVXZ\\^`bdfhj\2\4\4\2\13"+
-		"\r\17\20\3\2\61\63\u01a0\2l\3\2\2\2\4s\3\2\2\2\6y\3\2\2\2\b{\3\2\2\2\n"+
+		"\r\17\20\3\2\61\63\u01a2\2l\3\2\2\2\4s\3\2\2\2\6y\3\2\2\2\b{\3\2\2\2\n"+
 		"\u0083\3\2\2\2\f\u0089\3\2\2\2\16\u008b\3\2\2\2\20\u0094\3\2\2\2\22\u009c"+
 		"\3\2\2\2\24\u00a0\3\2\2\2\26\u00a2\3\2\2\2\30\u00a8\3\2\2\2\32\u00ae\3"+
 		"\2\2\2\34\u00b0\3\2\2\2\36\u00b4\3\2\2\2 \u00bb\3\2\2\2\"\u00c1\3\2\2"+
@@ -3396,9 +3422,9 @@ public class GramBBBParser extends Parser {
 		"\2\2\66\u00fc\3\2\2\28\u0101\3\2\2\2:\u0103\3\2\2\2<\u010b\3\2\2\2>\u0117"+
 		"\3\2\2\2@\u0120\3\2\2\2B\u0126\3\2\2\2D\u0135\3\2\2\2F\u0137\3\2\2\2H"+
 		"\u014d\3\2\2\2J\u014f\3\2\2\2L\u0155\3\2\2\2N\u0157\3\2\2\2P\u015d\3\2"+
-		"\2\2R\u015f\3\2\2\2T\u0165\3\2\2\2V\u0167\3\2\2\2X\u0176\3\2\2\2Z\u0178"+
-		"\3\2\2\2\\\u017e\3\2\2\2^\u0180\3\2\2\2`\u0188\3\2\2\2b\u018a\3\2\2\2"+
-		"d\u0192\3\2\2\2f\u019d\3\2\2\2h\u01a1\3\2\2\2j\u01a3\3\2\2\2lm\5\6\4\2"+
+		"\2\2R\u015f\3\2\2\2T\u0165\3\2\2\2V\u0167\3\2\2\2X\u0177\3\2\2\2Z\u0179"+
+		"\3\2\2\2\\\u017f\3\2\2\2^\u0181\3\2\2\2`\u0189\3\2\2\2b\u018b\3\2\2\2"+
+		"d\u0193\3\2\2\2f\u019e\3\2\2\2h\u01a2\3\2\2\2j\u01a4\3\2\2\2lm\5\6\4\2"+
 		"mn\5\4\3\2no\5\20\t\2o\3\3\2\2\2pt\5\f\7\2qt\5\32\16\2rt\5*\26\2sp\3\2"+
 		"\2\2sq\3\2\2\2sr\3\2\2\2t\5\3\2\2\2uz\3\2\2\2vw\5\b\5\2wx\5\6\4\2xz\3"+
 		"\2\2\2yu\3\2\2\2yv\3\2\2\2z\7\3\2\2\2{|\7\"\2\2|}\7\21\2\2}~\5\n\6\2~"+
@@ -3474,29 +3500,29 @@ public class GramBBBParser extends Parser {
 		"\u015a\3\2\2\2\u015d\u015b\3\2\2\2\u015eQ\3\2\2\2\u015f\u0160\5V,\2\u0160"+
 		"\u0161\5T+\2\u0161S\3\2\2\2\u0162\u0166\3\2\2\2\u0163\u0164\7!\2\2\u0164"+
 		"\u0166\5R*\2\u0165\u0162\3\2\2\2\u0165\u0163\3\2\2\2\u0166U\3\2\2\2\u0167"+
-		"\u0168\5Z.\2\u0168\u0169\5X-\2\u0169W\3\2\2\2\u016a\u016b\7*\2\2\u016b"+
-		"\u0177\5Z.\2\u016c\u016d\7+\2\2\u016d\u0177\5Z.\2\u016e\u016f\7,\2\2\u016f"+
-		"\u0177\5Z.\2\u0170\u0171\7-\2\2\u0171\u0177\5Z.\2\u0172\u0173\7.\2\2\u0173"+
-		"\u0177\5Z.\2\u0174\u0175\7/\2\2\u0175\u0177\5Z.\2\u0176\u016a\3\2\2\2"+
-		"\u0176\u016c\3\2\2\2\u0176\u016e\3\2\2\2\u0176\u0170\3\2\2\2\u0176\u0172"+
-		"\3\2\2\2\u0176\u0174\3\2\2\2\u0177Y\3\2\2\2\u0178\u0179\5^\60\2\u0179"+
-		"\u017a\5\\/\2\u017a[\3\2\2\2\u017b\u017f\3\2\2\2\u017c\u017d\7\'\2\2\u017d"+
-		"\u017f\5Z.\2\u017e\u017b\3\2\2\2\u017e\u017c\3\2\2\2\u017f]\3\2\2\2\u0180"+
-		"\u0181\5b\62\2\u0181\u0182\5`\61\2\u0182_\3\2\2\2\u0183\u0189\3\2\2\2"+
-		"\u0184\u0185\7(\2\2\u0185\u0189\5^\60\2\u0186\u0187\7)\2\2\u0187\u0189"+
-		"\5^\60\2\u0188\u0183\3\2\2\2\u0188\u0184\3\2\2\2\u0188\u0186\3\2\2\2\u0189"+
-		"a\3\2\2\2\u018a\u018b\5f\64\2\u018b\u018c\5d\63\2\u018cc\3\2\2\2\u018d"+
-		"\u0193\3\2\2\2\u018e\u018f\7%\2\2\u018f\u0193\5b\62\2\u0190\u0191\7&\2"+
-		"\2\u0191\u0193\5b\62\2\u0192\u018d\3\2\2\2\u0192\u018e\3\2\2\2\u0192\u0190"+
-		"\3\2\2\2\u0193e\3\2\2\2\u0194\u0195\7\4\2\2\u0195\u0196\5J&\2\u0196\u0197"+
-		"\7\5\2\2\u0197\u019e\3\2\2\2\u0198\u0199\7(\2\2\u0199\u019e\5h\65\2\u019a"+
-		"\u019b\7)\2\2\u019b\u019e\5h\65\2\u019c\u019e\5h\65\2\u019d\u0194\3\2"+
-		"\2\2\u019d\u0198\3\2\2\2\u019d\u019a\3\2\2\2\u019d\u019c\3\2\2\2\u019e"+
-		"g\3\2\2\2\u019f\u01a2\7\64\2\2\u01a0\u01a2\5j\66\2\u01a1\u019f\3\2\2\2"+
-		"\u01a1\u01a0\3\2\2\2\u01a2i\3\2\2\2\u01a3\u01a4\t\3\2\2\u01a4k\3\2\2\2"+
-		"\36sy\u0083\u0089\u00a0\u00a8\u00ae\u00bb\u00c1\u00c8\u00d0\u00d6\u00e3"+
-		"\u00eb\u00f1\u00fc\u0101\u0135\u014d\u0155\u015d\u0165\u0176\u017e\u0188"+
-		"\u0192\u019d\u01a1";
+		"\u0168\5Z.\2\u0168\u0169\5X-\2\u0169W\3\2\2\2\u016a\u0178\3\2\2\2\u016b"+
+		"\u016c\7*\2\2\u016c\u0178\5Z.\2\u016d\u016e\7+\2\2\u016e\u0178\5Z.\2\u016f"+
+		"\u0170\7,\2\2\u0170\u0178\5Z.\2\u0171\u0172\7-\2\2\u0172\u0178\5Z.\2\u0173"+
+		"\u0174\7.\2\2\u0174\u0178\5Z.\2\u0175\u0176\7/\2\2\u0176\u0178\5Z.\2\u0177"+
+		"\u016a\3\2\2\2\u0177\u016b\3\2\2\2\u0177\u016d\3\2\2\2\u0177\u016f\3\2"+
+		"\2\2\u0177\u0171\3\2\2\2\u0177\u0173\3\2\2\2\u0177\u0175\3\2\2\2\u0178"+
+		"Y\3\2\2\2\u0179\u017a\5^\60\2\u017a\u017b\5\\/\2\u017b[\3\2\2\2\u017c"+
+		"\u0180\3\2\2\2\u017d\u017e\7\'\2\2\u017e\u0180\5Z.\2\u017f\u017c\3\2\2"+
+		"\2\u017f\u017d\3\2\2\2\u0180]\3\2\2\2\u0181\u0182\5b\62\2\u0182\u0183"+
+		"\5`\61\2\u0183_\3\2\2\2\u0184\u018a\3\2\2\2\u0185\u0186\7(\2\2\u0186\u018a"+
+		"\5^\60\2\u0187\u0188\7)\2\2\u0188\u018a\5^\60\2\u0189\u0184\3\2\2\2\u0189"+
+		"\u0185\3\2\2\2\u0189\u0187\3\2\2\2\u018aa\3\2\2\2\u018b\u018c\5f\64\2"+
+		"\u018c\u018d\5d\63\2\u018dc\3\2\2\2\u018e\u0194\3\2\2\2\u018f\u0190\7"+
+		"%\2\2\u0190\u0194\5b\62\2\u0191\u0192\7&\2\2\u0192\u0194\5b\62\2\u0193"+
+		"\u018e\3\2\2\2\u0193\u018f\3\2\2\2\u0193\u0191\3\2\2\2\u0194e\3\2\2\2"+
+		"\u0195\u0196\7\4\2\2\u0196\u0197\5J&\2\u0197\u0198\7\5\2\2\u0198\u019f"+
+		"\3\2\2\2\u0199\u019a\7(\2\2\u019a\u019f\5h\65\2\u019b\u019c\7)\2\2\u019c"+
+		"\u019f\5h\65\2\u019d\u019f\5h\65\2\u019e\u0195\3\2\2\2\u019e\u0199\3\2"+
+		"\2\2\u019e\u019b\3\2\2\2\u019e\u019d\3\2\2\2\u019fg\3\2\2\2\u01a0\u01a3"+
+		"\7\64\2\2\u01a1\u01a3\5j\66\2\u01a2\u01a0\3\2\2\2\u01a2\u01a1\3\2\2\2"+
+		"\u01a3i\3\2\2\2\u01a4\u01a5\t\3\2\2\u01a5k\3\2\2\2\36sy\u0083\u0089\u00a0"+
+		"\u00a8\u00ae\u00bb\u00c1\u00c8\u00d0\u00d6\u00e3\u00eb\u00f1\u00fc\u0101"+
+		"\u0135\u014d\u0155\u015d\u0165\u0177\u017f\u0189\u0193\u019e\u01a2";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

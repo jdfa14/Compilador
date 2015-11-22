@@ -259,7 +259,7 @@ exi:
 	;
 
 exi2:
-	MAI exm
+	| MAI exm
 	| MEI exm
 	| OIG exm
 	| DIF exm
