@@ -1,6 +1,8 @@
 
 package API;
 
+import Entrega1.GramBBBParser;
+import static Entrega1.GramBBBParser.CTES;
 import Entrega2.ManejadorDeMemoria;
 import Entrega2.Memoria;
 import Entrega2.Variable;
@@ -37,6 +39,7 @@ public class CompiAPI {
     public CompiAPI(){
         memoryManager = new ManejadorDeMemoria();
         cuadruplos = new LinkedList<>();
+        constantes = new LinkedList<>();
         saltos = new Stack<>();
         globalV = new Variables();
         localV = new Variables();
@@ -186,15 +189,15 @@ public class CompiAPI {
         return -1;
     }
     
-    public static int saveConstant(int type, Object value){
-        String id = (String)value; // el ID es el mismo valor
+    public static int saveConstant(int type, String value){
+        String id = value; // el ID es el mismo valor
         if(instance.constantV.has(id)){
             return instance.constantV.getDir(id);
         }
         int dir = requestConstantDir(type);
         switch(type){
             case DATA.INT:
-                instance.constantes.add(new Cuadruplo(DATA.ACTE,(int) value,-1,dir));
+                instance.constantes.add(new Cuadruplo(DATA.ACTE,Integer.parseInt(value),-1,dir));
                 break;
             case DATA.STR:
                 String str = (String) value;
@@ -207,11 +210,11 @@ public class CompiAPI {
                 }
                 break;
             case DATA.DBL:
-                long bigNumber = Double.doubleToLongBits((Double)value);
+                long bigNumber = Double.doubleToLongBits(Double.parseDouble(value));
                 instance.constantes.add(new Cuadruplo(DATA.ACTE,bigNumber,-1,dir));
                 break;
             case DATA.BOL:
-                instance.constantes.add(new Cuadruplo(DATA.ACTE,(int)value,-1,dir));
+                instance.constantes.add(new Cuadruplo(DATA.ACTE,Integer.parseInt(value),-1,dir));
                 break;
         }
         instance.constantV.add(new Variable((String)value,type,dir));
@@ -254,6 +257,7 @@ public class CompiAPI {
     public static class INIT{
         public static void ins1(){
             addSalto(instance.cuadruplos.size());
+            addCuadruplo(DATA.GOT,-1,-1,-1);
         }
         
         public static void ins2(){
@@ -274,9 +278,8 @@ public class CompiAPI {
         private static Variable var;
         private static boolean asignation;
         
-        public static void ins1(int type){  // Instrucion de declaracion de tipo
-            DECL.type = type;
-            
+        public static void ins1(){  // Instrucion de declaracion de tipo
+            DECL.type = TYPE.lastTypeUsed;
         }
         
         public static void ins2(String name){   // Nombre de la variable
@@ -307,8 +310,8 @@ public class CompiAPI {
             }
         }
         
-        public static void ins5(int dim){
-            DECL.var.agregaDim(dim);
+        public static void ins5(){
+            DECL.var.agregaDim(EXP.lastExpResult);
         }
         
         public static void ins6(){
@@ -343,15 +346,15 @@ public class CompiAPI {
             }
         }
         
-        public static void ins3(int varDir){
+        public static void ins3(){
             if(!negative){
                 vP.add(VAR.lastVarDir);
             }else{
-                int type = Memoria.getDataTypeAsInt(varDir);
+                int type = Memoria.getDataTypeAsInt(VAR.lastVarDir);
                 negative = false;
                 int constMenosUnoDir = CompiAPI.saveConstant(DATA.INT, -1);
                 int newTempDir = CompiAPI.TEMPORAL.creaTemporal(type);
-                CompiAPI.addCuadruplo(DATA.MUL, varDir, constMenosUnoDir, newTempDir);
+                CompiAPI.addCuadruplo(DATA.MUL, VAR.lastVarDir, constMenosUnoDir, newTempDir);
                 vP.add(newTempDir);
             }
         }
@@ -468,14 +471,45 @@ public class CompiAPI {
     public static class CTE{
         public static int lastConstant = -1;
         
-        public static void ins1(int type, Object constant){
-            lastConstant = CompiAPI.saveConstant(type, constant);
+        public static void ins1(int type, String constant){
+            int dataType = -1;
+            switch (type){
+                case GramBBBParser.CTES:
+                    dataType = DATA.STR; break;
+                case GramBBBParser.CTEI:
+                    dataType = DATA.INT; break;
+                case GramBBBParser.CTEF:
+                    dataType = DATA.DBL; break;
+                default:
+                    dataType = -1; break;
+            }
+            lastConstant = CompiAPI.saveConstant(dataType, constant);
         }
     }
     
     public static class PRINT{
         public static void ins1(){
             CompiAPI.addCuadruplo(DATA.PRNT, -1, -1, CompiAPI.EXP.lastExpResult);
+        }
+    }
+    
+    public static class TYPE{
+        public static int lastTypeUsed = -1;
+        
+        // Retiene el tipo de variable de la ultima instancia
+        public static void ins1(int type){
+            switch (type){
+                case GramBBBParser.INT:
+                    lastTypeUsed = DATA.INT; break;
+                case GramBBBParser.FLT:
+                    lastTypeUsed = DATA.DBL; break;
+                case GramBBBParser.BOL:
+                    lastTypeUsed = DATA.BOL; break;
+                case GramBBBParser.STR:
+                    lastTypeUsed = DATA.STR; break;
+                case GramBBBParser.VOID:
+                    lastTypeUsed = -1; break;
+            }
         }
     }
 }

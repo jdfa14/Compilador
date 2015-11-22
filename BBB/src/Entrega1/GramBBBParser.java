@@ -600,7 +600,8 @@ public class GramBBBParser extends Parser {
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INT) | (1L << FLT) | (1L << BOL) | (1L << STR) | (1L << VOID))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			} else {
-				consume();
+                            CompiAPI.TYPE.ins1(_la);
+                            consume();
 			}
 			}
 		}
@@ -851,7 +852,7 @@ public class GramBBBParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(174);
-			type();
+			type();CompiAPI.DECL.ins1();
 			setState(175);
 			multivar();
 			setState(176);
@@ -897,7 +898,7 @@ public class GramBBBParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(178);
+			setState(178);CompiAPI.DECL.ins2(this.getCurrentToken().getText());
 			match(ID);
 			setState(179);
 			dasign();
@@ -949,7 +950,7 @@ public class GramBBBParser extends Parser {
 			case COM:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(183);
+				setState(183);CompiAPI.DECL.ins4();
 				match(COM);
 				setState(184);
 				multivar();
@@ -1006,7 +1007,7 @@ public class GramBBBParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(188);
+				setState(188);CompiAPI.DECL.ins3();
 				match(IGU);
 				setState(189);
 				exp();
@@ -1071,7 +1072,7 @@ public class GramBBBParser extends Parser {
 				match(OB);
 				setState(195);
 				dimd();
-				setState(196);
+				setState(196);CompiAPI.DECL.ins6();
 				match(CB);
 				}
 				break;
@@ -1167,7 +1168,7 @@ public class GramBBBParser extends Parser {
 			case COM:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(204);
+				setState(204);CompiAPI.DECL.ins5();
 				match(COM);
 				setState(205);
 				dimd();
@@ -2691,7 +2692,7 @@ public class GramBBBParser extends Parser {
 			case MAI:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(360);CompiAPI.EXP.ins9(DATA.OGT);
+				setState(360);CompiAPI.EXP.ins9(DATA.GOE);
 				match(MAI);
 				setState(361);
 				exm();CompiAPI.EXP.ins10();
@@ -2700,46 +2701,46 @@ public class GramBBBParser extends Parser {
 			case MEI:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(362);
+				setState(362);CompiAPI.EXP.ins9(DATA.LOE);
 				match(MEI);
 				setState(363);
-				exm();
+				exm();CompiAPI.EXP.ins10();
 				}
 				break;
 			case OIG:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(364);
+				setState(364);CompiAPI.EXP.ins9(DATA.EQS);
 				match(OIG);
 				setState(365);
-				exm();
+				exm();CompiAPI.EXP.ins10();
 				}
 				break;
 			case DIF:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(366);
+				setState(366);CompiAPI.EXP.ins9(DATA.DIF);
 				match(DIF);
 				setState(367);
-				exm();
+				exm();CompiAPI.EXP.ins10();
 				}
 				break;
 			case MAY:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(368);
+				setState(368);CompiAPI.EXP.ins9(DATA.OGT);
 				match(MAY);
 				setState(369);
-				exm();
+				exm();CompiAPI.EXP.ins10();
 				}
 				break;
 			case MEN:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(370);
+				setState(370);CompiAPI.EXP.ins9(DATA.OLT);
 				match(MEN);
 				setState(371);
-				exm();
+				exm();CompiAPI.EXP.ins10();
 				}
 				break;
 			default:
@@ -2785,7 +2786,7 @@ public class GramBBBParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(374);
-			ex();
+			ex();CompiAPI.EXP.ins8();
 			setState(375);
 			exm2();
 			}
@@ -2864,10 +2865,10 @@ public class GramBBBParser extends Parser {
 			case MOD:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(378);
+				setState(378);CompiAPI.EXP.ins9(DATA.MOD);
 				match(MOD);
 				setState(379);
-				exm();
+				exm();CompiAPI.EXP.ins10();
 				}
 				break;
 			default:
@@ -2913,7 +2914,7 @@ public class GramBBBParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(382);
-			termino();
+			termino();CompiAPI.EXP.ins6();
 			setState(383);
 			ex2();
 			}
@@ -2923,6 +2924,9 @@ public class GramBBBParser extends Parser {
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
+                catch(Exception e){
+                    e.printStackTrace();
+                }
 		finally {
 			exitRule();
 		}
@@ -2994,7 +2998,7 @@ public class GramBBBParser extends Parser {
 			case PLS:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(386);
+				setState(386);CompiAPI.EXP.ins7(DATA.ADD);
 				match(PLS);
 				setState(387);
 				ex();
@@ -3003,7 +3007,7 @@ public class GramBBBParser extends Parser {
 			case SUB:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(388);
+				setState(388);CompiAPI.EXP.ins7(DATA.SUB);
 				match(SUB);
 				setState(389);
 				ex();
@@ -3135,7 +3139,7 @@ public class GramBBBParser extends Parser {
 			case MLT:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(396);
+				setState(396);CompiAPI.EXP.ins5(DATA.MUL);
 				match(MLT);
 				setState(397);
 				termino();
@@ -3144,7 +3148,7 @@ public class GramBBBParser extends Parser {
 			case DIV:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(398);
+				setState(398);CompiAPI.EXP.ins5(DATA.DIV);
 				match(DIV);
 				setState(399);
 				termino();
@@ -3199,11 +3203,11 @@ public class GramBBBParser extends Parser {
 			case OP:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(402);
+				setState(402);CompiAPI.EXP.ins1();
 				match(OP);
 				setState(403);
 				exp();
-				setState(404);
+				setState(404);CompiAPI.EXP.ins2();
 				match(CP);
 				}
 				break;
@@ -3213,13 +3217,13 @@ public class GramBBBParser extends Parser {
 				setState(406);
 				match(PLS);
 				setState(407);
-				var();
+				var();CompiAPI.EXP.ins3();
 				}
 				break;
 			case SUB:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(408);
+				setState(408);CompiAPI.EXP.ins4();
 				match(SUB);
 				setState(409);
 				var();
@@ -3278,7 +3282,7 @@ public class GramBBBParser extends Parser {
 			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(413);
+				setState(413);CompiAPI.VAR.ins2(this.getCurrentToken().getText());
 				match(ID);
 				}
 				break;
@@ -3336,7 +3340,8 @@ public class GramBBBParser extends Parser {
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << CTES) | (1L << CTEF) | (1L << CTEI))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			} else {
-				consume();
+                            CompiAPI.CTE.ins1(_la,this.getCurrentToken().getText());
+                            consume();
 			}
 			}
 		}

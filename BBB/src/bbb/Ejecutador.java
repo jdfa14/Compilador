@@ -20,6 +20,8 @@ public class Ejecutador {
         MemoriaVirtual mv = new MemoriaVirtual();
         ArrayList<Cuadruplo> cuadruplos = new ArrayList<>();
         
+        System.out.println(Double.doubleToLongBits(-0.1));
+        
         Game game = new Game();
         game.play();
         
