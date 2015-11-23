@@ -3,6 +3,7 @@
 package Entrega1;
 
 import API.CompiAPI;
+import API.CompiAPI.EXP;
 import Entrega3.DATA;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -543,7 +544,7 @@ public class GramBBBParser extends Parser {
 			{
 			setState(146);
 			match(INT);
-			setState(147);
+			setState(147);CompiAPI.MAINDECL.ins1();
 			match(MAIN);
 			setState(148);
 			match(OP);
@@ -554,7 +555,7 @@ public class GramBBBParser extends Parser {
 			setState(151);
 			estatutos();
 			setState(152);
-			match(CK);
+			match(CK);CompiAPI.MAINDECL.ins2();
 			}
 		}
 		catch (RecognitionException re) {
@@ -855,7 +856,7 @@ public class GramBBBParser extends Parser {
 			type();CompiAPI.DECL.ins1();
 			setState(175);
 			multivar();
-			setState(176);
+			setState(176);CompiAPI.DECL.ins4();
 			match(DEL);
 			}
 		}
@@ -2943,7 +2944,9 @@ public class GramBBBParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(383);
-			termino();CompiAPI.EXP.ins6();
+			termino();
+                        CompiAPI.EXP.ins6();
+                        //CompiAPI.EXP.ins6();
 			setState(384);
 			ex2();
 			}
@@ -2953,6 +2956,9 @@ public class GramBBBParser extends Parser {
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
+                catch (Exception e){
+                    e.printStackTrace();
+                }
 		finally {
 			exitRule();
 		}
@@ -3262,7 +3268,7 @@ public class GramBBBParser extends Parser {
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(411);
-				var();
+				var();CompiAPI.EXP.ins3();
 				}
 				break;
 			default:
@@ -3318,7 +3324,7 @@ public class GramBBBParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(415);
-				cte();
+				cte();CompiAPI.VAR.ins1();
 				}
 				break;
 			default:

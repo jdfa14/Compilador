@@ -17,7 +17,8 @@ public class Memoria{
         GLOBAL,
         TEMPORAL,
         LOCAL,
-        CONSTANTE
+        CONSTANTE,
+        UNKNOWN
     }
     
     public static enum DATA_TYPE{
@@ -157,6 +158,24 @@ public class Memoria{
     public void wipeMemory(){
         memData.clear();
     }
+    
+    public static SCOPE_TYPE getScopeType(int dir){
+        if(dir >= igi && dir <= fgb){
+            return SCOPE_TYPE.GLOBAL;
+        }
+        if(dir >= ili && dir <= flb){
+            return SCOPE_TYPE.LOCAL;
+        }
+        if(dir >= iti && dir <= ftb){
+            return SCOPE_TYPE.TEMPORAL;
+        }
+        if(dir >= ici && dir <= fcb){
+            return SCOPE_TYPE.CONSTANTE;
+        }
+        return SCOPE_TYPE.UNKNOWN;
+    }
+    
+    
     
     /**
      * Obtienes el tipo de variable segun la direccion dada

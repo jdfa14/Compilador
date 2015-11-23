@@ -12,7 +12,7 @@ package Entrega3;
 public class Cubo {
     public static final Cubo instance = new Cubo();
 
-    private int[][][] cube = new int[4][4][14];
+    private int[][][] cube = new int[4][4][18];
 	// Cubo[Operando1][Operando2][Operador] = TIPO
 
 	// Operandos

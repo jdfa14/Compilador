@@ -1,5 +1,7 @@
-
 package API;
+
+
+
 
 import Entrega1.GramBBBParser;
 import static Entrega1.GramBBBParser.CTES;
@@ -23,6 +25,7 @@ public class CompiAPI {
     private ManejadorDeMemoria memoryManager;
     private LinkedList<Cuadruplo> cuadruplos;
     private LinkedList<Cuadruplo> constantes;
+    private LinkedList<Cuadruplo> globales;
     
     private Stack<Integer> saltos;
     private int main = -1;
@@ -34,16 +37,20 @@ public class CompiAPI {
     private boolean localThread = false;        // Bandera para diferenciar contexto Global o Local
     private boolean declarating = false;        // Bandera para definir estado de declaracion de variable (Quizas no se necesite)
     
-    private int dirExpResult = -1;               // Direccion de la variable del resultado de la ultima expresion resuelta;
     
     public CompiAPI(){
         memoryManager = new ManejadorDeMemoria();
         cuadruplos = new LinkedList<>();
         constantes = new LinkedList<>();
+        globales = new LinkedList<>();
         saltos = new Stack<>();
         globalV = new Variables();
         localV = new Variables();
         constantV = new Variables();
+    }
+    
+    public static LinkedList<Cuadruplo> getCuadruplos(){
+        return instance.cuadruplos;
     }
     
     public void startLocalThread(){
@@ -204,7 +211,7 @@ public class CompiAPI {
                 if(str.length() > 0){ // if not Empty
                     instance.constantes.add(new Cuadruplo(DATA.STR1,(long)str.charAt(0),-1,dir)); // DECLARA variable tipo String
                     int len = str.length();
-                    for(int i = 1; i > len; i++){
+                    for(int i = 1; i < len; i++){
                         instance.constantes.add(new Cuadruplo(DATA.STR2,(long)str.charAt(i),-1,dir)); // DECLARA variable tipo String
                     }
                 }
@@ -250,14 +257,16 @@ public class CompiAPI {
             instance.main = CompiAPI.getNextCuadIndex();
         }
         public static void ins2(){
-            addCuadruplo(DATA.GOT,-1,-1,-1);
+            addCuadruplo(DATA.EOF,-1,-1,-1);
         }
     }
     
     public static class INIT{
         public static void ins1(){
+            addSalto(instance.cuadruplos.size()+1);
             addSalto(instance.cuadruplos.size());
             addCuadruplo(DATA.GOT,-1,-1,-1);
+            
         }
         
         public static void ins2(){
@@ -265,11 +274,14 @@ public class CompiAPI {
             instance.constantes.stream().forEach((Cuadruplo cuad) -> {
                 addCuadruplo(cuad);
             });
+            instance.globales.stream().forEach((Cuadruplo cuad) -> {
+                addCuadruplo(cuad);
+            });
             if(instance.main == -1){
                 //TODO ERROR
                 System.out.println("Funcion main no declarada");
             }
-            addCuadruplo(DATA.GOT,-1,-1,instance.main);
+            addCuadruplo(DATA.GOT,-1,-1,getSalto());
         }
     }
     
@@ -299,9 +311,11 @@ public class CompiAPI {
             DECL.asignation = true;
         }
         
-        public static void ins4(){
+        public static void ins4(){ // Declaras las variables y construyes su caudruplo
+            Memoria.SCOPE_TYPE scope = Memoria.getScopeType(type);
+ 
             if(DECL.asignation){
-                addCuadruplo(DATA.DECL,instance.dirExpResult,-1,var.dir);
+                addCuadruplo(DATA.DECL,EXP.getLastEXP(),-1,var.dir);
             }else{
                 addCuadruplo(DATA.DECL,-1,-1,var.dir);
             }
@@ -311,7 +325,7 @@ public class CompiAPI {
         }
         
         public static void ins5(){
-            DECL.var.agregaDim(EXP.lastExpResult);
+            DECL.var.agregaDim(EXP.getLastEXP());
         }
         
         public static void ins6(){
@@ -321,23 +335,19 @@ public class CompiAPI {
     }
     
     public static class EXP{
-        public static int lastExpResult = -1;
-        private static int expDeep = 0;
+        private static int lastExpResult = -1;
+        
         private static Stack<Integer> pOper = new Stack<>();
         private static LinkedList<Integer> vP = new LinkedList<>();
         private static boolean negative = false;
         private static Cubo cubo = new Cubo();
-        
-        public static void ins0(){
-            if(expDeep == 0){
-                pOper = new Stack<>();
-                vP = new LinkedList<>();
-            }
-            expDeep++;
-        }
-        
+
         public static void ins1(){
             pOper.add(DATA.OP);
+        }
+        
+        public static int getLastEXP(){
+            return lastExpResult;
         }
         
         public static void ins2(){
@@ -352,7 +362,7 @@ public class CompiAPI {
             }else{
                 int type = Memoria.getDataTypeAsInt(VAR.lastVarDir);
                 negative = false;
-                int constMenosUnoDir = CompiAPI.saveConstant(DATA.INT, -1);
+                int constMenosUnoDir = CompiAPI.saveConstant(DATA.INT, "-1");
                 int newTempDir = CompiAPI.TEMPORAL.creaTemporal(type);
                 CompiAPI.addCuadruplo(DATA.MUL, VAR.lastVarDir, constMenosUnoDir, newTempDir);
                 vP.add(newTempDir);
@@ -364,31 +374,33 @@ public class CompiAPI {
         }
         
         public static void ins5(int oper){
-            if(pOper.peek() == DATA.MUL
-                    || pOper.peek() == DATA.DIV){
+            if(pOper.size() > 0 && (pOper.peek() == DATA.MUL
+                    || pOper.peek() == DATA.DIV)){
                 vP.add(pOper.pop());
             }
             pOper.add(oper);
         }
         
         public static void ins6(){
-            if(pOper.peek() == DATA.MUL
-                    || pOper.peek() == DATA.DIV){
+            if(pOper.size() > 0 && (pOper.peek() == DATA.MUL
+                    || pOper.peek() == DATA.DIV)){
                 vP.add(pOper.pop());
             }
         }
+            
+        
         
         public static void ins7(int oper){
-            if(pOper.peek() == DATA.ADD
-                    || pOper.peek() == DATA.SUB){
+            if(pOper.size() > 0 && (pOper.peek() == DATA.ADD
+                    || pOper.peek() == DATA.SUB)){
                 vP.add(pOper.pop());
             }
             pOper.add(oper);
         }
         
         public static void ins8(){
-            if(pOper.peek() == DATA.ADD
-                    || pOper.peek() == DATA.SUB){
+            if(pOper.size() > 0 && (pOper.peek() == DATA.ADD
+                    || pOper.peek() == DATA.SUB)){
                 vP.add(pOper.pop());
             }
         }
@@ -425,8 +437,8 @@ public class CompiAPI {
                             return;
                         }else{
                             
-                            int oper1 = vars.pop();
                             int oper2 = vars.pop();
+                            int oper1 = vars.pop();
                             int type = cubo.parse(Memoria.getDataTypeAsInt(oper1), Memoria.getDataTypeAsInt(oper2), op);
                             if(type == DATA.ERR){
                                 //TODO error operacioninvalida
@@ -434,7 +446,7 @@ public class CompiAPI {
                                 return;
                             }
                             
-                            int dirNewTemp = CompiAPI.TEMPORAL.creaTemporal(op);
+                            int dirNewTemp = CompiAPI.TEMPORAL.creaTemporal(type);
                             CompiAPI.addCuadruplo(op, oper1, oper2, dirNewTemp);
                             vars.push(dirNewTemp);
                         }
@@ -444,6 +456,7 @@ public class CompiAPI {
                         break;
                 }
             }
+            vP.clear();
             if(vars.size() != 1){
                 //TODO error expresion mal construida
                 System.out.println("Expresion mal construida");
@@ -489,7 +502,7 @@ public class CompiAPI {
     
     public static class PRINT{
         public static void ins1(){
-            CompiAPI.addCuadruplo(DATA.PRNT, -1, -1, CompiAPI.EXP.lastExpResult);
+            CompiAPI.addCuadruplo(DATA.PRNT, -1, -1, CompiAPI.EXP.getLastEXP());
         }
     }
     

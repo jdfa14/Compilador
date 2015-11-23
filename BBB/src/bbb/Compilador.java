@@ -1,12 +1,15 @@
 package bbb;
 
+import API.CompiAPI;
 import java.io.FileInputStream;
 import java.io.IOException;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import Entrega1.GramBBBLexer;
 import Entrega1.GramBBBParser;
 import Entrega1.GramBBBParser.InitContext;
+import Entrega4.Cuadruplo;
 import java.io.InputStream;
+import java.util.LinkedList;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
@@ -16,7 +19,6 @@ public class Compilador {
     public static void main(String[] args) throws IOException {
         
         InputStream is = new FileInputStream("C:\\Users\\JesusDavid\\Desktop\\COMPILATORS\\input.txt");
-        
         //We load our lexer
         GramBBBLexer lexer = new GramBBBLexer(new ANTLRInputStream(is));
         
@@ -28,11 +30,11 @@ public class Compilador {
         
         //Specify initial gramatical function
         InitContext sentenceContext = parser.init();
+        LinkedList<Cuadruplo> cuads = CompiAPI.getCuadruplos();
+        cuads.stream().forEach((cuad) -> {
+            System.out.println(cuad.getOperador() + " " + cuad.getLongOperando1() + " " + cuad.getLongOperando2() + " " + cuad.getResultado());
+        });
         
-        ParseTreeWalker walker = new ParseTreeWalker();
-        walker.walk(null, sentenceContext);
-        int x = 1;
-        return;
     }
     
 }
