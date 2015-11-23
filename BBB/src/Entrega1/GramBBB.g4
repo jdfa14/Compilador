@@ -13,8 +13,8 @@ COM: ',';
 INT: 'ent';
 FLT: 'dec';
 BOL: 'bool';
-CHA: 'cad';
-STR: 'car';
+CHA: 'car';
+STR: 'cadena';
 VOID: 'nada';
 
 INCL: 'incluir';
@@ -57,6 +57,8 @@ DIF: '!=';
 MAY: '>';
 MEN: '<';
 
+CTBT: 'verdadero';
+CTBF: 'falso';
 CTEC: '"'[a-zA-Z0-9]'"';
 CTES: '"'[a-zA-Z0-9]*'"';
 CTEF: [0-9]*'.'[0-9]+;
@@ -157,7 +159,7 @@ asignations:
 	;
 
 asignation:
-	ID asignation2
+	ID asignation2 DEL
 	;
 
 asignation2:
@@ -309,4 +311,6 @@ cte:
 	CTEF
 	| CTEI
 	| CTES
+        | CTBT
+        | CTBF
 	;

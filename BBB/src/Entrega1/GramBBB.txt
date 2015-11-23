@@ -80,7 +80,7 @@ ASIGNATIONS:
 	|->[ASIGNATION]-->[ASIGNATIONS]--^
 
 ASIGNATION:
-	|->(id)-->[ASIGNATION2]-->
+	|->(id)-->[ASIGNATION2]-->(;)-->
 
 ASIGNATION2:
 	|->(=)-->[EXP]-->
