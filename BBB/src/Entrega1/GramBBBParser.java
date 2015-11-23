@@ -1749,17 +1749,17 @@ public class GramBBBParser extends Parser {
 			setState(257);
 			match(LWHILE);
 			setState(258);
-			match(OP);
+			match(OP);CompiAPI.WHILE.ins1();
 			setState(259);
 			exp();
 			setState(260);
-			match(CP);
+			match(CP);CompiAPI.WHILE.ins2();
 			setState(261);
 			match(OK);
 			setState(262);
 			estatutos();
 			setState(263);
-			match(CK);
+			match(CK);CompiAPI.WHILE.ins3();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2004,16 +2004,16 @@ public class GramBBBParser extends Parser {
 			match(OP);
 			setState(294);
 			exp();
-			setState(295);
+			setState(295);CompiAPI.IF.ins1();
 			match(CP);
 			setState(296);
 			match(OK);
 			setState(297);
 			estatutos();
-			setState(298);
+			setState(298);CompiAPI.IF.ins2();
 			match(CK);
 			setState(299);
-			conditional2();
+			conditional2();CompiAPI.IF.ins3();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2740,7 +2740,7 @@ public class GramBBBParser extends Parser {
 			case OIG:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(365);CompiAPI.EXP.ins9(DATA.EQS);
+				setState(365);CompiAPI.EXP.ins9(DATA.EQT);
 				match(OIG);
 				setState(366);
 				exm();CompiAPI.EXP.ins10();
