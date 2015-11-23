@@ -1,5 +1,6 @@
 package bbb;
 
+import Entrega3.DATA;
 import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
@@ -15,6 +16,7 @@ import com.jogamp.opengl.util.texture.Texture;
 import com.jogamp.opengl.util.texture.TextureIO;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -39,12 +41,43 @@ import java.io.IOException;
         private float x = 0;
         private float y = 0;
         private GLCanvas canvas;
+        private ArrayList<Position> pos;
+        private boolean penStatus = true;
+        private Color col = new Color(255,255,255);
  
+     private class Position{
+         public float x,y;
+         Color col = new Color(255,255,255);
+         
+         public Position(float x,float y, Color col){
+             this.x = x;
+             this.y = y;
+             this.col = col;
+         }
+     }
+     
+     private class Color{
+         int R = 255,G = 255,B = 255;
+         
+         public Color(int R, int G, int B){
+             this.R = R;
+             this.G = G;
+             this.B = B;
+         }
+         
+         public Color(Color a){
+             this.R = a.R;
+             this.G = a.G;
+             this.B = a.B;
+         }
+     }
+     
      public Game() {
          super("Minimal OpenGL");
          GLProfile profile = GLProfile.get(GLProfile.GL2);
          GLCapabilities capabilities = new GLCapabilities(profile);
  
+         pos = new ArrayList<>();
          canvas = new GLCanvas(capabilities);
          canvas.addGLEventListener(this);
  
@@ -73,7 +106,27 @@ import java.io.IOException;
         System.out.print("Display");
     }
     
+    public void changeColor(int type, float color){
+        if ( type == DATA.RED)
+            col.R = (int)color;
+        else if (type == DATA.GRN)
+            col.G = (int)color;
+        else if (type == DATA.BLU)
+            col.B = (int)color;
+    }
+    public void pinDown(){
+        penStatus = false;
+    }
+    
+    public void pinUp(){
+        penStatus = true;
+    }
+    
     public void move(float x, float y){
+        if (penStatus){
+            pos.add(new Position(this.x,this.y,new Color(col)));
+            pos.add(new Position(x,y,new Color(col)));
+        }
         this.x = x;
         this.y = y;
     }
@@ -81,17 +134,21 @@ import java.io.IOException;
     private void render(GLAutoDrawable drawable){
         GL2 gl = drawable.getGL().getGL2();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
-        
+        gl.glLineWidth((float) 6.0);
+        gl.glBegin(GL2.GL_LINES);
+        // Drawing Using Triangles 
+        for (int i = 0; i < pos.size()/2; i++){
+            gl.glColor3f(pos.get(i*2).col.R/255.0f,pos.get(i*2).col.G/255.0f,pos.get(i*2).col.B/255.0f);
+            gl.glVertex3f(pos.get(i*2).x,pos.get(i*2).y,0);
+            gl.glVertex3f(pos.get(i*2+1).x,pos.get(i*2+1).y,0);
+        }
+        gl.glEnd();
         gl.glBegin( GL2.GL_TRIANGLES );  
 
-        // Drawing Using Triangles 
-
-        gl.glColor3f(0.5f, 0.0f, 1.0f);  
-        gl.glVertex3f((-.05f+ x),(-.5f)+ y,0.0f);//triangle one first vertex
-        gl.glVertex3f( 0.05f+ x , -0.5f+ y,0.0f);//triangle one second vertex
-        gl.glVertex3f( 0f   + x , -.4f + y,0.0f);//triangle one third vertex
-
-
+        gl.glColor3f(1.0f, 0.11f, 0.68f);  
+        gl.glVertex3f( x         , y        ,0.0f);//triangle one first vertex
+        gl.glVertex3f( x - 0.05f , y - 0.05f,0.0f);//triangle one second vertex
+        gl.glVertex3f( x + 0.05f , y - 0.05f,0.0f);//triangle one third vertex
         gl.glEnd();
         gl.glFlush();
           
@@ -104,7 +161,7 @@ import java.io.IOException;
      @Override
      public void init(GLAutoDrawable drawable) {
          GL2 gl = drawable.getGL().getGL2();
-         gl.glClearColor(0.392f, 0.584f, 0.929f, 1.0f);
+         gl.glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
          
          
      }

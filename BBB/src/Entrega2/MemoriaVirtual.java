@@ -89,7 +89,7 @@ public class MemoriaVirtual {
                     memG.saveInt(dir, (int)value);
                     break;
                 case GLOBAL_FLOAT:
-                    memG.saveFloat(dir, (double) value);
+                    memG.saveFloat(dir, (long) value);
                     break;
                 case GLOBAL_STRING: 
                     memG.saveString(dir, (String) value);
@@ -105,9 +105,9 @@ public class MemoriaVirtual {
                     break;
                 case LOCAL_FLOAT:
                     if (PC == 0)
-                        memL.peek().saveFloat(dir, (double) value);
+                        memL.peek().saveFloat(dir, (long) value);
                     else
-                        tempML.saveFloat(dir, (double)value);
+                        tempML.saveFloat(dir, (long)value);
                     break;
                 case LOCAL_STRING:
                     if (PC == 0)
@@ -129,9 +129,9 @@ public class MemoriaVirtual {
                     break;
                 case TEMPORAL_FLOAT:
                     if (PC == 0)
-                        memT.peek().saveFloat(dir, (double) value);
+                        memT.peek().saveFloat(dir, (long) value);
                     else
-                        tempMT.saveFloat(dir, (double) value);
+                        tempMT.saveFloat(dir, (long) value);
                     break;
                 case TEMPORAL_STRING:
                     if (PC == 0)
@@ -149,7 +149,7 @@ public class MemoriaVirtual {
                     memC.saveInt(dir, (int)value);
                     break;
                 case CONSTANT_FLOAT:
-                    memC.saveFloat(dir, (double) value);
+                    memC.saveFloat(dir, (long) value);
                     break;
                 case CONSTANT_STRING: 
                     memC.saveString(dir, (String) value);

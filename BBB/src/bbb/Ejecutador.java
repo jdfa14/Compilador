@@ -20,13 +20,9 @@ public class Ejecutador {
         MemoriaVirtual mv = new MemoriaVirtual();
         ArrayList<Cuadruplo> cuadruplos = new ArrayList<>();
         
-        System.out.println(Double.doubleToLongBits(-0.1));
-        
         Game game = new Game();
         game.play();
-        
-        game.move(-0.02f, -0.05f);
-        
+   
         String fileName = "/Users/taniagarridosalido/Dropbox/ITESM-ITC Noveno Semestre/Análisis y Diseño de Compiladores/Compilador/BBB/src/cuadruplos.txt";
         String line = null;
         Stack <Integer> pila;
@@ -39,7 +35,7 @@ public class Ejecutador {
                         
             while((line = bufferedReader.readLine()) != null) {
                 String[] lineArray = line.split("\\s+");
-                cuadruplos.add(new Cuadruplo(Integer.parseInt(lineArray[0]), Integer.parseInt(lineArray[1]), Integer.parseInt(lineArray[2]), Integer.parseInt(lineArray[3])));
+                cuadruplos.add(new Cuadruplo(Long.parseLong(lineArray[0]), Long.parseLong(lineArray[1]), Long.parseLong(lineArray[2]), (int) Long.parseLong(lineArray[3])));
             }   
             int i = 0;
             while (true) {
@@ -315,7 +311,12 @@ public class Ejecutador {
                             i = cuad.getResultado() - 1;
                         break;
                     case DATA.ACTE:
-                        mv.saveVar(cuad.getResultado(), cuad.getOperando1());
+                        t1 = Memoria.getDataType(cuad.getResultado());
+                        
+                        if (t1 == Memoria.DATA_TYPE.FLOAT)
+                            mv.saveVar(cuad.getResultado(), cuad.getLongOperando1());
+                        else
+                            mv.saveVar(cuad.getResultado(), cuad.getOperando1());
                         break;
                     case DATA.PC:
                         mv.prepararCambio();
@@ -389,7 +390,17 @@ public class Ejecutador {
                         mv.str2(cuad.getOperando1(), cuad.getResultado());
                         break;
                     case DATA.PRNT:
-                        System.out.print(mv.getString(cuad.getResultado()));
+                        t1 = Memoria.getDataType(cuad.getResultado());
+
+                        if (t1 == Memoria.DATA_TYPE.INT)
+                            System.out.print(mv.getInt(cuad.getResultado()));
+                        else if (t1 == Memoria.DATA_TYPE.FLOAT)
+                            System.out.print(mv.getFloat(cuad.getResultado()));
+                        else if (t1 == Memoria.DATA_TYPE.STRING)
+                            System.out.print(mv.getInt(cuad.getResultado()));
+                        else if (t1 == Memoria.DATA_TYPE.BOOLEAN)
+                            System.out.print(mv.getBoolean(cuad.getResultado()));
+
                         break;
                     case DATA.PNTL:
                         System.out.println(mv.getString(cuad.getResultado()));
@@ -400,10 +411,33 @@ public class Ejecutador {
                             mv.saveVar(memoria, null);
                         }
                         break;
+                    case DATA.PIN:
+                        if(cuad.getResultado() == 1)
+                            game.pinUp();
+                        else
+                            game.pinDown();
+                        break;
+                    case DATA.MVE:
+                        t1 = Memoria.getDataType(cuad.getOperando1());
+                        t2 = Memoria.getDataType(cuad.getOperando2());
+                            
+                            if (t1 == Memoria.DATA_TYPE.INT && t2 == Memoria.DATA_TYPE.INT)
+                                game.move((float)mv.getInt(cuad.getOperando1()), (float)mv.getInt(cuad.getOperando2()));
+                            else if (t1 == Memoria.DATA_TYPE.FLOAT && t2 == Memoria.DATA_TYPE.FLOAT)
+                                game.move((float)mv.getFloat(cuad.getOperando1()),(float)mv.getFloat(cuad.getOperando2()));
+                        break;
+                    case DATA.COL:
+                        t1 = Memoria.getDataType(cuad.getOperando1());
+                            
+                            if (t1 == Memoria.DATA_TYPE.INT)
+                                game.changeColor(cuad.getResultado(), (float)mv.getInt(cuad.getOperando1()));
+                            else if (t1 == Memoria.DATA_TYPE.FLOAT)
+                                game.changeColor(cuad.getResultado(),(float)mv.getFloat(cuad.getOperando1()));
+                        
+                        break;
                 }
             i++;    
             }
-            System.out.println(mv.getString(6000));
             bufferedReader.close();
         }
         catch(FileNotFoundException ex) {
