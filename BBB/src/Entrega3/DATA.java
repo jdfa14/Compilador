@@ -48,4 +48,10 @@ public class DATA {
     public static final int PRNT = 31;  // Función print
     public static final int PNTL = 32;  // Función printline
     public static final int GAP = 33;   // Reservar espacio de memoria
+    public static final int PIN = 34;   // Reservar espacio de memoria
+    public static final int MVE = 35;   // Reservar espacio de memoria
+    public static final int RED = 36;   // Reservar espacio de memoria
+    public static final int GRN = 37;   // Reservar espacio de memoria
+    public static final int BLU = 38;   // Reservar espacio de memoria
+    public static final int COL = 39;   // Reservar espacio de memoria
 }

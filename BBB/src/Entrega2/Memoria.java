@@ -123,8 +123,8 @@ public class Memoria{
         memData.put(key, value);
     }
     
-    public void saveFloat(int key, double value){
-        memData.put(key, value);
+    public void saveFloat(int key, long value){
+        memData.put(key, Double.longBitsToDouble(value));
     }
     
     public void saveString(int key, String value){
