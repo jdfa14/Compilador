@@ -1,0 +1,19 @@
+CONDITIONAL:
+	|->(if)-->(()-->[EXP]-->())-->({)-->[ESTATUTOS]-->(})-->[CONDITIONAL2]-->
+	                        (1)                       (2)                 (3)
+
+CONDITIONAL2:
+	|------------------------------------->
+	|->(else)-->({)-->[ESTATUTOS]-->(})--^
+
+1)
+	Verifique si la ultima expresion desarrollada es booleana
+	Meter a saltos la direccion del siguiente cuadruplo
+	Crear un cuadruplo GOTOF
+
+2)
+	Rellegnar salto con direccion de siguiente cuadruplo
+	Meter a saltos la direccion del siguiente cuadruplo
+
+3)
+	Rellenar salto con direccion del cuadruplo siguiente

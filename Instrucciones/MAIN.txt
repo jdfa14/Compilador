@@ -1,0 +1,9 @@
+MAINDECL:
+	|->(int)-->(main)-->(()-->())-->({)-->[ESTATUTOS]-->(})-->
+	            (1)                                        (2)
+
+1)
+	Registrar la direccion del cuadruplo del main
+
+2)
+	Crea un cuadruplo de fin de programa

@@ -1,0 +1,37 @@
+(id)-->([)-->[DIM]-->(])-->
+(1)                  (3)
+
+DIM:
+	|->[EXP]->[DIM2]->
+	       (2)
+
+DIM2:
+	|----------------->
+	|->(,)-->[DIM]--^
+
+1)
+	Validamos la existencia del ID
+	--> Si no existe
+	----> Error variable no definida
+	--> Si si existe
+	Obtenemos la variable declarada
+	Inicializamos indice de Direccionamiento en 0
+	Set it as not ready
+
+2)
+	Verificar que la expresion sea un valor entero o doble
+	--> Si no
+	----> Generar error
+	--> Si si
+	---->Verificamos que exista el indice de direccion de dimencion
+	--> Si no
+	----> Generar error
+	--> si si
+	Generar cuadruplo verificador de rangos desde 0 a dim.tam valor direccion
+	Generar nueva direccion temporal de tipo entera donde se guardará el resultado de la direccion
+	Generar constante que se requiere para obtener al direccion por la cual se multiplicara (m(n))
+	Calcular gap con multiplicacion entera del resultado de EXP * m(n)
+	Agregar direccion a arreglo de direcciones a sumar
+
+3)
+	Generar cuadruplos de sumatoria mientras haya dos o más enteros en el arreglo de direcciones a sumar

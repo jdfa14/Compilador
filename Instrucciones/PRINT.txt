@@ -1,0 +1,6 @@
+PRINT:
+	(print)-->[EXP]-->(;)-->
+	                  (1)
+
+1)
+	generar cuadruplo de print segun el resultado de la ultima expresion dada;

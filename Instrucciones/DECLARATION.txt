@@ -1,0 +1,61 @@
+	DECLARATION:
+	|->[TYPE]-->[MULTIVAR]-->(;)-->
+	     (1)                 (4)
+
+MULTIVAR:
+	|->(id)-->[DASIGN]-->[MULTIVAR2]-->
+		2
+
+MULTIVAR2:
+	|--------------------->
+	|->(,)-->[MULTIVAR]--^
+		4
+
+DASIGN:	
+	|---------------->
+	|->(=)-->[EXP]--^
+	|   3           |
+	|->[MULTIDIM]---|
+
+MULTIDIM:
+	|----------------------->
+	|->([)-->[DIMD]-->(])--^
+	                  (6)
+
+DIMD:
+	|->[EXP]->[DIMD2]->
+	        (5)
+
+DIMD2:
+	|----------------->
+	|->(,)-->[DIMD]--^
+
+1)
+	Obtener el ultimo tipo de variable declarado y guardarlo
+
+2)
+	Verifica ID en tabla de variables segun contexto
+	-->Si ya existe
+	----> Error
+	-->Si no existe
+	----> Asignar direccion segun contexto y tipo
+	----> Meter a pila de variables
+	Reiniciar booleana de asignacion
+
+3)
+	Encender booleana de asignacion
+
+4)
+	Verificar bandera de asignacion
+	--> SI false
+	---->Crear cuadruplo de declaracion default
+	--> Si True
+	---->Crear cuarduplo de declaracion con valor en resultado de exp
+	Crea cuadruplo para la cantidad de memoria ocupada
+
+5)
+	Agrega dimension del ultimo temporal
+
+6)
+	Terminar de agregar de direcciones
+	Reserva el resto de la memoria segun m0

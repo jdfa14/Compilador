@@ -1,0 +1,12 @@
+INIT:
+	|->[INCLUDES]-->[BODY]-->[MAINDECL]-->
+	(1)                                  (2)
+
+1.-
+	Meter en stack de saltos size() de cuadruplos
+	Generar cuadruplo goto
+
+2.-
+	Rellenar cuadruplo pila.pop.result = size()
+	Vaciar cuadruplos de asignacion de constantes
+	Generar goto a Main

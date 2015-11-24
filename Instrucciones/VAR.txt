@@ -1,0 +1,31 @@
+VAR:
+	|->(id)---->
+	|   (2)
+	|->[CTE]--^
+	    (1)
+
+CTE:
+	|->(ctef)-->
+	|->(ctei)-^
+	|->(ctes)-|
+	    (1)
+
+1)	
+	Verificar si existe la constante declarada
+	-->Sino
+	---->Reservar direccion de variable constante
+	---->Generar cuadruplo de asignacion de constante y meter en vector de cuadruplos constantes
+	---->Guarda direccion de ultima constante
+
+	-->Si si
+	----> Obtener su direccion y guardarla
+
+1)
+	Obtener direccion de ultima constante y guardarla como ultima variable
+
+2)
+	Verificar si esta declarada
+	-->Si si
+	---->Obtener direccion y guardarla como direccion de ultima variable
+	-->Si no
+	---->Error

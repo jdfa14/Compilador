@@ -1,0 +1,31 @@
+FOR:
+	|->(for)-->(()-->[ASIGNATIONS]-->(;)-->[EXP]-->(;)-->[ASIGNATIONS]-->())-->({)-->[ESTATUTOS]-->(})-->
+	                                 (1)           (2)                   (3)                       (4)
+
+1)
+	pSaltos.add(nextCuadruplo()) // DIR DE EXP
+
+2)
+	Verificar que el resultado de la EXP sea Boolean 
+	--> Si no
+	----> Error
+	--> Si si
+	pSaltos.add(nextCuadruplo()) // GOTOF
+	Genera goTOF
+	pSaltos.add(nextCuadruplo()) // GOTO
+	Genera goto
+	pSaltos.add(nextCuadruplo()) // PARA REGRESAR A ASIGNACIONES
+3)
+	Sacas Assign
+	Sacas GOTO
+	Sacas GOTOF
+	Sacas DIREXP
+	Generas GOTO(DIREXP)
+	Rellenas GOTO(nextCuadruplo())
+	Metes GOTOF a pSaltos
+	Metes Assign a pSaltos
+
+4)
+	Sacar Assign
+	Generrar GOTO(Assign)
+	Rellenar GOTOF(nextCuadruplo)

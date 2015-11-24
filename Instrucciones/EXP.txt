@@ -1,0 +1,120 @@
+EXP:
+	|->[EXO]-->[EXP2]-->
+	                  (11)
+
+EXP2:
+	|------------------>
+	|->(and)-->[EXP]--^
+	    (9)       (10)
+
+EXO:
+	|->[EXN]-->[EXO2]-->
+
+EXO2:
+	|----------------->
+	|->(or)-->[EXO]--^
+	    (9)       (10)
+
+EXN:
+	|->[EXI]-->[EXN2]-->
+
+EXN2:
+	|------------------>
+	|->(not)-->[EXN]--^
+	    (9)        (10)
+
+EXI:
+	|->[EXM]-->[EXI2]-->
+
+EXI2:
+	|---------------->
+	|->(>)-->[EXM]--^
+	|->(<)--^
+	|->(>=)-|
+	|->(<=)-|
+	|->(!=)-|
+	|->(==)-|
+	(9)          (10)
+EXM:
+	|->[EX]-->[EXM2]-->
+	       (8)
+
+EXM2:
+	|->(mod)-->[EXM]-->
+	       (9)     (10)
+
+EX:
+	|->[TERMINO]-->[EX2]-->
+	            (6)
+
+EX2:
+	|--------------->
+	|->(+)-->[EX]--^
+	|->(-)-->[EX]--|
+	   (7)
+
+TERMINO:
+	|->[FACTOR]-->[TERMINO2]-->
+
+TERMINO2:
+	|-------------------->
+	|->(*)-->[TERMINO]--^
+	|->(/)-->[TERMINO]--|
+	    (5)
+
+FACTOR:
+	|->(()-->[EXP]-->())-->
+	|  (1)           (2)
+	|->[VAR]-------------^
+	|   (3)
+	|->(+)-->[VAR]-------|
+	|         (3)
+	|->(-)-->[VAR|-------|
+	   (4)    (3)
+
+
+1)
+	Meter a pOper el fondo falso (().
+
+2)
+	Mientras pOper.peal() != "("
+	-->sacar operador de pOper y meterlo en vector polaco
+
+3)
+	Si bandera negativa esta apagada
+	-->Meter direccion de variable en vectorP
+	Si no
+	-->Crear variable temporal con valor negativo
+
+4)
+	Enciende bandera negativa
+
+
+5)
+	si pOper.peak() == * o == /
+	--> Si si 
+	----> Sacar operador de la pila y meter en vector polaco
+	Meter nuevo operador en la pila
+
+6)
+	Si pOper.peak() == * o == /
+	--> Meter a la fila
+
+7)
+	si pOper.peak() == + o == -
+	--> Si si 
+	----> Sacar operador de la pila y meter en vector polaco
+	Meter nuevo operador en la pila
+
+8)
+	Si pOper.peak() == + o == -
+	--> Meter operador a a fila
+
+9)
+	Meter operador % a pOper
+
+10)
+	Sacar operador % y meter al vector polaco
+
+11)
+	evaluar el vector polaco y construir sus cuadruplos necesarios

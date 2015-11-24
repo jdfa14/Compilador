@@ -1,0 +1,9 @@
+DOWHILE:
+	|->(do)-->({)-->[ESTATUTOS]-->(})-->(while)-->(()-->[EXP]-->())-->
+	   (1)                                                      (2)
+1)
+	pSaltos.add(cuadruplo)
+
+2)
+	Verifica que expresion sea booleana
+	Generar GOTV con pSaltos.pop()

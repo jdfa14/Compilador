@@ -1,0 +1,51 @@
+ASIGNATION:
+	|->(id)-->[ASIGNATION2]-->(;)-->
+	    (1)
+
+ASIGNATION2:
+	|->(=)-->[EXP]-->
+	|             (2)
+	|->([)-->[DIMA]-->(])-->(=)-->[EXP]-->
+	    (3)           (5)              (6)
+
+DIMA:
+	|->[EXP]->[DIMA2]->
+	        (4)
+
+DIMA2:
+	|----------------->
+	|->(,)-->[DIMA]--^
+
+1)
+	Verificar que el ID exista en la tabla de variables
+	--> Si no
+	----> Generar error
+	--> Si si
+	----> Obtener los datos de la variable
+
+2)
+	Verificar en cubo si se puede hacer la igualacion del resultaod de la expresion con el tipo de variable de la variable en question
+	--> Si si
+	----> Generar cuadruplo de asignacion con tipo de variable con la direccion de la variable
+	--> Si no
+	----> Generar error
+
+3)
+	Llamar instruccion 1 con ID de DIMENTIONAL
+
+4)
+	Llamar instruccion 2 de DIMENTIONAL
+
+5)
+	Llama instruccion 3 de DIMENTIONAL
+
+6)
+	Verificar en cubo si se puede hacer la igualacion del resultaod de la expresion con el tipo de variable de la variable en quesion
+	--> Si No
+	----> Generar error
+	--> Si si
+	Verificar si es un directorio valido
+	--> Si no
+	----> Generar error
+	--> Si si
+	----> Generar cuadruplo de asignacion de arreglo a direccion obtenida de ARRAY el valor de la ultima 

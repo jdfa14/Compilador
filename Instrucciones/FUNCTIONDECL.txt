@@ -1,0 +1,8 @@
+FUNCTIONDECL:
+	|->[TYPE]-->(id)-->(()-->[PARAMS]-->())-->({)-->[ESTATUTOS]-->(})-->
+
+1)
+	Asignar tipo de variable de retorno
+
+2)
+	

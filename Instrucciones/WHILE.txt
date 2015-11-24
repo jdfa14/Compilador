@@ -1,0 +1,17 @@
+WHILE:
+	|->(while)-->(()-->[EXP]-->())-->({)-->[ESTATUTOS]-->(})-->
+	             (1)           (2)                       (3)
+
+1)
+	Meter a pSaltos el varlor del cuarduplo siguiente
+
+2)
+	Verificar si EXP es boolean
+	sacar salto de Condicion y estara en aux
+	Meter a pSaltos el valor del cuadruplo siguiente
+	Meter a pSaltos aux
+	Generar cuadruplo GotoF
+
+3)
+	Generar cuadroplo GOTO con el valo de pSaltos.pop()
+	Rellenar pSaltos.pop() con el valor del cuadruplo siguiente
