@@ -60,7 +60,7 @@ public class Variable {
         }
     }
 
-    private class Dimension{
+    public class Dimension{
         public int tam;
         public int m;
 

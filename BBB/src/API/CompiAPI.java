@@ -12,6 +12,7 @@ import Entrega2.Variables;
 import Entrega3.Cubo;
 import Entrega3.DATA;
 import Entrega4.Cuadruplo;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Stack;
 
@@ -36,7 +37,7 @@ public class CompiAPI {
     
     private boolean localThread = false;        // Bandera para diferenciar contexto Global o Local
     private boolean declarating = false;        // Bandera para definir estado de declaracion de variable (Quizas no se necesite)
-    
+    private Cubo cubo;
     
     public CompiAPI(){
         memoryManager = new ManejadorDeMemoria();
@@ -47,6 +48,7 @@ public class CompiAPI {
         globalV = new Variables();
         localV = new Variables();
         constantV = new Variables();
+        cubo = new Cubo();
     }
     
     public static LinkedList<Cuadruplo> getCuadruplos(){
@@ -60,6 +62,10 @@ public class CompiAPI {
     
     public void stopLocalThread(){
         localThread = false;
+    }
+    
+    public static int getCubeValidation(int op, int dirOper1, int dirOper2){
+        return instance.cubo.parse(Memoria.getDataTypeAsInt(dirOper1),Memoria.getDataTypeAsInt(dirOper2),op);
     }
     
     // Funcion qu obtiene el indice del cuadruplo que será agregado
@@ -123,6 +129,16 @@ public class CompiAPI {
         return -1;
     }
     
+    public static Variable getDeclaredVar(String id){
+        if(instance.localThread && instance.localV.has(id)){ // se buscara en locales si y solo si se encuentra en local Thread
+            return instance.localV.getVar(id);
+        }
+        if(instance.globalV.has(id)){
+            return instance.globalV.getVar(id);
+        }
+        return null;
+    }
+    
     public static void reserveDirs(int type, int cant){
        switch(type){
             case DATA.INT:
@@ -152,6 +168,7 @@ public class CompiAPI {
         }
     }
     
+    //Funcion que te da la siguiende direccion de memoria segun el tipo y el scope en el que se encuentra
     public static int requestDir(int type){
         switch(type){
             case DATA.INT:
@@ -208,10 +225,10 @@ public class CompiAPI {
                 break;
             case DATA.STR:
                 String str = (String) value;
-                if(str.length() > 0){ // if not Empty
-                    instance.constantes.add(new Cuadruplo(DATA.STR1,(long)str.charAt(0),-1,dir)); // DECLARA variable tipo String
+                if(str.length() > 2){ // if not Empty
+                    instance.constantes.add(new Cuadruplo(DATA.STR1,(long)str.charAt(1),-1,dir)); // DECLARA variable tipo String
                     int len = str.length();
-                    for(int i = 1; i < len; i++){
+                    for(int i = 2; i < len-1; i++){
                         instance.constantes.add(new Cuadruplo(DATA.STR2,(long)str.charAt(i),-1,dir)); // DECLARA variable tipo String
                     }
                 }
@@ -340,7 +357,6 @@ public class CompiAPI {
         private static Stack<Integer> pOper = new Stack<>();
         private static LinkedList<Integer> vP = new LinkedList<>();
         private static boolean negative = false;
-        private static Cubo cubo = new Cubo();
 
         public static void ins1(){
             pOper.add(DATA.OP);
@@ -439,7 +455,8 @@ public class CompiAPI {
                             
                             int oper2 = vars.pop();
                             int oper1 = vars.pop();
-                            int type = cubo.parse(Memoria.getDataTypeAsInt(oper1), Memoria.getDataTypeAsInt(oper2), op);
+                            int type = CompiAPI.getCubeValidation(op, oper1, oper2);
+                                    //cubo.parse(Memoria.getDataTypeAsInt(oper1), Memoria.getDataTypeAsInt(oper2), op);
                             if(type == DATA.ERR){
                                 //TODO error operacioninvalida
                                 System.out.println("Tipos de datos mal construida");
@@ -523,6 +540,168 @@ public class CompiAPI {
                 case GramBBBParser.VOID:
                     lastTypeUsed = -1; break;
             }
+        }
+    }
+    
+    public static class VALIDATOR{
+        public static boolean isBoolean(int dir){
+            Memoria.DATA_TYPE type = Memoria.getDataType(dir);
+            return type == Memoria.DATA_TYPE.BOOLEAN;
+        }
+    }
+    
+    public static class IF{
+        public static void ins1(){
+            if(!VALIDATOR.isBoolean(EXP.getLastEXP())){
+                // TODO Arrojar error de variable no booleana
+                return;
+            }
+            addSalto(instance.cuadruplos.size());
+            CompiAPI.addCuadruplo(DATA.GTF, EXP.getLastEXP(), -1, -1);// Cuadruplo que será rellenado
+        }
+        
+        public static void ins2(){
+            int salt = CompiAPI.getSalto();
+            CompiAPI.addSalto(instance.cuadruplos.size());
+            CompiAPI.addCuadruplo(DATA.GOT,-1,-1,-1);
+            CompiAPI.refillSalto(salt, instance.cuadruplos.size());
+        }
+        
+        public static void ins3(){
+            CompiAPI.refillSalto(CompiAPI.getSalto(), instance.cuadruplos.size());
+        }
+    }
+    
+    public static class WHILE{
+        public static void ins1(){
+            addSalto(getNextCuadIndex());
+        }
+        
+        public static void ins2(){
+            if(!VALIDATOR.isBoolean(EXP.getLastEXP())){
+                // ERROR
+                return;
+            }
+            int aux = getSalto();
+            addSalto(getNextCuadIndex());
+            addSalto(aux);
+            addCuadruplo(DATA.GTF,EXP.getLastEXP(),-1,-1);
+        }
+        
+        public static void ins3(){
+            addCuadruplo(DATA.GOT,-1,-1,getSalto());
+            refillSalto(getSalto(), getNextCuadIndex());
+        }
+    }
+    
+    public static class DIMENTIONAL{
+        private static int lastDirOfDir = DATA.ERR;
+
+        public static int getLastdirOfDir() {
+            if(dimIndex != dims.size()){
+                // TODO intento de acceso a una cantidad de dimencione menor
+                return DATA.ERR;
+            }
+            return lastDirOfDir;
+        }
+        
+        private static Variable var;
+        private static Variable.Dimension actualDim;
+        private static int dimIndex = 0;
+        private static ArrayList<Variable.Dimension> dims; 
+        private static Stack<Integer> toAcum = new Stack<>();
+        
+        public static void ins1(String id){ // Cuando encontramos un bracket
+            if(!isDeclaredSomewhere(id)){
+                // TODO arrojar error de variable no declara    da
+                return;
+            }
+            var = getDeclaredVar(id);
+            dims = var.dim;
+            dimIndex = 0;
+            lastDirOfDir = DATA.ERR;
+        }
+        public static void ins2(){// Despues de capturar una dimension
+            int type = Memoria.getDataTypeAsInt(EXP.getLastEXP());
+            if(type != DATA.INT && type != DATA.DBL){
+                // TODO Error de tipo de dato incorrecto
+                return;
+            }
+            if(dimIndex >= dims.size()){
+                // TODO Error index out of bounds
+                return;
+            }
+            actualDim = dims.get(dimIndex);
+            dimIndex++;
+            
+            addCuadruplo(DATA.VRG,0,actualDim.tam,EXP.getLastEXP());
+            int newTemp = CompiAPI.requestDir(DATA.INT); // Direccion de memoria donde se guardará la nueva temp
+            int dirM = saveConstant(DATA.INT,actualDim.m+"");
+            addCuadruplo(DATA.MUL,EXP.getLastEXP(),dirM,newTemp);
+            toAcum.add(newTemp);
+        }
+        
+        public static void ins3(){
+            while(toAcum.size() > 1){
+                int newTemp = CompiAPI.requestConstantDir(DATA.INT);
+                int oper1 = toAcum.pop();
+                int oper2 = toAcum.pop();
+                addCuadruplo(DATA.ADD,oper1,oper2,newTemp);
+                toAcum.add(newTemp);
+            }
+            int dirVar = saveConstant(DATA.INT,var.dir+"");
+            int newTemp = CompiAPI.requestConstantDir(DATA.INT);
+            addCuadruplo(DATA.ADD,toAcum.pop(),dirVar,newTemp);
+            lastDirOfDir = newTemp;
+        }
+    }
+    
+    public static class ASIGNATION{
+        public static Variable var;
+        
+        public static void ins1(String ID){
+            if(!CompiAPI.isDeclaredSomewhere(ID)){
+                // TODO error variable no declarada
+                return;
+            }
+            var = CompiAPI.getDeclaredVar(ID);
+        }
+        
+        public static void ins2(){
+            int typeOfExp = Memoria.getDataTypeAsInt(EXP.getLastEXP());
+            int validation = CompiAPI.getCubeValidation(DATA.EQS, var.tipo, typeOfExp);
+            if(validation == DATA.ERR){
+                //TODO error de asignacion incompatible
+                return;
+            }
+            addCuadruplo(DATA.EQS,EXP.getLastEXP(),-1,var.dir);
+        }
+        
+        public static void ins3(){
+            DIMENTIONAL.ins1(var.nombre);
+        }
+        
+        public static void ins4(){
+            DIMENTIONAL.ins2();
+        }
+        
+        public static void ins5(){
+            DIMENTIONAL.ins3();
+        }
+        
+        public static void ins6(){
+            int typeOfExp = Memoria.getDataTypeAsInt(EXP.getLastEXP());
+            int validation = CompiAPI.getCubeValidation(DATA.EQS, var.tipo, typeOfExp);
+            if(validation == DATA.ERR){
+                //TODO error de asignacion incompatible
+                return;
+            }
+            int destinationDir = DIMENTIONAL.getLastdirOfDir();
+            if(destinationDir == DATA.ERR){
+                //TODO error de requerimientos de dimencion
+                return;
+            }
+            addCuadruplo(DATA.TNA,EXP.getLastEXP(),-1,destinationDir);
         }
     }
 }

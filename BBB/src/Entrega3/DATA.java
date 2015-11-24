@@ -56,4 +56,5 @@ public class DATA {
     public static final int COL = 39;   // Reservar espacio de memoria
     public static final int VBL = 40;   // Verifica que una direccion sea boolean
     public static final int VRG = 41;   // Verifica que una direccion este dentro de un rango
+    public static final int TNA = 42;   // Cuadruplo de asignacion de un arreglo
 }

@@ -107,7 +107,7 @@ public class Cubo {
         cube[DATA.INT][DATA.BOL][DATA.LOE] = DATA.ERR;
 
         cube[DATA.INT][DATA.INT][DATA.EQS] = DATA.INT;
-        cube[DATA.INT][DATA.DBL][DATA.EQS] = DATA.ERR;
+        cube[DATA.INT][DATA.DBL][DATA.EQS] = DATA.INT;
         cube[DATA.INT][DATA.STR][DATA.EQS] = DATA.ERR;
         cube[DATA.INT][DATA.BOL][DATA.EQS] = DATA.ERR;
 
@@ -177,7 +177,7 @@ public class Cubo {
         cube[DATA.DBL][DATA.STR][DATA.LOE] = DATA.ERR;
         cube[DATA.DBL][DATA.BOL][DATA.LOE] = DATA.ERR;
 
-        cube[DATA.DBL][DATA.INT][DATA.EQS] = DATA.ERR;
+        cube[DATA.DBL][DATA.INT][DATA.EQS] = DATA.INT;
         cube[DATA.DBL][DATA.DBL][DATA.EQS] = DATA.DBL;
         cube[DATA.DBL][DATA.STR][DATA.EQS] = DATA.ERR;
         cube[DATA.DBL][DATA.BOL][DATA.EQS] = DATA.ERR;

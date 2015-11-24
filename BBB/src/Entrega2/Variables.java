@@ -38,4 +38,8 @@ public class Variables {
     public int getDataType(String name){
         return variables.get(name).tipo;
     }
+    
+    public Variable getVar(String name){
+        return variables.get(name);
+    }
 }
