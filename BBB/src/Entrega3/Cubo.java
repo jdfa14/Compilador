@@ -152,7 +152,7 @@ public class Cubo {
         cube[DATA.DBL][DATA.STR][DATA.OLT] = DATA.ERR;
         cube[DATA.DBL][DATA.BOL][DATA.OLT] = DATA.ERR;
 
-        cube[DATA.DBL][DATA.INT][DATA.OGT] = DATA.ERR;
+        cube[DATA.DBL][DATA.INT][DATA.OGT] = DATA.BOL;
         cube[DATA.DBL][DATA.DBL][DATA.OGT] = DATA.BOL;
         cube[DATA.DBL][DATA.STR][DATA.OGT] = DATA.ERR;
         cube[DATA.DBL][DATA.BOL][DATA.OGT] = DATA.ERR;
