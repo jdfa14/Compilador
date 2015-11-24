@@ -71,9 +71,9 @@ init:
 	;
 
 body:
-	functions
-	| declarations
-	| asignations
+	| functiondecl body
+	| declaration body
+	| asignation body
 	;
 
 includes:
@@ -87,10 +87,6 @@ include:
 include2:
 	CTES
 	| MEN CTES MAY
-	;
-
-functions:
-	| functiondecl functions
 	;
 
 functiondecl:
@@ -119,10 +115,6 @@ params2:
 
 params3:
 	| COM params2
-	;
-
-declarations:
-	| declaration declarations
 	;
 
 declaration:
@@ -303,8 +295,21 @@ factor:
 	;
 
 var:
-	ID
+	ID multidimv
 	| cte
+	| functioncall
+	;
+
+multidimv:
+	| OB dimv CB
+	;
+	
+dimv:
+	exp dimv2
+	;
+
+dimv2:
+	| COM dimv
 	;
 
 cte:

@@ -2,9 +2,10 @@ INIT:
 	|->[INCLUDES]-->[BODY]-->[MAINDECL]-->
 
 BODY:
-	|->[FUNCTIONS]------>
-	|->[DECLARATIONS]--^
-	|->[ASIGNATIONS]---|
+	|--------------------------->
+	|->[FUNCTIONDECL]-->[BODY]-^
+	|->[DECLARATION]-->[BODY]--|
+	|->[ASIGNATION]-->[BODY]---|
 
 INCLUDES
 	|-------------------------->
@@ -17,9 +18,6 @@ INCLUDE2
 	|->(ctes)-------------->
 	|->(<)-->(ctes)-->(>)-^
 
-FUNCTIONS
-	|-------------------------------->
-	|->[FUNCTIONDECL]-->[FUNCTIONS]-^
 
 FUNCTIONDECL:
 	|->[TYPE]-->(id)-->(()-->[PARAMS]-->())-->({)-->[ESTATUTOS]-->(})-->
@@ -45,9 +43,6 @@ PARAMS3:
 	|-------------------->
 	|->(,)-->[PARAMS2]--^
 
-DECLARATIONS:
-	|----------------------------------->
-	|->[DECLARATION]-->[DECLARATIONS]--^
 
 DECLARATION:
 	|->[TYPE]-->[MULTIVAR]-->(;)-->
@@ -203,8 +198,20 @@ FACTOR:
 	|->(-)-->[VAR|-------|
 
 VAR:
-	|->(id)---->
-	|->[CTE]--^
+	|->(id)-->[MULTIDIMV]-->
+	|->[CTE]--------------^
+	|->[FUNCTIONCALL]-----|
+
+MULTIDIMV
+	|----------------------->
+	|->([)-->[DIMV]-->(])--^
+
+DIMV:
+	|->[EXP]->[DIMV2]->
+
+DIMV2:
+	|----------------->
+	|->(,)-->[DIMV]--^
 
 CTE:
 	|->(ctef)-->

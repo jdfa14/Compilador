@@ -42,4 +42,8 @@ public class Variables {
     public Variable getVar(String name){
         return variables.get(name);
     }
+    
+    public int size(){
+        return variables.size();
+    }
 }

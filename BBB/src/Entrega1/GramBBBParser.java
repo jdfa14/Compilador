@@ -484,21 +484,21 @@ public class GramBBBParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(137);
-			type();
+			type();CompiAPI.FUNCDECL.ins1();
 			setState(138);
-			match(ID);
+			CompiAPI.FUNCDECL.ins2(this.getCurrentToken().getText());match(ID);
 			setState(139);
 			match(OP);
 			setState(140);
 			params();
 			setState(141);
-			match(CP);
+			match(CP);CompiAPI.FUNCDECL.ins3();
 			setState(142);
 			match(OK);
 			setState(143);
 			estatutos();
 			setState(144);
-			match(CK);
+			match(CK);CompiAPI.FUNCDECL.ins4();
 			}
 		}
 		catch (RecognitionException re) {

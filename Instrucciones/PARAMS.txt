@@ -1,0 +1,14 @@
+PARAMS:
+	|------------->
+	|->[PARAMS2]-^
+
+PARAMS2:
+	|->[DECLARATION]-->[PARAMS3]-->
+	                (1)
+
+PARAMS3:
+	|-------------------->
+	|->(,)-->[PARAMS2]--^
+
+1)
+	Obtener ultima variable declarada y agregar a lista de variables

@@ -12,6 +12,8 @@ import Entrega2.Variables;
 import Entrega3.Cubo;
 import Entrega3.DATA;
 import Entrega4.Cuadruplo;
+import Entrega4.Procedure;
+import Entrega4.Procedures;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Stack;
@@ -34,6 +36,7 @@ public class CompiAPI {
     private Variables globalV;      // Variables globales
     private Variables localV;       // Variables locales
     private Variables constantV;
+    private Procedures procs;
     
     private boolean localThread = false;        // Bandera para diferenciar contexto Global o Local
     private boolean declarating = false;        // Bandera para definir estado de declaracion de variable (Quizas no se necesite)
@@ -49,6 +52,7 @@ public class CompiAPI {
         localV = new Variables();
         constantV = new Variables();
         cubo = new Cubo();
+        procs = new Procedures();
     }
     
     public static LinkedList<Cuadruplo> getCuadruplos(){
@@ -71,6 +75,17 @@ public class CompiAPI {
     // Funcion qu obtiene el indice del cuadruplo que será agregado
     public static int getNextCuadIndex(){
         return instance.cuadruplos.size();
+    }
+    
+    public static void changeToLocalContext(){
+        instance.localThread = true;
+        instance.localV.wipe();
+        instance.memoryManager.reset(Memoria.SCOPE_TYPE.LOCAL);
+        instance.memoryManager.reset(Memoria.SCOPE_TYPE.TEMPORAL);
+    }
+    
+    public static void changeToGlobalContext(){
+        instance.localThread = false;
     }
     
     public static void addCuadruplo(int operando, int operador1, int operador2, int resultado){
@@ -311,6 +326,10 @@ public class CompiAPI {
         private static Variable var;
         private static boolean asignation;
         
+        public static Variable getLastVar(){
+            return var;
+        }
+        
         public static void ins1(){  // Instrucion de declaracion de tipo
             DECL.type = TYPE.lastTypeUsed;
         }
@@ -499,6 +518,54 @@ public class CompiAPI {
             }else{
                 //TODO error 
             }
+        }
+    }
+    
+    public static class PARAMS{
+        private static LinkedList<Variable> vars = new LinkedList<>();
+        
+        public static void ins1(){
+            vars.add(DECL.getLastVar());
+        }
+        
+        public static int getCant(){
+            return vars.size();
+        }
+        
+        public static Variable popVar(){
+            return vars.pop();
+        }
+    }
+    
+    public static class FUNCDECL{
+        private static int typeDeclared = DATA.ERR;
+        private static Procedure procedure;
+        
+        public static void ins1(){
+            typeDeclared = TYPE.lastTypeUsed;
+        }
+        
+        public static void ins2(String ID){
+            procedure = new Procedure(ID,typeDeclared);
+            changeToLocalContext();
+        }
+        
+        public static void ins3(){
+            addSalto(getNextCuadIndex());
+            while(PARAMS.getCant() != 0){
+                procedure.addVar(PARAMS.popVar());
+            }
+            if(instance.procs.has(procedure)){
+                // TODO Error procedimiento ya declarado con cantidad de parametros
+                return;
+            }
+            instance.procs.add(procedure);
+        }
+        
+        public static void ins4(){
+            addCuadruplo(DATA.RET,-1,-1,-1);
+            refillSalto(getSalto(), getNextCuadIndex());
+            CompiAPI.changeToGlobalContext();
         }
     }
     

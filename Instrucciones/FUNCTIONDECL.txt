@@ -1,8 +1,26 @@
 FUNCTIONDECL:
 	|->[TYPE]-->(id)-->(()-->[PARAMS]-->())-->({)-->[ESTATUTOS]-->(})-->
+	        (1)  (2)                    (3)                       (4)
 
 1)
-	Asignar tipo de variable de retorno
+	Obtener tipo de variable desde TYPE.lasTypeUsed y guardarla
 
 2)
-	
+	Generar objeto Procedure con ID obtenido y segun su tipo
+	Cambiar a contexto local
+
+3)
+	Obtener la cantidad de parametros
+	Verificar si existe funcion declarada con misma cantida de parametros
+	--> Si si
+	----> Generar error de funcion ya declarada
+	--> Si no
+	Meter a pSaltos(nextCuadruplo())
+	Generar cuadruplo GOTO
+	Guardar todas las variables declaradas en arreglo de variables
+	Guardar funcion con cantidad de parametros y las direcciones de tales parametros y guardar direccion de cuadruplo
+
+4)
+	Generar cuadruplo de RETURN nulo
+	Rellenar salto con nextCuadruplo()
+	Cambiar a contexto global
