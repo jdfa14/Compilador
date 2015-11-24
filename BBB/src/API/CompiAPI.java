@@ -147,24 +147,28 @@ public class CompiAPI {
                 }else{
                     instance.memoryManager.gapDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.INT,cant);
                 }
+                break;
             case DATA.DBL:
                 if(instance.localThread){
                     instance.memoryManager.gapDir(Memoria.SCOPE_TYPE.LOCAL, Memoria.DATA_TYPE.FLOAT,cant);
                 }else{
                     instance.memoryManager.gapDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.FLOAT,cant);
                 }
+                break;
             case DATA.STR:
                 if(instance.localThread){
                     instance.memoryManager.gapDir(Memoria.SCOPE_TYPE.LOCAL, Memoria.DATA_TYPE.STRING,cant);
                 }else{
                     instance.memoryManager.gapDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.STRING,cant);
                 }
+                break;
             case DATA.BOL:
                 if(instance.localThread){
                     instance.memoryManager.gapDir(Memoria.SCOPE_TYPE.LOCAL, Memoria.DATA_TYPE.BOOLEAN,cant);
                 }else{
                     instance.memoryManager.gapDir(Memoria.SCOPE_TYPE.GLOBAL, Memoria.DATA_TYPE.BOOLEAN,cant);
                 }
+                break;
         }
     }
     
@@ -342,7 +346,7 @@ public class CompiAPI {
         }
         
         public static void ins5(){
-            DECL.var.agregaDim(EXP.getLastEXP());
+            DECL.var.agregaDim(CTE.lastRawConstantInt);
         }
         
         public static void ins6(){
@@ -500,6 +504,7 @@ public class CompiAPI {
     
     public static class CTE{
         public static int lastConstant = -1;
+        public static int lastRawConstantInt;
         
         public static void ins1(int type, String constant){
             int dataType = -1;
@@ -507,7 +512,9 @@ public class CompiAPI {
                 case GramBBBParser.CTES:
                     dataType = DATA.STR; break;
                 case GramBBBParser.CTEI:
-                    dataType = DATA.INT; break;
+                    dataType = DATA.INT;
+                    lastRawConstantInt = Integer.parseInt(constant);
+                    break;
                 case GramBBBParser.CTEF:
                     dataType = DATA.DBL; break;
                 default:
@@ -594,6 +601,55 @@ public class CompiAPI {
         }
     }
     
+    public static class DOWHILE{
+        public static void ins1(){
+            addSalto(instance.cuadruplos.size());
+        }
+        public static void ins2(){
+            int dirLastExp = EXP.getLastEXP();
+            if(!VALIDATOR.isBoolean(dirLastExp)){
+                //TODO error tipo de dato incorrecto
+                return;
+            }
+            addCuadruplo(DATA.GTT,dirLastExp,-1,getSalto());
+        }
+    }
+    
+    public static class FOR{
+        public static void ins1(){
+            addSalto(getNextCuadIndex());
+        }
+        
+        public static void ins2(){
+            int dirLastExp = EXP.getLastEXP();
+            if(!VALIDATOR.isBoolean(dirLastExp)){
+                // TODO error de tipo de variable
+                return;
+            }
+            addSalto(getNextCuadIndex());       // DIr de GOTF
+            addCuadruplo(DATA.GTF,dirLastExp,-1,-1);
+            addSalto(getNextCuadIndex());       // Dir de GOTO
+            addCuadruplo(DATA.GOT,-1,-1,-1);
+            addSalto(getNextCuadIndex());       // DIR de asignaciones incremento y asi
+        }
+        
+        public static void ins3(){
+            int assign = getSalto();
+            int gotod = getSalto();
+            int gotof = getSalto();
+            int dirExp = getSalto();
+            addCuadruplo(DATA.GOT,-1,-1,dirExp);
+            refillSalto(gotod, getNextCuadIndex());
+            addSalto(gotof);
+            addSalto(assign);
+        }
+        
+        public static void ins4(){
+            addCuadruplo(DATA.GOT,-1,-1,getSalto());
+            refillSalto(getSalto(),getNextCuadIndex());
+        }
+    }
+    
     public static class DIMENTIONAL{
         private static int lastDirOfDir = DATA.ERR;
 
@@ -635,7 +691,7 @@ public class CompiAPI {
             dimIndex++;
             
             addCuadruplo(DATA.VRG,0,actualDim.tam,EXP.getLastEXP());
-            int newTemp = CompiAPI.requestDir(DATA.INT); // Direccion de memoria donde se guardará la nueva temp
+            int newTemp = CompiAPI.TEMPORAL.creaTemporal(DATA.INT); // Direccion de memoria donde se guardará la nueva temp
             int dirM = saveConstant(DATA.INT,actualDim.m+"");
             addCuadruplo(DATA.MUL,EXP.getLastEXP(),dirM,newTemp);
             toAcum.add(newTemp);
@@ -643,14 +699,14 @@ public class CompiAPI {
         
         public static void ins3(){
             while(toAcum.size() > 1){
-                int newTemp = CompiAPI.requestConstantDir(DATA.INT);
+                int newTemp = CompiAPI.TEMPORAL.creaTemporal(DATA.INT);
                 int oper1 = toAcum.pop();
                 int oper2 = toAcum.pop();
                 addCuadruplo(DATA.ADD,oper1,oper2,newTemp);
                 toAcum.add(newTemp);
             }
             int dirVar = saveConstant(DATA.INT,var.dir+"");
-            int newTemp = CompiAPI.requestConstantDir(DATA.INT);
+            int newTemp = CompiAPI.TEMPORAL.creaTemporal(DATA.INT);
             addCuadruplo(DATA.ADD,toAcum.pop(),dirVar,newTemp);
             lastDirOfDir = newTemp;
         }

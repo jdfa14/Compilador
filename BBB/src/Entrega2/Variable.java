@@ -48,6 +48,10 @@ public class Variable {
     */
     // No necesaria si se agrega constructor anterior
     public void agregaDim(int newDim){
+        if(!tieneDim){
+            tieneDim = true;
+            dim = new ArrayList<>();
+        }
         m0 *= newDim;
         this.dim.add(new Dimension(newDim,1));
     }

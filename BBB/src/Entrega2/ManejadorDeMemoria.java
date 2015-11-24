@@ -17,13 +17,13 @@ public class ManejadorDeMemoria {
     public void gapDir(Memoria.SCOPE_TYPE scope, Memoria.DATA_TYPE data, int gap){
         switch(scope){
             case GLOBAL:
-                memG.putMany(data,gap);
+                memG.putMany(data,gap);break;
             case TEMPORAL:
-                memT.putMany(data,gap);
+                memT.putMany(data,gap);break;
             case LOCAL:
-                memL.putMany(data,gap);
+                memL.putMany(data,gap);break;
             case CONSTANTE:
-                memC.putMany(data,gap);
+                memC.putMany(data,gap);break;
         }
     }
     
@@ -128,21 +128,25 @@ public class ManejadorDeMemoria {
                     // ERROR
                 }
                 intCi+= cant;
+                break;
             case FLOAT:
                 if(floatCi + cant > floatCf){
                     //ERROR
                 }
                 floatCi+= cant;
+                break;
             case STRING:
                 if(stringCi + cant> stringCf){
                     //ERROR
                 }
                 stringCi+= cant;
+                break;
             case BOOLEAN:
                 if(booleanCi + cant > booleanCf){
                     //ERROR
                 }
-            booleanCi+= cant;
+                booleanCi+= cant;
+                break;
         }
     }
     
