@@ -202,8 +202,11 @@ lldowhile:
 	;
 
 functioncall:
-	ID OP params CP DEL
+	ID OP paramscall CP DEL
 	;
+
+paramscall:
+	
 
 conditional:
 	CIF OP exp CP OK estatutos CK conditional2

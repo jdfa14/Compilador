@@ -118,7 +118,18 @@ DOWHILE:
 	|->(do)-->({)-->[ESTATUTOS]-->(})-->(while)-->(()-->[EXP]-->())-->
 
 FUNCTIONCALL:
-	|->(id)-->(()-->[PARAMS]-->())-->(;)-->
+	|->(id)-->(()-->[PARAMSCALL]-->())-->(;)-->
+
+PARAMSCALL:
+	|------------->
+	|->[PARAMSCALL2]-^
+
+PARAMSCALL2:
+	|->[EXP]-->[PARAMSCALL3]-->
+
+PARAMSCALL3:
+	|-------------------->
+	|->(,)-->[PARAMSCALL2]--^
 
 CONDITIONAL:
 	|->(if)-->(()-->[EXP]-->())-->({)-->[ESTATUTOS]-->(})-->[CONDITIONAL2]-->

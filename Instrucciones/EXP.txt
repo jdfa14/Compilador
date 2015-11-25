@@ -75,10 +75,12 @@ FACTOR:
 
 1)
 	Meter a pOper el fondo falso (().
+	Incrementar profundidad en 1
 
 2)
-	Mientras pOper.peal() != "("
+	Mientras pOper.peak() != "("
 	-->sacar operador de pOper y meterlo en vector polaco
+	Restar profundidad
 
 3)
 	Si bandera negativa esta apagada
@@ -117,4 +119,6 @@ FACTOR:
 	Sacar operador % y meter al vector polaco
 
 11)
-	evaluar el vector polaco y construir sus cuadruplos necesarios
+	Si profundidad es == 0
+	--> Si si
+	----> Evaluar el vector polaco y construir sus cuadruplos necesarios

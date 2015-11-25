@@ -380,9 +380,11 @@ public class CompiAPI {
         private static Stack<Integer> pOper = new Stack<>();
         private static LinkedList<Integer> vP = new LinkedList<>();
         private static boolean negative = false;
+        private static int deep = 0;
 
         public static void ins1(){
             pOper.add(DATA.OP);
+            deep++;
         }
         
         public static int getLastEXP(){
@@ -393,6 +395,8 @@ public class CompiAPI {
             while(pOper.peek() != DATA.OP){
                 vP.add(pOper.pop());
             }
+            pOper.pop();
+            deep--;
         }
         
         public static void ins3(){
@@ -453,56 +457,60 @@ public class CompiAPI {
         }
         
         public static void evaluate(){
-            Stack<Integer> vars = new Stack<>();
-            
-            for(int op : vP){
-                switch(op){
-                    case DATA.MUL:
-                    case DATA.DIV:
-                    case DATA.ADD:
-                    case DATA.SUB:
-                    case DATA.MOD:
-                    case DATA.AND:
-                    case DATA.OOR:
-                    case DATA.OLT:
-                    case DATA.OGT:
-                    case DATA.EQT:
-                    case DATA.DIF:
-                    case DATA.GOE:
-                    case DATA.LOE:
-                        if(vars.size() < 2){
-                            //TODO ERROR expresion mal construida
-                            System.out.println("Expresion mal construida");
-                            return;
-                        }else{
-                            
-                            int oper2 = vars.pop();
-                            int oper1 = vars.pop();
-                            int type = CompiAPI.getCubeValidation(op, oper1, oper2);
-                                    //cubo.parse(Memoria.getDataTypeAsInt(oper1), Memoria.getDataTypeAsInt(oper2), op);
-                            if(type == DATA.ERR){
-                                //TODO error operacioninvalida
-                                System.out.println("Tipos de datos mal construida");
+            if(deep == 0){
+                Stack<Integer> vars = new Stack<>();
+                int op;
+                while(vP.size() > 0){
+                    op = vP.pop();
+                    switch(op){
+                        case DATA.MUL:
+                        case DATA.DIV:
+                        case DATA.ADD:
+                        case DATA.SUB:
+                        case DATA.MOD:
+                        case DATA.AND:
+                        case DATA.OOR:
+                        case DATA.OLT:
+                        case DATA.OGT:
+                        case DATA.EQT:
+                        case DATA.DIF:
+                        case DATA.GOE:
+                        case DATA.LOE:
+                            if(vars.size() < 2){
+                                //TODO ERROR expresion mal construida
+                                System.out.println("Expresion mal construida");
                                 return;
+                            }else{
+
+                                int oper2 = vars.pop();
+                                int oper1 = vars.pop();
+                                int type = CompiAPI.getCubeValidation(op, oper1, oper2);
+                                        //cubo.parse(Memoria.getDataTypeAsInt(oper1), Memoria.getDataTypeAsInt(oper2), op);
+                                if(type == DATA.ERR){
+                                    //TODO error operacioninvalida
+                                    System.out.println("Tipos de datos mal construida");
+                                    return;
+                                }
+
+                                int dirNewTemp = CompiAPI.TEMPORAL.creaTemporal(type);
+                                CompiAPI.addCuadruplo(op, oper1, oper2, dirNewTemp);
+                                vars.push(dirNewTemp);
                             }
-                            
-                            int dirNewTemp = CompiAPI.TEMPORAL.creaTemporal(type);
-                            CompiAPI.addCuadruplo(op, oper1, oper2, dirNewTemp);
-                            vars.push(dirNewTemp);
-                        }
-                        break;
-                    default:
-                        vars.push(op);
-                        break;
+                            break;
+                        default:
+                            vars.push(op);
+                            break;
+                    }
                 }
+                //vP.clear();
+                if(vars.size() != 1){
+                    //TODO error expresion mal construida
+                    System.out.println("Expresion mal construida");
+                    return;
+                }
+                lastExpResult = vars.pop();
+            
             }
-            vP.clear();
-            if(vars.size() != 1){
-                //TODO error expresion mal construida
-                System.out.println("Expresion mal construida");
-                return;
-            }
-            lastExpResult = vars.pop();
         }
     }
     
