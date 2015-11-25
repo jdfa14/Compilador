@@ -94,7 +94,7 @@ functiondecl:
 	;
 
 functiondecl2:
-	| RTRN rtvalue
+	| RTRN rtvalue DEL
 	;
 
 rtvalue:
@@ -118,7 +118,7 @@ params:
 	;
 
 params2:
-	declaration params3
+	type ID params3
 	;
 
 params3:
@@ -188,6 +188,7 @@ estatuto:
 	| instructions
 	| loops
 	| conditional
+	| RTRN
 	;
 
 loops:
@@ -209,7 +210,7 @@ lldowhile:
 	;
 
 functioncall:
-	ID OP paramscall CP DEL
+	ID OP paramscall CP
 	;
 
 paramscall:

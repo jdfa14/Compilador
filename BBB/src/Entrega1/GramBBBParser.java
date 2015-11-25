@@ -780,7 +780,7 @@ public class GramBBBParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(183);
-			declaration();
+			declaration();CompiAPI.PARAMS.ins1();
 			setState(184);
 			params3();
 			}

@@ -861,7 +861,7 @@ public class CompiAPI {
     /** Class to control function calls */
     public static class FUNCTIONCALL{
         private static String idName;
-        private static int dirTempReturn;
+        private static int dirTempReturn = -1;
         
         public static void ins1(String ID){
             idName  = ID;
@@ -871,6 +871,7 @@ public class CompiAPI {
             int paramCant = PARAMSCALL.size();
             if(!instance.procs.has(FUNCTIONCALL.idName, paramCant)){
                 // TODO Error funcion con tal cantidad de parametros no existe
+                throw new Exception("Funcion " + FUNCTIONCALL.idName + "/"+paramCant +" no ha sido declarada");
                 return;
             }
             Procedure procedure = instance.procs.getProc(idName, paramCant);
@@ -882,7 +883,7 @@ public class CompiAPI {
             for(String key : keys){
                 addCuadruplo(DATA.PARAM,PARAMSCALL.pop(),-1,procedure.getDirOfVar(key));
             }
-            addCuadruplo(DATA.CC,-1,-1,-1);
+            addCuadruplo(DATA.CC,-1,-1,procedure.dirCuadruplo);
             
         }
     }

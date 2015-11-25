@@ -23,8 +23,8 @@ FUNCTIONDECL:
 	|->[TYPE]-->(id)-->(()-->[PARAMS]-->())-->({)-->[ESTATUTOS]-->[FUNCTIONDECL2]-->(})-->
 
 FUNCTIONDECL2:
-	|------------------------->
-	|->(return)-->[RTVALUE]--^
+	|------------------------------->
+	|->(return)-->[RTVALUE]-->(;)--^
 
 RTVALUE:
 	|---------->
@@ -45,7 +45,7 @@ PARAMS:
 	|->[PARAMS2]-^
 
 PARAMS2:
-	|->[DECLARATION]-->[PARAMS3]-->
+	|->[TYPE]-->(id)-->[PARAMS3]-->
 
 PARAMS3:
 	|-------------------->
@@ -109,6 +109,7 @@ ESTATUTO:
 	|->[LOOPS]---------|
 	|->[CONDITIONAL]---|
 	|->(break)---------|
+	|->(return)--------|
 
 LOOPS:
 	|->[WHILE]---->
@@ -125,7 +126,7 @@ DOWHILE:
 	|->(do)-->({)-->[ESTATUTOS]-->(})-->(while)-->(()-->[EXP]-->())-->
 
 FUNCTIONCALL:
-	|->(id)-->(()-->[PARAMSCALL]-->())-->(;)-->
+	|->(id)-->(()-->[PARAMSCALL]-->())-->
 
 PARAMSCALL:
 	|------------->
