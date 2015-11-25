@@ -1,10 +1,6 @@
 package API;
 
-
-
-
 import Entrega1.GramBBBParser;
-import static Entrega1.GramBBBParser.CTES;
 import Entrega2.ManejadorDeMemoria;
 import Entrega2.Memoria;
 import Entrega2.Variable;
@@ -37,9 +33,8 @@ public class CompiAPI {
     private Variables localV;       // Variables locales
     private Variables constantV;
     private Procedures procs;
-    
-    private boolean localThread = false;        // Bandera para diferenciar contexto Global o Local
-    private boolean declarating = false;        // Bandera para definir estado de declaracion de variable (Quizas no se necesite)
+    /** Flag that indicates if context is local */
+    private boolean localThread = false;        
     private Cubo cubo;
     
     public CompiAPI(){
@@ -545,7 +540,7 @@ public class CompiAPI {
         }
     }
     
-    public static class FUNCDECL{
+    public static class FUNCTIONDECL{
         private static int typeDeclared = DATA.ERR;
         private static Procedure procedure;
         
@@ -576,6 +571,10 @@ public class CompiAPI {
             addCuadruplo(DATA.RET,-1,-1,-1);
             refillSalto(getSalto(), getNextCuadIndex());
             CompiAPI.changeToGlobalContext();
+        }
+        
+        public static void ins5(){
+            addCuadruplo(DATA.RET,EXP.getLastEXP(),-1,-1);
         }
     }
     

@@ -94,7 +94,11 @@ functiondecl:
 	;
 
 functiondecl2:
-	| RTRN
+	| RTRN rtvalue
+	;
+
+rtvalue:
+	| exp
 	;
 
 maindecl:

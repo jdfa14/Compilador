@@ -449,15 +449,15 @@ public class GramBBBParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(148);
-			type();CompiAPI.FUNCDECL.ins1();
+			type();CompiAPI.FUNCTIONDECL.ins1();
 			setState(149);
-			CompiAPI.FUNCDECL.ins2(this.getCurrentToken().getText());match(ID);
+			CompiAPI.FUNCTIONDECL.ins2(this.getCurrentToken().getText());match(ID);
 			setState(150);
 			match(OP);
 			setState(151);
 			params();
 			setState(152);
-			match(CP);CompiAPI.FUNCDECL.ins3();
+			match(CP);CompiAPI.FUNCTIONDECL.ins3();
 			setState(153);
 			match(OK);
 			setState(154);
@@ -465,7 +465,7 @@ public class GramBBBParser extends Parser {
 			setState(155);
 			functiondecl2();
 			setState(156);
-			match(CK);CompiAPI.FUNCDECL.ins4();
+			match(CK);CompiAPI.FUNCTIONDECL.ins4();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1897,13 +1897,13 @@ public class GramBBBParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(296);
-			match(ID);
+			CompiAPI.FUNCTIONCALL.ins1(getCurrentToken().getText());match(ID);
 			setState(297);
 			match(OP);
 			setState(298);
 			paramscall();
 			setState(299);
-			match(CP);
+			match(CP);CompiAPI.FUNCTIONCALL.ins2();
 			setState(300);
 			match(DEL);
 			}
@@ -2006,7 +2006,7 @@ public class GramBBBParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(306);
-			exp();
+			exp();CompiAPI.PARAMSCALL.ins1();
 			setState(307);
 			paramscall3();
 			}

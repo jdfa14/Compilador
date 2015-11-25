@@ -1,4 +1,18 @@
 FUNCTIONDECL:
+	|->[TYPE]-->(id)-->(()-->[PARAMS]-->())-->({)-->[ESTATUTOS]-->[FUNCTIONDECL2]-->(})-->
+	        (1)  (2)                    (3)                                         (4)
+
+FUNCTIONDECL2:
+	|------------------------->
+	|->(return)-->[RTVALUE]--^
+
+RTVALUE:
+	|---------->
+	|->[EXP]--^
+	        (5)
+
+
+FUNCTIONDECL:
 	|->[TYPE]-->(id)-->(()-->[PARAMS]-->())-->({)-->[ESTATUTOS]-->(})-->
 	        (1)  (2)                    (3)                       (4)
 
@@ -24,3 +38,6 @@ FUNCTIONDECL:
 	Generar cuadruplo de RETURN nulo
 	Rellenar salto con nextCuadruplo()
 	Cambiar a contexto global
+
+5)
+	Generar cuadruplo de RETURN con getLastEXP();

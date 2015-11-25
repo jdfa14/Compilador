@@ -23,8 +23,12 @@ FUNCTIONDECL:
 	|->[TYPE]-->(id)-->(()-->[PARAMS]-->())-->({)-->[ESTATUTOS]-->[FUNCTIONDECL2]-->(})-->
 
 FUNCTIONDECL2:
-	|------------->
-	|->(return)--^
+	|------------------------->
+	|->(return)-->[RTVALUE]--^
+
+RTVALUE:
+	|---------->
+	|->[EXP]--^
 
 MAINDECL:
 	|->(int)-->(main)-->(()-->())-->({)-->[ESTATUTOS]-->(})-->
