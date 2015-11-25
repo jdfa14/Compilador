@@ -17,7 +17,9 @@ public class DATA {
     /** Data type boolean */
     public static final int BOL = 3;	// Boolean
     
+    /** Operator ( */
     public static final int OP = 1001;  // (
+    /** @deprecated Operator ). No longer needed */
     public static final int CP = 1002;  // )
     
     // Operadores
@@ -64,7 +66,7 @@ public class DATA {
     public static final int PC = 23;    // Prepara cambio de contexto
     /** Instruction change context */
     public static final int CC = 24;    // Cambio de contexto
-    /** @deprecated Instruction Go back context */
+    /** @deprecated Instruction Go back to context. Use RET instead*/
     public static final int TC = 25;    // Termina el cambio de contexto
     /** Instruction RETURN */
     public static final int RET = 26;   // Return de una función
@@ -94,7 +96,7 @@ public class DATA {
     public static final int BLU = 38;   // Reservar espacio de memoria
     /** Instruction  */
     public static final int COL = 39;   // Reservar espacio de memoria
-    /** Instruction validate if variable is Boolean */
+    /** @deprecated Instruction validate if variable is Boolean. No longer needed */
     public static final int VBL = 40;   // Verifica que una direccion sea boolean
     /** Instruction verify if variable is in range */
     public static final int VRG = 41; 
