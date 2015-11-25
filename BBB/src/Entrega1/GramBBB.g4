@@ -90,7 +90,11 @@ include2:
 	;
 
 functiondecl:
-	type ID OP params CP OK estatutos CK
+	type ID OP params CP OK estatutos functiondecl2 CK
+	;
+
+functiondecl2:
+	| RTRN
 	;
 
 maindecl:
@@ -173,7 +177,6 @@ estatutos:
 
 estatuto:
 	BRK
-	| RTRN
 	| functioncall
 	| asignation
 	| declaration
@@ -206,7 +209,16 @@ functioncall:
 	;
 
 paramscall:
-	
+	| paramscall2
+	;
+
+paramscall2:
+	exp paramscall3
+	;
+
+paramscall3:
+	| COM paramscall2
+	;
 
 conditional:
 	CIF OP exp CP OK estatutos CK conditional2

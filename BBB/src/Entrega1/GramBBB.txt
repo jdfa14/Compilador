@@ -20,7 +20,11 @@ INCLUDE2
 
 
 FUNCTIONDECL:
-	|->[TYPE]-->(id)-->(()-->[PARAMS]-->())-->({)-->[ESTATUTOS]-->(})-->
+	|->[TYPE]-->(id)-->(()-->[PARAMS]-->())-->({)-->[ESTATUTOS]-->[FUNCTIONDECL2]-->(})-->
+
+FUNCTIONDECL2:
+	|------------->
+	|->(return)--^
 
 MAINDECL:
 	|->(int)-->(main)-->(()-->())-->({)-->[ESTATUTOS]-->(})-->
@@ -101,7 +105,6 @@ ESTATUTO:
 	|->[LOOPS]---------|
 	|->[CONDITIONAL]---|
 	|->(break)---------|
-	|->(return)--------|
 
 LOOPS:
 	|->[WHILE]---->
