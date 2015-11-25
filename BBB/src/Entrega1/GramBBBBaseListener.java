@@ -76,18 +76,6 @@ public class GramBBBBaseListener implements GramBBBListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctions(GramBBBParser.FunctionsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFunctions(GramBBBParser.FunctionsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterFunctiondecl(GramBBBParser.FunctiondeclContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -155,18 +143,6 @@ public class GramBBBBaseListener implements GramBBBListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitParams3(GramBBBParser.Params3Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterDeclarations(GramBBBParser.DeclarationsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDeclarations(GramBBBParser.DeclarationsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -635,6 +611,42 @@ public class GramBBBBaseListener implements GramBBBListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVar(GramBBBParser.VarContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMultidimv(GramBBBParser.MultidimvContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMultidimv(GramBBBParser.MultidimvContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDimv(GramBBBParser.DimvContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDimv(GramBBBParser.DimvContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDimv2(GramBBBParser.Dimv2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDimv2(GramBBBParser.Dimv2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

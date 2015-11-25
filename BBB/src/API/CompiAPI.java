@@ -552,6 +552,7 @@ public class CompiAPI {
         
         public static void ins3(){
             addSalto(getNextCuadIndex());
+            addCuadruplo(DATA.GOT,-1,-1,-1);
             while(PARAMS.getCant() != 0){
                 procedure.addVar(PARAMS.popVar());
             }
@@ -559,6 +560,7 @@ public class CompiAPI {
                 // TODO Error procedimiento ya declarado con cantidad de parametros
                 return;
             }
+            procedure.dirCuadruplo = CompiAPI.getNextCuadIndex();
             instance.procs.add(procedure);
         }
         

@@ -58,16 +58,6 @@ public interface GramBBBListener extends ParseTreeListener {
 	 */
 	void exitInclude2(GramBBBParser.Include2Context ctx);
 	/**
-	 * Enter a parse tree produced by {@link GramBBBParser#functions}.
-	 * @param ctx the parse tree
-	 */
-	void enterFunctions(GramBBBParser.FunctionsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GramBBBParser#functions}.
-	 * @param ctx the parse tree
-	 */
-	void exitFunctions(GramBBBParser.FunctionsContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link GramBBBParser#functiondecl}.
 	 * @param ctx the parse tree
 	 */
@@ -127,16 +117,6 @@ public interface GramBBBListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitParams3(GramBBBParser.Params3Context ctx);
-	/**
-	 * Enter a parse tree produced by {@link GramBBBParser#declarations}.
-	 * @param ctx the parse tree
-	 */
-	void enterDeclarations(GramBBBParser.DeclarationsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GramBBBParser#declarations}.
-	 * @param ctx the parse tree
-	 */
-	void exitDeclarations(GramBBBParser.DeclarationsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GramBBBParser#declaration}.
 	 * @param ctx the parse tree
@@ -527,6 +507,36 @@ public interface GramBBBListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVar(GramBBBParser.VarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramBBBParser#multidimv}.
+	 * @param ctx the parse tree
+	 */
+	void enterMultidimv(GramBBBParser.MultidimvContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramBBBParser#multidimv}.
+	 * @param ctx the parse tree
+	 */
+	void exitMultidimv(GramBBBParser.MultidimvContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramBBBParser#dimv}.
+	 * @param ctx the parse tree
+	 */
+	void enterDimv(GramBBBParser.DimvContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramBBBParser#dimv}.
+	 * @param ctx the parse tree
+	 */
+	void exitDimv(GramBBBParser.DimvContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramBBBParser#dimv2}.
+	 * @param ctx the parse tree
+	 */
+	void enterDimv2(GramBBBParser.Dimv2Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramBBBParser#dimv2}.
+	 * @param ctx the parse tree
+	 */
+	void exitDimv2(GramBBBParser.Dimv2Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link GramBBBParser#cte}.
 	 * @param ctx the parse tree
