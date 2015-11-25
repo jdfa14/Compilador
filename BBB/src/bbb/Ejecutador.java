@@ -23,7 +23,7 @@ public class Ejecutador {
         Game game = new Game();
         game.play();
    
-        String fileName = "/Users/taniagarridosalido/Dropbox/ITESM-ITC Noveno Semestre/Análisis y Diseño de Compiladores/Compilador/BBB/src/cuadruplos.txt";
+        String fileName = "../BBB/src/cuadruplos.txt";
         String line = null;
         Stack <Integer> pila;
         pila = new Stack<>();
@@ -41,7 +41,7 @@ public class Ejecutador {
             }   
             int i = 0;
             while (true) {
-                System.out.println(cuadruplos.get(i).getOperador() + " " + cuadruplos.get(i).getOperando1() + " " + cuadruplos.get(i).getOperando2() + " " + cuadruplos.get(i).getResultado());
+                //System.out.println(cuadruplos.get(i).getOperador() + " " + cuadruplos.get(i).getOperando1() + " " + cuadruplos.get(i).getOperando2() + " " + cuadruplos.get(i).getResultado());
                 Cuadruplo cuad = cuadruplos.get(i);
                 Memoria.DATA_TYPE t1;
                 Memoria.DATA_TYPE t2;
@@ -337,7 +337,7 @@ public class Ejecutador {
                     case DATA.RET:
                         if (cuad.getOperando1() == -1 ){
                             mv.terminarCambio();
-                            i = pila.pop();
+                            i = pila.pop() -1;
                             pilaTemp.pop();
                         }
                         else{
@@ -356,7 +356,7 @@ public class Ejecutador {
 
                             mv.terminarCambio();
                             mv.saveVar(pilaTemp.peek(),value);
-                            i = pila.pop();
+                            i = pila.pop() - 1;
                             pilaTemp.pop();
                         }
                         break;
@@ -400,13 +400,13 @@ public class Ejecutador {
                         t1 = Memoria.getDataType(cuad.getResultado());
 
                         if (t1 == Memoria.DATA_TYPE.INT)
-                            System.out.print(mv.getInt(cuad.getResultado()));
+                            System.out.println(mv.getInt(cuad.getResultado()));
                         else if (t1 == Memoria.DATA_TYPE.FLOAT)
-                            System.out.print(mv.getFloat(cuad.getResultado()));
+                            System.out.println(mv.getFloat(cuad.getResultado()));
                         else if (t1 == Memoria.DATA_TYPE.STRING)
-                            System.out.print(mv.getInt(cuad.getResultado()));
+                            System.out.println(mv.getString(cuad.getResultado()));
                         else if (t1 == Memoria.DATA_TYPE.BOOLEAN)
-                            System.out.print(mv.getBoolean(cuad.getResultado()));
+                            System.out.println(mv.getBoolean(cuad.getResultado()));
 
                         break;
                     case DATA.PNTL:

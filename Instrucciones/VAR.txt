@@ -57,3 +57,4 @@ VAR
 
 6)
 	Llama instruccion 3 de DIMENTIONAL
+	Obtener su direccion y asignar a nueva temporal y guardarla como ultima variable

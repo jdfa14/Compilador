@@ -2,21 +2,17 @@ package bbb;
 
 import Entrega3.DATA;
 import com.jogamp.opengl.GL;
-import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLCapabilities;
-import javax.swing.JFrame;
 import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.GLProfile;
-import com.jogamp.opengl.GL4;
+import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.awt.GLCanvas;
-import com.jogamp.opengl.util.Animator;
 import com.jogamp.opengl.util.FPSAnimator;
-import com.jogamp.opengl.util.texture.Texture;
-import com.jogamp.opengl.util.texture.TextureIO;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -103,7 +99,6 @@ import java.util.ArrayList;
       @Override
       public void display(GLAutoDrawable drawable) {
         render(drawable);
-        System.out.print("Display");
     }
     
     public void changeColor(int type, float color){
@@ -121,14 +116,14 @@ import java.util.ArrayList;
     public void pinUp(){
         penStatus = true;
     }
-    
+      
     public void move(float x, float y){
         if (penStatus){
             pos.add(new Position(this.x,this.y,new Color(col)));
-            pos.add(new Position(x,y,new Color(col)));
+            pos.add(new Position(x/10.0f,y/10.0f,new Color(col)));
         }
-        this.x = x;
-        this.y = y;
+        this.x = x/10.0f;
+        this.y = y/10.0f;
     }
       
     private void render(GLAutoDrawable drawable){
