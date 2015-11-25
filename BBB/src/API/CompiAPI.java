@@ -286,9 +286,11 @@ public class CompiAPI {
     public static class MAINDECL{
         public static void ins1(){
             instance.main = CompiAPI.getNextCuadIndex();
+            CompiAPI.changeToLocalContext();
         }
         public static void ins2(){
             addCuadruplo(DATA.EOF,-1,-1,-1);
+            CompiAPI.changeToGlobalContext();
         }
     }
     
@@ -511,6 +513,7 @@ public class CompiAPI {
     
     public static class VAR{
         public static int lastVarDir = -1;
+        public static String id;
         public static void ins1(){
             lastVarDir = CTE.lastConstant;
         }
@@ -518,9 +521,27 @@ public class CompiAPI {
         public static void ins2(String id){
             if(CompiAPI.isDeclaredSomewhere(id)){
                 lastVarDir = CompiAPI.whereIsDeclared(id);
+                VAR.id = id;
             }else{
                 //TODO error 
             }
+        }
+        
+        public static void ins3(){
+            lastVarDir = FUNCTIONCALL.dirTempReturn;
+        }
+        
+        public static void ins4(){
+            DIMENTIONAL.ins1(id);
+        }
+        
+        public static void ins5(){
+            DIMENTIONAL.ins2();
+        }
+        
+        public static void ins6(){
+            DIMENTIONAL.ins3();
+            // TODO aqui tienes la dir de la dir
         }
     }
     
@@ -848,14 +869,14 @@ public class CompiAPI {
         
         public static void ins2(){
             int paramCant = PARAMSCALL.size();
-            if(!procs.has(idName, paramCant)){
+            if(!instance.procs.has(FUNCTIONCALL.idName, paramCant)){
                 // TODO Error funcion con tal cantidad de parametros no existe
                 return;
             }
-            Procedure procedure = procs.getProc(idName, paramCant);
+            Procedure procedure = instance.procs.getProc(idName, paramCant);
             ArrayList<String> keys = procedure.varKeys;
             
-            dirTempReturn = CompiAPI.TEMPORAL.creaTemporal(proc.type);
+            dirTempReturn = CompiAPI.TEMPORAL.creaTemporal(procedure.type);
             addCuadruplo(DATA.RTVAL,-1,-1,dirTempReturn);
             addCuadruplo(DATA.PC,-1,-1,-1);
             for(String key : keys){
@@ -867,7 +888,7 @@ public class CompiAPI {
     }
     /** Class to control params variables */
     public static class PARAMSCALL{
-        private LinkedList<Integer> exps = new LinkedList<>();
+        private static LinkedList<Integer> exps = new LinkedList<>();
         public static void ins1(){
             exps.add(EXP.getLastEXP());
         }

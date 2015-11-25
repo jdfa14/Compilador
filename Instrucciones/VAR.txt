@@ -4,13 +4,16 @@ VAR:
 	|->[CTE]--------------^
 	|   (1)
 	|->[FUNCTIONCALL]-----|
+	                  (3)
 
 MULTIDIMV
 	|----------------------->
 	|->([)-->[DIMV]-->(])--^
+	   (4)            (6)
 
 DIMV:
 	|->[EXP]->[DIMV2]->
+	        (5)
 
 DIMV2:
 	|----------------->
@@ -22,6 +25,7 @@ CTE:
 	|->(ctes)-|
 	    (1)
 
+CTE
 1)	
 	Verificar si existe la constante declarada
 	-->Sino
@@ -32,6 +36,7 @@ CTE:
 	-->Si si
 	----> Obtener su direccion y guardarla
 
+VAR
 1)
 	Obtener direccion de ultima constante y guardarla como ultima variable
 
@@ -41,3 +46,14 @@ CTE:
 	---->Obtener direccion y guardarla como direccion de ultima variable
 	-->Si no
 	---->Error
+3)
+	Obtener direccion de ultima temporal asignada a llamada de funcion
+
+4)
+	Llamar instruccion 1 con ID de DIMENTIONAL
+
+5)
+	Llamar instruccion 2 de DIMENTIONAL
+
+6)
+	Llama instruccion 3 de DIMENTIONAL

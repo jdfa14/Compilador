@@ -78,6 +78,16 @@ public interface GramBBBListener extends ParseTreeListener {
 	 */
 	void exitFunctiondecl2(GramBBBParser.Functiondecl2Context ctx);
 	/**
+	 * Enter a parse tree produced by {@link GramBBBParser#rtvalue}.
+	 * @param ctx the parse tree
+	 */
+	void enterRtvalue(GramBBBParser.RtvalueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramBBBParser#rtvalue}.
+	 * @param ctx the parse tree
+	 */
+	void exitRtvalue(GramBBBParser.RtvalueContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GramBBBParser#maindecl}.
 	 * @param ctx the parse tree
 	 */
