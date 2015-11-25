@@ -548,8 +548,15 @@ public class CompiAPI {
     public static class PARAMS{
         private static LinkedList<Variable> vars = new LinkedList<>();
         
-        public static void ins1(){
-            vars.add(DECL.getLastVar());
+        public static void ins1(String ID){
+            if(CompiAPI.isDeclared(ID)){
+                //throw new Exception("Error: Variable ya declarada");
+            }
+            Variable var = new Variable(TYPE.lastTypeUsed);
+            var.dir = CompiAPI.requestDir(var.tipo);
+            var.nombre = ID;
+            CompiAPI.declareVar(var);
+            vars.add(var);
         }
         
         public static int getCant(){
@@ -871,8 +878,7 @@ public class CompiAPI {
             int paramCant = PARAMSCALL.size();
             if(!instance.procs.has(FUNCTIONCALL.idName, paramCant)){
                 // TODO Error funcion con tal cantidad de parametros no existe
-                throw new Exception("Funcion " + FUNCTIONCALL.idName + "/"+paramCant +" no ha sido declarada");
-                return;
+                //throw new Exception("Funcion " + FUNCTIONCALL.idName + "/"+paramCant +" no ha sido declarada");
             }
             Procedure procedure = instance.procs.getProc(idName, paramCant);
             ArrayList<String> keys = procedure.varKeys;

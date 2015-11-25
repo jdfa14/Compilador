@@ -17,23 +17,26 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 public class Compilador {
 
     public static void main(String[] args) throws IOException {
-        
-        InputStream is = new FileInputStream("C:\\Users\\JesusDavid\\Desktop\\COMPILATORS\\input.txt");
-        //We load our lexer
-        GramBBBLexer lexer = new GramBBBLexer(new ANTLRInputStream(is));
-        
-        //We get the matchet tokens from input
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        
-        //Parse tokens
-        GramBBBParser parser = new GramBBBParser(tokens);
-        
-        //Specify initial gramatical function
-        InitContext sentenceContext = parser.init();
-        LinkedList<Cuadruplo> cuads = CompiAPI.getCuadruplos();
-        cuads.stream().forEach((cuad) -> {
-            System.out.println(cuad.getOperador() + " " + cuad.getLongOperando1() + " " + cuad.getLongOperando2() + " " + cuad.getResultado());
-        });
+        try{
+            InputStream is = new FileInputStream("C:\\Users\\JesusDavid\\Desktop\\COMPILATORS\\input.txt");
+            //We load our lexer
+            GramBBBLexer lexer = new GramBBBLexer(new ANTLRInputStream(is));
+
+            //We get the matchet tokens from input
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+            //Parse tokens
+            GramBBBParser parser = new GramBBBParser(tokens);
+
+            //Specify initial gramatical function
+            InitContext sentenceContext = parser.init();
+            LinkedList<Cuadruplo> cuads = CompiAPI.getCuadruplos();
+            cuads.stream().forEach((cuad) -> {
+                System.out.println(cuad.getOperador() + " " + cuad.getLongOperando1() + " " + cuad.getLongOperando2() + " " + cuad.getResultado());
+            });
+        }catch(Exception e){
+            
+        }
         
     }
     

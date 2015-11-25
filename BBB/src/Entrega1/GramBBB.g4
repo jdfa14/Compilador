@@ -188,7 +188,7 @@ estatuto:
 	| instructions
 	| loops
 	| conditional
-	| RTRN
+	| functiondecl2
 	;
 
 loops:

@@ -3,12 +3,16 @@ PARAMS:
 	|->[PARAMS2]-^
 
 PARAMS2:
-	|->[DECLARATION]-->[PARAMS3]-->
-	                (1)
+	|->[TYPE]-->(id)-->[PARAMS3]-->
+	            (1)
 
 PARAMS3:
 	|-------------------->
 	|->(,)-->[PARAMS2]--^
 
 1)
-	Obtener ultima variable declarada y agregar a lista de variables
+	Verificar si se tiene el ID declarad
+	--> Si si
+	----> Genera Error variable declarada
+	--> Si no
+	Declarar Variable con Tipo y ID
