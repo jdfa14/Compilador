@@ -374,14 +374,31 @@ public class CompiAPI {
     public static class EXP{
         private static int lastExpResult = -1;
         
-        private static Stack<Integer> pOper = new Stack<>();
-        private static LinkedList<Integer> vP = new LinkedList<>();
-        private static boolean negative = false;
-        private static int deep = 0;
-
+        private static Stack<EXP> pExp = new Stack<>();
+        
+        private Stack<Integer> pOper;
+        private LinkedList<Integer> vP;
+        private boolean negative;
+        private int deep;
+        private boolean isNew = true;
+        
+        public EXP(){
+            pOper = new Stack<>();
+            vP = new LinkedList<>();
+            negative = false;
+            int deep = 0;
+        }
+        
+        public static void ins0(){
+            if(pExp.size() == 0 || pExp.peek().isNew){
+                pExp.add(new EXP());
+            }
+        }
+        
         public static void ins1(){
-            pOper.add(DATA.OP);
-            deep++;
+            pExp.peek().pOper.add(DATA.OP);
+            pExp.peek().deep++;
+            pExp.peek().isNew = false;
         }
         
         public static int getLastEXP(){
@@ -389,76 +406,76 @@ public class CompiAPI {
         }
         
         public static void ins2(){
-            while(pOper.peek() != DATA.OP){
-                vP.add(pOper.pop());
+            while(pExp.peek().pOper.peek() != DATA.OP){
+                pExp.peek().vP.add(pExp.peek().pOper.pop());
             }
-            pOper.pop();
-            deep--;
-        }
+            pExp.peek().pOper.pop();
+            pExp.peek().deep--;
+            }
         
         public static void ins3(){
-            if(!negative){
-                vP.add(VAR.lastVarDir);
+            if(!pExp.peek().negative){
+                pExp.peek().vP.add(VAR.lastVarDir);
             }else{
                 int type = Memoria.getDataTypeAsInt(VAR.lastVarDir);
-                negative = false;
+                pExp.peek().negative = false;
                 int constMenosUnoDir = CompiAPI.saveConstant(DATA.INT, "-1");
                 int newTempDir = CompiAPI.TEMPORAL.creaTemporal(type);
                 CompiAPI.addCuadruplo(DATA.MUL, VAR.lastVarDir, constMenosUnoDir, newTempDir);
-                vP.add(newTempDir);
+                pExp.peek().vP.add(newTempDir);
             }
         }
         
         public static void ins4(){
-            negative = true;
+            pExp.peek().negative = true;
         }
         
         public static void ins5(int oper){
-            if(pOper.size() > 0 && (pOper.peek() == DATA.MUL
-                    || pOper.peek() == DATA.DIV)){
-                vP.add(pOper.pop());
+            if(pExp.peek().pOper.size() > 0 && (pExp.peek().pOper.peek() == DATA.MUL
+                    || pExp.peek().pOper.peek() == DATA.DIV)){
+                pExp.peek().vP.add(pExp.peek().pOper.pop());
             }
-            pOper.add(oper);
+            pExp.peek().pOper.add(oper);
         }
         
         public static void ins6(){
-            if(pOper.size() > 0 && (pOper.peek() == DATA.MUL
-                    || pOper.peek() == DATA.DIV)){
-                vP.add(pOper.pop());
+            if(pExp.peek().pOper.size() > 0 && (pExp.peek().pOper.peek() == DATA.MUL
+                    || pExp.peek().pOper.peek() == DATA.DIV)){
+                pExp.peek().vP.add(pExp.peek().pOper.pop());
             }
         }
             
         
         
         public static void ins7(int oper){
-            if(pOper.size() > 0 && (pOper.peek() == DATA.ADD
-                    || pOper.peek() == DATA.SUB)){
-                vP.add(pOper.pop());
+            if(pExp.peek().pOper.size() > 0 && (pExp.peek().pOper.peek() == DATA.ADD
+                    || pExp.peek().pOper.peek() == DATA.SUB)){
+                pExp.peek().vP.add(pExp.peek().pOper.pop());
             }
-            pOper.add(oper);
+            pExp.peek().pOper.add(oper);
         }
         
         public static void ins8(){
-            if(pOper.size() > 0 && (pOper.peek() == DATA.ADD
-                    || pOper.peek() == DATA.SUB)){
-                vP.add(pOper.pop());
+            if(pExp.peek().pOper.size() > 0 && (pExp.peek().pOper.peek() == DATA.ADD
+                    || pExp.peek().pOper.peek() == DATA.SUB)){
+                pExp.peek().vP.add(pExp.peek().pOper.pop());
             }
         }
         
         public static void ins9(int oper){
-            pOper.add(oper);
+            pExp.peek().pOper.add(oper);
         }
         
         public static void ins10(){
-            vP.add(pOper.pop());
+            pExp.peek().vP.add(pExp.peek().pOper.pop());
         }
         
         public static void evaluate(){
-            if(deep == 0){
+            if(pExp.peek().deep == 0){
                 Stack<Integer> vars = new Stack<>();
                 int op;
-                while(vP.size() > 0){
-                    op = vP.pop();
+                while(pExp.peek().vP.size() > 0){
+                    op = pExp.peek().vP.pop();
                     switch(op){
                         case DATA.MUL:
                         case DATA.DIV:
@@ -506,7 +523,7 @@ public class CompiAPI {
                     return;
                 }
                 lastExpResult = vars.pop();
-            
+                pExp.pop();
             }
         }
     }
@@ -663,12 +680,13 @@ public class CompiAPI {
     
     public static class IF{
         public static void ins1(){
-            if(!VALIDATOR.isBoolean(EXP.getLastEXP())){
+            int dirLastExp = EXP.getLastEXP();
+            if(!VALIDATOR.isBoolean(dirLastExp)){
                 // TODO Arrojar error de variable no booleana
                 return;
             }
             addSalto(instance.cuadruplos.size());
-            CompiAPI.addCuadruplo(DATA.GTF, EXP.getLastEXP(), -1, -1);// Cuadruplo que será rellenado
+            CompiAPI.addCuadruplo(DATA.GTF,dirLastExp, -1, -1);// Cuadruplo que será rellenado
         }
         
         public static void ins2(){
@@ -689,14 +707,15 @@ public class CompiAPI {
         }
         
         public static void ins2(){
-            if(!VALIDATOR.isBoolean(EXP.getLastEXP())){
+            int dirLastExp = EXP.getLastEXP();
+            if(!VALIDATOR.isBoolean(dirLastExp)){
                 // ERROR
                 return;
             }
             int aux = getSalto();
             addSalto(getNextCuadIndex());
             addSalto(aux);
-            addCuadruplo(DATA.GTF,EXP.getLastEXP(),-1,-1);
+            addCuadruplo(DATA.GTF,dirLastExp,-1,-1);
         }
         
         public static void ins3(){
@@ -782,7 +801,8 @@ public class CompiAPI {
             lastDirOfDir = DATA.ERR;
         }
         public static void ins2(){// Despues de capturar una dimension
-            int type = Memoria.getDataTypeAsInt(EXP.getLastEXP());
+            int dirLastExp = EXP.getLastEXP();
+            int type = Memoria.getDataTypeAsInt(dirLastExp);
             if(type != DATA.INT && type != DATA.DBL){
                 // TODO Error de tipo de dato incorrecto
                 return;
@@ -794,10 +814,10 @@ public class CompiAPI {
             actualDim = dims.get(dimIndex);
             dimIndex++;
             
-            addCuadruplo(DATA.VRG,0,actualDim.tam,EXP.getLastEXP());
+            addCuadruplo(DATA.VRG,0,actualDim.tam,dirLastExp);
             int newTemp = CompiAPI.TEMPORAL.creaTemporal(DATA.INT); // Direccion de memoria donde se guardará la nueva temp
             int dirM = saveConstant(DATA.INT,actualDim.m+"");
-            addCuadruplo(DATA.MUL,EXP.getLastEXP(),dirM,newTemp);
+            addCuadruplo(DATA.MUL,dirLastExp,dirM,newTemp);
             toAcum.add(newTemp);
         }
         
@@ -828,13 +848,14 @@ public class CompiAPI {
         }
         
         public static void ins2(){
-            int typeOfExp = Memoria.getDataTypeAsInt(EXP.getLastEXP());
+            int dirLastExp = EXP.getLastEXP();
+            int typeOfExp = Memoria.getDataTypeAsInt(dirLastExp);
             int validation = CompiAPI.getCubeValidation(DATA.EQS, var.tipo, typeOfExp);
             if(validation == DATA.ERR){
                 //TODO error de asignacion incompatible
                 return;
             }
-            addCuadruplo(DATA.EQS,EXP.getLastEXP(),-1,var.dir);
+            addCuadruplo(DATA.EQS,dirLastExp,-1,var.dir);
         }
         
         public static void ins3(){
@@ -850,7 +871,8 @@ public class CompiAPI {
         }
         
         public static void ins6(){
-            int typeOfExp = Memoria.getDataTypeAsInt(EXP.getLastEXP());
+            int dirLastExp = EXP.getLastEXP();
+            int typeOfExp = Memoria.getDataTypeAsInt(dirLastExp);
             int validation = CompiAPI.getCubeValidation(DATA.EQS, var.tipo, typeOfExp);
             if(validation == DATA.ERR){
                 //TODO error de asignacion incompatible
@@ -861,7 +883,7 @@ public class CompiAPI {
                 //TODO error de requerimientos de dimencion
                 return;
             }
-            addCuadruplo(DATA.TNA,EXP.getLastEXP(),-1,destinationDir);
+            addCuadruplo(DATA.TNA,dirLastExp,-1,destinationDir);
         }
     }
     

@@ -188,7 +188,7 @@ estatuto:
 	| instructions
 	| loops
 	| conditional
-	| functiondecl2
+	| RTRN rtvalue DEL
 	;
 
 loops:

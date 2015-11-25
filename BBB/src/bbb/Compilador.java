@@ -35,7 +35,7 @@ public class Compilador {
                 System.out.println(cuad.getOperador() + " " + cuad.getLongOperando1() + " " + cuad.getLongOperando2() + " " + cuad.getResultado());
             });
         }catch(Exception e){
-            
+            e.printStackTrace();
         }
         
     }
