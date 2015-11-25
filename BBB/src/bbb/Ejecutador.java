@@ -27,6 +27,8 @@ public class Ejecutador {
         String line = null;
         Stack <Integer> pila;
         pila = new Stack<>();
+        Stack <Integer> pilaTemp;
+        pilaTemp = new Stack<>();
         
         
         try {
@@ -324,15 +326,19 @@ public class Ejecutador {
                     case DATA.CC:
                         mv.cambiarContexto();
                         pila.push(i+1);
+                        i = cuad.getResultado() - 1;
                         break;
                     case DATA.TC:
                         mv.terminarCambio();
                         break;
+                    case DATA.RTVAL:
+                        pilaTemp.push(cuad.getResultado());
+                        break;
                     case DATA.RET:
-                        
                         if (cuad.getOperando1() == -1 ){
                             mv.terminarCambio();
                             i = pila.pop();
+                            pilaTemp.pop();
                         }
                         else{
                             Object value = 0;
@@ -349,8 +355,9 @@ public class Ejecutador {
                                 value = mv.getBoolean(cuad.getOperando1());
 
                             mv.terminarCambio();
-                            mv.saveVar(cuad.getResultado(),value);
+                            mv.saveVar(pilaTemp.peek(),value);
                             i = pila.pop();
+                            pilaTemp.pop();
                         }
                         break;
                     case DATA.PARAM:
