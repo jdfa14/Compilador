@@ -930,32 +930,4 @@ public class CompiAPI {
             return exps.pop();
         }
     }
-    
-    public static class INSTRUCTIONS{
-        private static int aux;
-        
-        public static void ins1(){
-            addCuadruplo(DATA.PIN,-1,-1,0);
-        }
-        
-        public static void ins2(){
-            addCuadruplo(DATA.PIN,-1,-1,1);
-        }
-        
-        public static void ins3(int valor){
-            addCuadruplo(DATA.COL,DATA.RED,-1,valor);
-        }
-        public static void ins4(int valor){
-            addCuadruplo(DATA.COL,DATA.GRN,-1,valor);
-        }
-        public static void ins5(int valor){
-            addCuadruplo(DATA.COL,DATA.BLU,-1,valor);
-        }
-        public static void ins6(int valor){
-            aux = valor;
-        }
-        public static void ins7(int valor){
-            addCuadruplo(DATA.MVE,aux,valor,-1);
-        }
-    }
 }

@@ -2367,7 +2367,7 @@ public class GramBBBParser extends Parser {
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(348);
-				match(PINU);CompiAPI.INSTRUCTIONS.ins2();
+				match(PINU);
 				setState(349);
 				match(DEL);
 				}
@@ -2376,7 +2376,7 @@ public class GramBBBParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(350);
-				match(PIND);CompiAPI.INSTRUCTIONS.ins1();
+				match(PIND);
 				setState(351);
 				match(DEL);
 				}
@@ -2389,15 +2389,15 @@ public class GramBBBParser extends Parser {
 				setState(353);
 				match(OP);
 				setState(354);
-				CompiAPI.INSTRUCTIONS.ins3(Integer.parseInt(getCurrentToken().getText()));match(CTEI);
+				match(CTEI);
 				setState(355);
 				match(COM);
 				setState(356);
-				CompiAPI.INSTRUCTIONS.ins4(Integer.parseInt(getCurrentToken().getText()))match(CTEI);
+				match(CTEI);
 				setState(357);
 				match(COM);
 				setState(358);
-				CompiAPI.INSTRUCTIONS.ins5(Integer.parseInt(getCurrentToken().getText()))match(CTEI);
+				match(CTEI);
 				setState(359);
 				match(CP);
 				}
@@ -2410,11 +2410,11 @@ public class GramBBBParser extends Parser {
 				setState(361);
 				match(OP);
 				setState(362);
-				CompiAPI.INSTRUCTIONS.ins6(Integer.parseInt(getCurrentToken().getText()))match(CTEI);
+				match(CTEI);
 				setState(363);
 				match(COM);
 				setState(364);
-				CompiAPI.INSTRUCTIONS.ins7(Integer.parseInt(getCurrentToken().getText()))match(CTEI);
+				match(CTEI);
 				setState(365);
 				match(CP);
 				}
