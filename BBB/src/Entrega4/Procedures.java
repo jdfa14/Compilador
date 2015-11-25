@@ -77,4 +77,14 @@ public class Procedures {
         }
         return procs.get(buildKey(ID,cant)).dirCuadruplo;
     }
+    
+    /**
+     * getProc
+     * @param ID Name of the procedure
+     * @param cant Quantity of parameters
+     * @return Procedure Object with data
+     */
+    public Procedure getProc(String ID, int cant){
+        return procs.get(buildKey(ID,cant));
+    }
 }

@@ -52,6 +52,11 @@ public class ManejadorDeMemoria {
         }
     }
     
+    public void contextChange(){
+        reset(Memoria.SCOPE_TYPE.TEMPORAL);
+        reset(Memoria.SCOPE_TYPE.LOCAL);
+    }
+    
     private class MemoryIndex{
  
     private int intCi;

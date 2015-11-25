@@ -8,6 +8,7 @@ package Entrega4;
 import Entrega2.Variable;
 import Entrega2.Variables;
 import Entrega3.DATA;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,6 +19,8 @@ public class Procedure {
     public String procID;
     /** Set of variables declared for the procedure */
     public Variables vars = new Variables();
+    /** ArrayList of names of variables */
+    public ArrayList<String> varKeys = new ArrayList<>();
     /** Number of quadruple where the procedure start */
     public int dirCuadruplo;
     /** type of data return */
@@ -39,8 +42,15 @@ public class Procedure {
             return false;
         }
         vars.add(var);
+        varKeys.add(var.nombre);
         return true;
     }
+    
+    //
+    public int getDirOfVar(String key){
+        return vars.getDir(key);
+    }
+    
     /**
      * 
      * @return Number of elements of variables

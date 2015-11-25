@@ -837,4 +837,48 @@ public class CompiAPI {
             addCuadruplo(DATA.TNA,EXP.getLastEXP(),-1,destinationDir);
         }
     }
+    
+    /** Class to control function calls */
+    public static class FUNCTIONCALL{
+        private static String idName;
+        private static int dirTempReturn;
+        
+        public static void ins1(String ID){
+            idName  = ID;
+        }
+        
+        public static void ins2(){
+            int paramCant = PARAMSCALL.size();
+            if(!procs.has(idName, paramCant)){
+                // TODO Error funcion con tal cantidad de parametros no existe
+                return;
+            }
+            Procedure procedure = procs.getProc(idName, paramCant);
+            ArrayList<String> keys = procedure.varKeys;
+            
+            dirTempReturn = CompiAPI.TEMPORAL.creaTemporal(proc.type);
+            addCuadruplo(DATA.RTVAL,-1,-1,dirTempReturn);
+            addCuadruplo(DATA.PC,-1,-1,-1);
+            for(String key : keys){
+                addCuadruplo(DATA.PARAM,PARAMSCALL.pop(),-1,procedure.getDirOfVar(key));
+            }
+            addCuadruplo(DATA.CC,-1,-1,-1);
+            
+        }
+    }
+    /** Class to control params variables */
+    public static class PARAMSCALL{
+        private LinkedList<Integer> exps = new LinkedList<>();
+        public static void ins1(){
+            exps.add(EXP.getLastEXP());
+        }
+        
+        public static int size(){
+            return exps.size();
+        }
+        
+        public static int pop(){
+            return exps.pop();
+        }
+    }
 }

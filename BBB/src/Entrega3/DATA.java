@@ -64,7 +64,7 @@ public class DATA {
     public static final int PC = 23;    // Prepara cambio de contexto
     /** Instruction change context */
     public static final int CC = 24;    // Cambio de contexto
-    /** Instruction Go back context */
+    /** @deprecated Instruction Go back context */
     public static final int TC = 25;    // Termina el cambio de contexto
     /** Instruction RETURN */
     public static final int RET = 26;   // Return de una función
@@ -102,4 +102,6 @@ public class DATA {
     public static final int TNA = 42;   
     /** Data type null */
     public static final int VOID = 43;
+    /** Instruction to save on Stack return value */
+    public static final int RTVAL = 44;
 }
