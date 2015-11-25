@@ -68,6 +68,16 @@ public interface GramBBBListener extends ParseTreeListener {
 	 */
 	void exitFunctiondecl(GramBBBParser.FunctiondeclContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GramBBBParser#functiondecl2}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctiondecl2(GramBBBParser.Functiondecl2Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramBBBParser#functiondecl2}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctiondecl2(GramBBBParser.Functiondecl2Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link GramBBBParser#maindecl}.
 	 * @param ctx the parse tree
 	 */
@@ -307,6 +317,36 @@ public interface GramBBBListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunctioncall(GramBBBParser.FunctioncallContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramBBBParser#paramscall}.
+	 * @param ctx the parse tree
+	 */
+	void enterParamscall(GramBBBParser.ParamscallContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramBBBParser#paramscall}.
+	 * @param ctx the parse tree
+	 */
+	void exitParamscall(GramBBBParser.ParamscallContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramBBBParser#paramscall2}.
+	 * @param ctx the parse tree
+	 */
+	void enterParamscall2(GramBBBParser.Paramscall2Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramBBBParser#paramscall2}.
+	 * @param ctx the parse tree
+	 */
+	void exitParamscall2(GramBBBParser.Paramscall2Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramBBBParser#paramscall3}.
+	 * @param ctx the parse tree
+	 */
+	void enterParamscall3(GramBBBParser.Paramscall3Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramBBBParser#paramscall3}.
+	 * @param ctx the parse tree
+	 */
+	void exitParamscall3(GramBBBParser.Paramscall3Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link GramBBBParser#conditional}.
 	 * @param ctx the parse tree

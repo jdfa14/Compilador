@@ -88,6 +88,18 @@ public class GramBBBBaseListener implements GramBBBListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFunctiondecl2(GramBBBParser.Functiondecl2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctiondecl2(GramBBBParser.Functiondecl2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterMaindecl(GramBBBParser.MaindeclContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -371,6 +383,42 @@ public class GramBBBBaseListener implements GramBBBListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFunctioncall(GramBBBParser.FunctioncallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParamscall(GramBBBParser.ParamscallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParamscall(GramBBBParser.ParamscallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParamscall2(GramBBBParser.Paramscall2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParamscall2(GramBBBParser.Paramscall2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParamscall3(GramBBBParser.Paramscall3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParamscall3(GramBBBParser.Paramscall3Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
