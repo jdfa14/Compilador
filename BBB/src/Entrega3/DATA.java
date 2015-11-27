@@ -7,6 +7,144 @@ public class DATA {
     public static final int ERR2 = -3;  // Error de asignacion de memoria
     public static final int ERR3 = -4;  // Error direccion de variable no asignada
     
+    /** Type of parameter */
+    public static enum PARAM_TYPE{
+        NORMAL,
+        REFERENCED,
+        OPERATOR,
+        MYSTERY
+    }
+    
+    /**
+     * 
+     * @param operator DATA operator (+,*,/,-,etc)
+     * @param op1 PARAM_TYPE (Normal, referenced)
+     * @param op2 PARAM_TYPE (Normal, referenced)
+     * @param result PARA_TYPE of the Result
+     */
+    public static int getExpOperator(int operator, PARAM_TYPE op1, PARAM_TYPE op2, PARAM_TYPE result){
+        switch(operator){
+            case ADD:
+                if(op1 == PARAM_TYPE.NORMAL){
+                    if(op2 == PARAM_TYPE.NORMAL){
+                        return operator;                // (Normal Normal)
+                    }
+                    if(op2 == PARAM_TYPE.REFERENCED){
+                        return DATA.ADD2;               // (Normal Referenced)
+                    }
+                }
+                if(op1 == PARAM_TYPE.REFERENCED){
+                    if(op2 == PARAM_TYPE.NORMAL){
+                        return DATA.ADD1;               // (Referenced Normal)
+                    }
+                    if(op2 == PARAM_TYPE.REFERENCED){
+                        return DATA.ADD3;               // (Referenced Referenced)
+                    }
+                }
+                break;
+            case SUB:
+                if(op1 == PARAM_TYPE.NORMAL){
+                    if(op2 == PARAM_TYPE.NORMAL){
+                        return operator;                // (Normal Normal)
+                    }
+                    if(op2 == PARAM_TYPE.REFERENCED){
+                        return DATA.SUB2;               // (Normal Referenced)
+                    }
+                }
+                if(op1 == PARAM_TYPE.REFERENCED){
+                    if(op2 == PARAM_TYPE.NORMAL){
+                        return DATA.SUB1;               // (Referenced Normal)
+                    }
+                    if(op2 == PARAM_TYPE.REFERENCED){
+                        return DATA.SUB3;               // (Referenced Referenced)
+                    }
+                }
+                break;
+            case MUL:
+                if(op1 == PARAM_TYPE.NORMAL){
+                    if(op2 == PARAM_TYPE.NORMAL){
+                        return operator;                // (Normal Normal)
+                    }
+                    if(op2 == PARAM_TYPE.REFERENCED){
+                        return DATA.MUL2;               // (Normal Referenced)
+                    }
+                }
+                if(op1 == PARAM_TYPE.REFERENCED){
+                    if(op2 == PARAM_TYPE.NORMAL){
+                        return DATA.MUL1;               // (Referenced Normal)
+                    }
+                    if(op2 == PARAM_TYPE.REFERENCED){
+                        return DATA.MUL3;               // (Referenced Referenced)
+                    }
+                }
+                break;
+            case DIV:
+                if(op1 == PARAM_TYPE.NORMAL){
+                    if(op2 == PARAM_TYPE.NORMAL){
+                        return operator;                // (Normal Normal)
+                    }
+                    if(op2 == PARAM_TYPE.REFERENCED){
+                        return DATA.DIV2;               // (Normal Referenced)
+                    }
+                }
+                if(op1 == PARAM_TYPE.REFERENCED){
+                    if(op2 == PARAM_TYPE.NORMAL){
+                        return DATA.DIV1;               // (Referenced Normal)
+                    }
+                    if(op2 == PARAM_TYPE.REFERENCED){
+                        return DATA.DIV3;               // (Referenced Referenced)
+                    }
+                }
+                break;
+            case MOD:
+                if(op1 == PARAM_TYPE.NORMAL){
+                    if(op2 == PARAM_TYPE.NORMAL){
+                        return operator;                // (Normal Normal)
+                    }
+                    if(op2 == PARAM_TYPE.REFERENCED){
+                        return DATA.MOD2;               // (Normal Referenced)
+                    }
+                }
+                if(op1 == PARAM_TYPE.REFERENCED){
+                    if(op2 == PARAM_TYPE.NORMAL){
+                        return DATA.MOD1;               // (Referenced Normal)
+                    }
+                    if(op2 == PARAM_TYPE.REFERENCED){
+                        return DATA.MOD3;               // (Referenced Referenced)
+                    }
+                }
+                break;
+            case EQS:
+                if(op1 == PARAM_TYPE.NORMAL){
+                    if(result == PARAM_TYPE.NORMAL){
+                        return operator;                // (Normal -1 Normal)
+                    }
+                    if(result == PARAM_TYPE.REFERENCED){
+                        return DATA.EQS2;               // (Normal -1 Referenced)
+                    }
+                }
+                if(op1 == PARAM_TYPE.REFERENCED){
+                    if(result == PARAM_TYPE.NORMAL){
+                        return DATA.EQS1;               // (Referenced -1 Normal)
+                    }
+                    if(result == PARAM_TYPE.REFERENCED){
+                        return DATA.EQS3;               // (Referenced -1 Referenced)
+                    }
+                }
+                break;
+            case PRNT:
+                if(result == PARAM_TYPE.NORMAL){
+                    return operator;
+                }
+                if(result == PARAM_TYPE.REFERENCED){
+                    return DATA.PRNT1;
+                }
+            default:
+                return operator;
+        }
+        return DATA.ERR;
+    }
+    
     //Tipos de dato
     /** Data type Integer */
     public static final int INT = 0;	// Integer
@@ -22,17 +160,52 @@ public class DATA {
     /** @deprecated Operator ). No longer needed */
     public static final int CP = 1002;  // )
     
-    // Operadores
-    /** Operator + */
-    public static final int ADD = 4;	// Add +
+    /** Operator + Normal */
+    public static final int ADD = 4;
+    /** Operator + Op1 referenced */
+    public static final int ADD1 = 45;
+    /** Operator + Op2 referenced */
+    public static final int ADD2 = 46;
+    /** Operator + Both Operators are referenced */
+    public static final int ADD3 = 47;
+    
     /** Operator - */
     public static final int SUB = 5;	// Subtract -
+    /** Operator - Op1 referenced */
+    public static final int SUB1 = 48;
+    /** Operator - Op2 referenced */
+    public static final int SUB2 = 49;
+    /** Operator - Both Operators are referenced */
+    public static final int SUB3 = 50;
+    
     /** Operator * */
     public static final int MUL = 6;	// Multiply *
+    /** Operator * Op1 referenced */
+    public static final int MUL1 = 51;
+    /** Operator * Op2 referenced */
+    public static final int MUL2 = 52;
+    /** Operator * Both Operators are referenced */
+    public static final int MUL3 = 53;
+    
+    
     /** Operator / */
-    public static final int DIV = 7;	// Divide /
+    public static final int DIV = 7;
+    /** Operator * Op1 referenced */
+    public static final int DIV1 = 54;
+    /** Operator * Op2 referenced */
+    public static final int DIV2 = 55;
+    /** Operator * Both Operators are referenced */
+    public static final int DIV3 = 56;
+    
     /** Operator % */
     public static final int MOD = 8;	// Modulus %
+    /** Operator * Op1 referenced */
+    public static final int MOD1 = 57;
+    /** Operator * Op2 referenced */
+    public static final int MOD2 = 58;
+    /** Operator * Both Operators are referenced */
+    public static final int MOD3 = 59;
+    
     /** Operator AND */
     public static final int AND = 9;	// And &
     /** Operator OR */
@@ -49,8 +222,14 @@ public class DATA {
     public static final int GOE = 15;	// Greater or Equal >=
     /** Operator <= */
     public static final int LOE = 16;	// Less or Equal <=
-    /** Operator = */
+    /** Operator = Normal */
     public static final int EQS = 17;	// Equals =
+    /** Operator = Operator 1 Referenced*/
+    public static final int EQS1 = 60;	// Equals =
+    /** Operator = Result Referenced*/
+    public static final int EQS2 = 61;	// Equals =
+    /** Operator = Both Referenced*/
+    public static final int EQS3 = 62;	// Equals =
     
     /** Instruction GOTO */
     public static final int GOT = 18;   // GOTO
@@ -80,6 +259,8 @@ public class DATA {
     public static final int STR2 = 30;  // Declaration of strings
     /** Instruction print */
     public static final int PRNT = 31;  // Función print
+    /** Instruction print de referenced*/
+    public static final int PRNT1 = 70;  // Función print
     /** Instruction print line */
     public static final int PNTL = 32;  // Función printline
     /** Instruction Reserve a Gap of memory */
@@ -94,7 +275,7 @@ public class DATA {
     public static final int GRN = 37;   // Reservar espacio de memoria
     /** Instruction B value of RGB */
     public static final int BLU = 38;   // Reservar espacio de memoria
-    /** Instruction  */
+    /** Instruction para Color*/
     public static final int COL = 39;   // Reservar espacio de memoria
     /** @deprecated Instruction validate if variable is Boolean. No longer needed */
     public static final int VBL = 40;   // Verifica que una direccion sea boolean

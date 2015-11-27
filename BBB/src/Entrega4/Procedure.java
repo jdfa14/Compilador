@@ -5,6 +5,7 @@
  */
 package Entrega4;
 
+import API.VarType;
 import Entrega2.Variable;
 import Entrega2.Variables;
 import Entrega3.DATA;
@@ -47,7 +48,7 @@ public class Procedure {
     }
     
     //
-    public int getDirOfVar(String key){
+    public VarType getDirOfVar(String key){
         return vars.getDir(key);
     }
     

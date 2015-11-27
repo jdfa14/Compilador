@@ -36,6 +36,8 @@ import javax.swing.JFrame;
         private int texture;
         private float x = 0;
         private float y = 0;
+        private float gapX = -1;
+        private float gapY = -1;
         private GLCanvas canvas;
         private ArrayList<Position> pos;
         private boolean penStatus = true;
@@ -134,16 +136,16 @@ import javax.swing.JFrame;
         // Drawing Using Triangles 
         for (int i = 0; i < pos.size()/2; i++){
             gl.glColor3f(pos.get(i*2).col.R/255.0f,pos.get(i*2).col.G/255.0f,pos.get(i*2).col.B/255.0f);
-            gl.glVertex3f(pos.get(i*2).x,pos.get(i*2).y,0);
-            gl.glVertex3f(pos.get(i*2+1).x,pos.get(i*2+1).y,0);
+            gl.glVertex3f(gapX + pos.get(i*2).x , gapY + pos.get(i*2).y,0);
+            gl.glVertex3f(gapX +pos.get(i*2+1).x, gapY + pos.get(i*2+1).y,0);
         }
         gl.glEnd();
         gl.glBegin( GL2.GL_TRIANGLES );  
 
         gl.glColor3f(1.0f, 0.11f, 0.68f);  
-        gl.glVertex3f( x         , y        ,0.0f);//triangle one first vertex
-        gl.glVertex3f( x - 0.05f , y - 0.05f,0.0f);//triangle one second vertex
-        gl.glVertex3f( x + 0.05f , y - 0.05f,0.0f);//triangle one third vertex
+        gl.glVertex3f( x         + gapX , + gapY + y        ,0.0f);//triangle one first vertex
+        gl.glVertex3f( x - 0.05f + gapX , + gapY + y - 0.05f,0.0f);//triangle one second vertex
+        gl.glVertex3f( x + 0.05f + gapX , + gapY + y - 0.05f,0.0f);//triangle one third vertex
         gl.glEnd();
         gl.glFlush();
           

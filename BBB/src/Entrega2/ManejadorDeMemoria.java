@@ -1,5 +1,8 @@
 package Entrega2;
 
+import API.ErrorsHandler;
+import API.VarType;
+
 public class ManejadorDeMemoria {
     
     MemoryIndex memG;
@@ -38,6 +41,7 @@ public class ManejadorDeMemoria {
             case CONSTANTE:
                 return memC.put(data);
         }
+        ErrorsHandler.SPAWN_ERROR(ErrorsHandler.ERROR.CANNOT_CREATE_VAR, "Tipo de variable desconocido");
         return -1; // ERROR
     }
     
@@ -130,25 +134,25 @@ public class ManejadorDeMemoria {
         switch(dt){
             case INT:
                 if(intCi + cant > intCf){
-                    // ERROR
+                    API.ErrorsHandler.SPAWN_ERROR(ErrorsHandler.ERROR.MEMORY_CAP_REACHED, "Constante entera");
                 }
                 intCi+= cant;
                 break;
             case FLOAT:
                 if(floatCi + cant > floatCf){
-                    //ERROR
+                    API.ErrorsHandler.SPAWN_ERROR(ErrorsHandler.ERROR.MEMORY_CAP_REACHED, "Constante flotante");
                 }
                 floatCi+= cant;
                 break;
             case STRING:
                 if(stringCi + cant> stringCf){
-                    //ERROR
+                    API.ErrorsHandler.SPAWN_ERROR(ErrorsHandler.ERROR.MEMORY_CAP_REACHED, "Constante cadena");
                 }
                 stringCi+= cant;
                 break;
             case BOOLEAN:
                 if(booleanCi + cant > booleanCf){
-                    //ERROR
+                    API.ErrorsHandler.SPAWN_ERROR(ErrorsHandler.ERROR.MEMORY_CAP_REACHED, "Constante booleana");
                 }
                 booleanCi+= cant;
                 break;
@@ -159,30 +163,31 @@ public class ManejadorDeMemoria {
         switch(dt){
             case INT:
                 if(intCi > intCf){
-                    // ERROR
+                    API.ErrorsHandler.SPAWN_ERROR(ErrorsHandler.ERROR.MEMORY_CAP_REACHED, "Constante entera");
                 }
                 intCi++;
                 return intCi - 1;
             case FLOAT:
                 if(floatCi > floatCf){
-                    //ERROR
+                    API.ErrorsHandler.SPAWN_ERROR(ErrorsHandler.ERROR.MEMORY_CAP_REACHED, "Constante flotante");
                 }
                 floatCi++;
                 return floatCi - 1;
             case STRING:
                 if(stringCi > stringCf){
-                    //ERROR
+                    API.ErrorsHandler.SPAWN_ERROR(ErrorsHandler.ERROR.MEMORY_CAP_REACHED, "Constante cadena");
                 }
                 stringCi++;
                 return stringCi - 1;
             case BOOLEAN:
                 if(booleanCi > booleanCf){
-                    //ERROR
+                    API.ErrorsHandler.SPAWN_ERROR(ErrorsHandler.ERROR.MEMORY_CAP_REACHED, "Constante booleana");
                 }
             booleanCi++;
             return booleanCi - 1;
         }
-        return -1; // DEFINIR ERROR
+        API.ErrorsHandler.SPAWN_ERROR(ErrorsHandler.ERROR.CANNOT_CREATE_VAR, "Tipo de direccion desconocida");
+        return -1;
     }
 }
 }

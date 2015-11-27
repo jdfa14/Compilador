@@ -1,19 +1,21 @@
 package Entrega2;
 
+import API.VarType;
 import java.util.ArrayList;
 
 public class Variable {
     public String nombre;           // Nombre de la variable
     public int tipo;                // Tipo de variable (INT STRING BOOLEAN FLOAT)
-    public int dir;                 // Direccion de la variable
+    public VarType varDir;
+    //public int dir;                 // Direccion de la variable
     public int m0;                  // Dimension de la variable
     public boolean tieneDim;        // Bandera para saber si es multidimencional
     public ArrayList<Dimension> dim;// Arreglo con los datos de sus dimenciones
     
-    public Variable(String nombre,int tipo,int dir){
+    public Variable(String nombre,int tipo,VarType varDir){
         this.nombre = nombre;
         this.tipo = tipo;
-        this.dir = dir;
+        this.varDir = varDir;
         this.tieneDim = false;
         this.dim = null;
         this.m0 = 1;
@@ -22,7 +24,7 @@ public class Variable {
     public Variable(int tipo){
         this.nombre = "";
         this.tipo = tipo;
-        this.dir = -1;
+        this.varDir = null;
         this.tieneDim = false;
         this.dim = null;
         this.m0 = 1;
@@ -31,7 +33,7 @@ public class Variable {
     public Variable(Variable original){
         this.nombre = original.nombre;
         this.tipo = original.tipo;
-        this.dir = original.tipo;
+        this.varDir = original.varDir;
         this.tieneDim = original.tieneDim;
         this.dim = (ArrayList<Dimension>) original.dim.clone();
         this.m0 = original.m0;

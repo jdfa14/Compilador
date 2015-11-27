@@ -15,9 +15,149 @@ import Entrega2.*;
  * @author taniagarridosalido
  */
 public class Ejecutador {
+    public static MemoriaVirtual mv = new MemoriaVirtual();
+    
+    public static void add(int dir1, int dir2, int resultDir){
+        Memoria.DATA_TYPE t1 = Memoria.getDataType(dir1);
+        Memoria.DATA_TYPE t2 = Memoria.getDataType(dir2);
+
+        if (t1 == Memoria.DATA_TYPE.INT){
+            if (t2 == Memoria.DATA_TYPE.INT){
+               mv.saveVar(resultDir, mv.getInt(dir1) + mv.getInt(dir2));
+            }
+            else if (t2 == Memoria.DATA_TYPE.FLOAT){
+                mv.saveVar(resultDir, mv.getInt(dir1) + mv.getFloat(dir2));
+            }
+        }
+        else if (t1 == Memoria.DATA_TYPE.FLOAT){
+            if (t2 == Memoria.DATA_TYPE.INT){
+                mv.saveVar(resultDir, mv.getFloat(dir1) + mv.getInt(dir2));
+            }
+            else if (t2 == Memoria.DATA_TYPE.FLOAT){
+                mv.saveVar(resultDir, mv.getFloat(dir1) + mv.getFloat(dir2));
+            }
+        }
+        else if ( t1 == Memoria.DATA_TYPE.STRING && t2 == Memoria.DATA_TYPE.STRING){
+            mv.saveVar(resultDir, mv.getString(dir1) + mv.getString(dir2));
+        }
+    }
+    
+    public static void sub(int dir1, int dir2, int resultDir){
+        Memoria.DATA_TYPE t1 = Memoria.getDataType(dir1);
+        Memoria.DATA_TYPE t2 = Memoria.getDataType(dir2);
+
+        if (t1 == Memoria.DATA_TYPE.INT){
+            if (t2 == Memoria.DATA_TYPE.INT){
+               mv.saveVar(resultDir, mv.getInt(dir1) - mv.getInt(dir2));
+            }
+            else if (t2 == Memoria.DATA_TYPE.FLOAT){
+                mv.saveVar(resultDir, mv.getInt(dir1) - mv.getFloat(dir2));
+            }
+        }
+        else if (t1 == Memoria.DATA_TYPE.FLOAT){
+            if (t2 == Memoria.DATA_TYPE.INT){
+                mv.saveVar(resultDir, mv.getFloat(dir1) - mv.getInt(dir2));
+            }
+            else if (t2 == Memoria.DATA_TYPE.FLOAT){
+                mv.saveVar(resultDir, mv.getFloat(dir1) - mv.getFloat(dir2));
+            }
+        }
+    }
+    
+    public static void div(int dir1, int dir2, int resultDir){
+        Memoria.DATA_TYPE t1 = Memoria.getDataType(dir1);
+        Memoria.DATA_TYPE t2 = Memoria.getDataType(dir2);
+
+        if (t1 == Memoria.DATA_TYPE.INT){
+            if (t2 == Memoria.DATA_TYPE.INT){
+               mv.saveVar(resultDir, mv.getInt(dir1) / mv.getInt(dir2));
+            }
+            else if (t2 == Memoria.DATA_TYPE.FLOAT){
+                mv.saveVar(resultDir, mv.getInt(dir1) / mv.getFloat(dir2));
+            }
+        }
+        else if (t1 == Memoria.DATA_TYPE.FLOAT){
+            if (t2 == Memoria.DATA_TYPE.INT){
+                mv.saveVar(resultDir, mv.getFloat(dir1) / mv.getInt(dir2));
+            }
+            else if (t2 == Memoria.DATA_TYPE.FLOAT){
+                mv.saveVar(resultDir, mv.getFloat(dir1) / mv.getFloat(dir2));
+            }
+        }
+    }
+    
+    public static void mul(int dir1, int dir2, int resultDir){
+        Memoria.DATA_TYPE t1 = Memoria.getDataType(dir1);
+        Memoria.DATA_TYPE t2 = Memoria.getDataType(dir2);
+
+        if (t1 == Memoria.DATA_TYPE.INT){
+            if (t2 == Memoria.DATA_TYPE.INT){
+               mv.saveVar(resultDir, mv.getInt(dir1) * mv.getInt(dir2));
+            }
+            else if (t2 == Memoria.DATA_TYPE.FLOAT){
+                mv.saveVar(resultDir, mv.getInt(dir1) * mv.getFloat(dir2));
+            }
+        }
+        else if (t1 == Memoria.DATA_TYPE.FLOAT){
+            if (t2 == Memoria.DATA_TYPE.INT){
+                mv.saveVar(resultDir, mv.getFloat(dir1) * mv.getInt(dir2));
+            }
+            else if (t2 == Memoria.DATA_TYPE.FLOAT){
+                mv.saveVar(resultDir, mv.getFloat(dir1) * mv.getFloat(dir2));
+            }
+        }
+    }
+    
+    public static void mod(int dir1, int dir2, int resultDir){
+        Memoria.DATA_TYPE t1 = Memoria.getDataType(dir1);
+        Memoria.DATA_TYPE t2 = Memoria.getDataType(dir2);
+
+        if (t1 == Memoria.DATA_TYPE.INT){
+            if (t2 == Memoria.DATA_TYPE.INT){
+               mv.saveVar(resultDir, mv.getInt(dir1) % mv.getInt(dir2));
+            }
+            else if (t2 == Memoria.DATA_TYPE.FLOAT){
+                mv.saveVar(resultDir, mv.getInt(dir1) % mv.getFloat(dir2));
+            }
+        }
+        else if (t1 == Memoria.DATA_TYPE.FLOAT){
+            if (t2 == Memoria.DATA_TYPE.INT){
+                mv.saveVar(resultDir, mv.getFloat(dir1) % mv.getInt(dir2));
+            }
+            else if (t2 == Memoria.DATA_TYPE.FLOAT){
+                mv.saveVar(resultDir, mv.getFloat(dir1) % mv.getFloat(dir2));
+            }
+        }
+    }
+    
+    public static void eqs(int dir1, int res1){
+        Memoria.DATA_TYPE t1 = Memoria.getDataType(dir1);
+                        
+        if (t1 == Memoria.DATA_TYPE.INT)
+            mv.saveVar(res1, mv.getInt(dir1));
+        else if (t1 == Memoria.DATA_TYPE.FLOAT)
+            mv.saveVar(res1, mv.getFloat(dir1));
+        else if (t1 == Memoria.DATA_TYPE.STRING)
+            mv.saveVar(res1, mv.getString(dir1));
+        else if (t1 == Memoria.DATA_TYPE.BOOLEAN)
+            mv.saveVar(res1, mv.getBoolean(dir1));
+    }
+    
+    public static void prnt(int res1){
+        Memoria.DATA_TYPE t1 = Memoria.getDataType(res1);
+
+        if (t1 == Memoria.DATA_TYPE.INT)
+            System.out.println(mv.getInt(res1));
+        else if (t1 == Memoria.DATA_TYPE.FLOAT)
+            System.out.println(mv.getFloat(res1));
+        else if (t1 == Memoria.DATA_TYPE.STRING)
+            System.out.println(mv.getString(res1));
+        else if (t1 == Memoria.DATA_TYPE.BOOLEAN)
+            System.out.println(mv.getBoolean(res1));
+    }
     
     public static void main(String[] args) throws IOException {
-        MemoriaVirtual mv = new MemoriaVirtual();
+        
         ArrayList<Cuadruplo> cuadruplos = new ArrayList<>();
         
         Game game = new Game();
@@ -41,122 +181,101 @@ public class Ejecutador {
             }   
             int i = 0;
             while (true) {
-                //System.out.println(cuadruplos.get(i).getOperador() + " " + cuadruplos.get(i).getOperando1() + " " + cuadruplos.get(i).getOperando2() + " " + cuadruplos.get(i).getResultado());
+                System.out.println(cuadruplos.get(i).getOperador() + " " + cuadruplos.get(i).getOperando1() + " " + cuadruplos.get(i).getOperando2() + " " + cuadruplos.get(i).getResultado());
                 Cuadruplo cuad = cuadruplos.get(i);
                 Memoria.DATA_TYPE t1;
                 Memoria.DATA_TYPE t2;
+                int dir1;
+                int dir2;
+                int dirR;
                 
                 if (cuad.getOperador() == DATA.EOF)
                     break;
                 switch(cuadruplos.get(i).getOperador()){
                     case DATA.ADD:
-                        t1 = Memoria.getDataType(cuad.getOperando1());
-                        t2 = Memoria.getDataType(cuad.getOperando2());
-                        
-                        if (t1 == Memoria.DATA_TYPE.INT){
-                            if (t2 == Memoria.DATA_TYPE.INT){
-                               mv.saveVar(cuad.getResultado(), mv.getInt(cuad.getOperando1()) + mv.getInt(cuad.getOperando2()));
-                            }
-                            else if (t2 == Memoria.DATA_TYPE.FLOAT){
-                                mv.saveVar(cuad.getResultado(), mv.getInt(cuad.getOperando1()) + mv.getFloat(cuad.getOperando2()));
-                            }
-                        }
-                        else if (t1 == Memoria.DATA_TYPE.FLOAT){
-                            if (t2 == Memoria.DATA_TYPE.INT){
-                                mv.saveVar(cuad.getResultado(), mv.getFloat(cuad.getOperando1()) + mv.getInt(cuad.getOperando2()));
-                            }
-                            else if (t2 == Memoria.DATA_TYPE.FLOAT){
-                                mv.saveVar(cuad.getResultado(), mv.getFloat(cuad.getOperando1()) + mv.getFloat(cuad.getOperando2()));
-                            }
-                        }
-                        else if ( t1 == Memoria.DATA_TYPE.STRING && t2 == Memoria.DATA_TYPE.STRING){
-                            mv.saveVar(cuad.getResultado(), mv.getString(cuad.getOperando1()) + mv.getString(cuad.getOperando2()));
-                        }
+                        add(cuad.getOperando1(),cuad.getOperando2(),cuad.getResultado());
                         break;
+                    case DATA.ADD1:
+                        dir1 = mv.getInt(cuad.getOperando1());
+                        add(dir1,cuad.getOperando2(),cuad.getResultado());
+                        break;
+                    case DATA.ADD2:
+                        dir2 = mv.getInt(cuad.getOperando2());
+                        add(cuad.getOperando1(),dir2,cuad.getResultado());
+                        break;
+                    case DATA.ADD3:
+                        dir1 = mv.getInt(cuad.getOperando1());
+                        dir2 = mv.getInt(cuad.getOperando2());
+                        add(dir1,dir2,cuad.getResultado());
+                        break;
+                        
                     case DATA.SUB:
-                        t1 = Memoria.getDataType(cuad.getOperando1());
-                        t2 = Memoria.getDataType(cuad.getOperando2());
-                        
-                        if (t1 == Memoria.DATA_TYPE.INT){
-                            if (t2 == Memoria.DATA_TYPE.INT){
-                               mv.saveVar(cuad.getResultado(), mv.getInt(cuad.getOperando1()) - mv.getInt(cuad.getOperando2()));
-                            }
-                            else if (t2 == Memoria.DATA_TYPE.FLOAT){
-                                mv.saveVar(cuad.getResultado(), mv.getInt(cuad.getOperando1()) - mv.getFloat(cuad.getOperando2()));
-                            }
-                        }
-                        else if (t1 == Memoria.DATA_TYPE.FLOAT){
-                            if (t2 == Memoria.DATA_TYPE.INT){
-                                mv.saveVar(cuad.getResultado(), mv.getFloat(cuad.getOperando1()) - mv.getInt(cuad.getOperando2()));
-                            }
-                            else if (t2 == Memoria.DATA_TYPE.FLOAT){
-                                mv.saveVar(cuad.getResultado(), mv.getFloat(cuad.getOperando1()) - mv.getFloat(cuad.getOperando2()));
-                            }
-                        }
+                        sub(cuad.getOperando1(),cuad.getOperando2(),cuad.getResultado());
                         break;
+                    case DATA.SUB1:
+                        dir1 = mv.getInt(cuad.getOperando1());
+                        sub(dir1,cuad.getOperando2(),cuad.getResultado());
+                        break;
+                    case DATA.SUB2:
+                        dir2 = mv.getInt(cuad.getOperando2());
+                        sub(cuad.getOperando1(),dir2,cuad.getResultado());
+                        break;
+                    case DATA.SUB3:
+                        dir1 = mv.getInt(cuad.getOperando1());
+                        dir2 = mv.getInt(cuad.getOperando2());
+                        sub(dir1,dir2,cuad.getResultado());
+                        break;
+                        
                     case DATA.DIV:
-                        t1 = Memoria.getDataType(cuad.getOperando1());
-                        t2 = Memoria.getDataType(cuad.getOperando2());
-                        
-                        if (t1 == Memoria.DATA_TYPE.INT){
-                            if (t2 == Memoria.DATA_TYPE.INT){
-                               mv.saveVar(cuad.getResultado(), mv.getInt(cuad.getOperando1()) / mv.getInt(cuad.getOperando2()));
-                            }
-                            else if (t2 == Memoria.DATA_TYPE.FLOAT){
-                                mv.saveVar(cuad.getResultado(), mv.getInt(cuad.getOperando1()) / mv.getFloat(cuad.getOperando2()));
-                            }
-                        }
-                        else if (t1 == Memoria.DATA_TYPE.FLOAT){
-                            if (t2 == Memoria.DATA_TYPE.INT){
-                                mv.saveVar(cuad.getResultado(), mv.getFloat(cuad.getOperando1()) / mv.getInt(cuad.getOperando2()));
-                            }
-                            else if (t2 == Memoria.DATA_TYPE.FLOAT){
-                                mv.saveVar(cuad.getResultado(), mv.getFloat(cuad.getOperando1()) / mv.getFloat(cuad.getOperando2()));
-                            }
-                        }
+                        div(cuad.getOperando1(),cuad.getOperando2(),cuad.getResultado());
                         break;
-                    case DATA.MUL:
-                        t1 = Memoria.getDataType(cuad.getOperando1());
-                        t2 = Memoria.getDataType(cuad.getOperando2());
+                    case DATA.DIV1:
+                        dir1 = mv.getInt(cuad.getOperando1());
+                        div(dir1,cuad.getOperando2(),cuad.getResultado());
+                        break;
+                    case DATA.DIV2:
+                        dir2 = mv.getInt(cuad.getOperando2());
+                        div(cuad.getOperando1(),dir2,cuad.getResultado());
+                        break;
+                    case DATA.DIV3:
+                        dir1 = mv.getInt(cuad.getOperando1());
+                        dir2 = mv.getInt(cuad.getOperando2());
+                        div(dir1,dir2,cuad.getResultado());
+                        break;
                         
-                        if (t1 == Memoria.DATA_TYPE.INT){
-                            if (t2 == Memoria.DATA_TYPE.INT){
-                               mv.saveVar(cuad.getResultado(), mv.getInt(cuad.getOperando1()) * mv.getInt(cuad.getOperando2()));
-                            }
-                            else if (t2 == Memoria.DATA_TYPE.FLOAT){
-                                mv.saveVar(cuad.getResultado(), mv.getInt(cuad.getOperando1()) * mv.getFloat(cuad.getOperando2()));
-                            }
-                        }
-                        else if (t1 == Memoria.DATA_TYPE.FLOAT){
-                            if (t2 == Memoria.DATA_TYPE.INT){
-                                mv.saveVar(cuad.getResultado(), mv.getFloat(cuad.getOperando1()) * mv.getInt(cuad.getOperando2()));
-                            }
-                            else if (t2 == Memoria.DATA_TYPE.FLOAT){
-                                mv.saveVar(cuad.getResultado(), mv.getFloat(cuad.getOperando1()) * mv.getFloat(cuad.getOperando2()));
-                            }
-                        }
+                    case DATA.MUL:
+                        mul(cuad.getOperando1(),cuad.getOperando2(),cuad.getResultado());
+                        break;
+                    case DATA.MUL1:
+                        dir1 = mv.getInt(cuad.getOperando1());
+                        mul(dir1,cuad.getOperando2(),cuad.getResultado());
+                        break;
+                    case DATA.MUL2:
+                        dir2 = mv.getInt(cuad.getOperando2());
+                        mul(cuad.getOperando1(),dir2,cuad.getResultado());
+                        break;
+                    case DATA.MUL3:
+                        dir1 = mv.getInt(cuad.getOperando1());
+                        dir2 = mv.getInt(cuad.getOperando2());
+                        mul(dir1,dir2,cuad.getResultado());
                         break;
                     case DATA.MOD:
-                        t1 = Memoria.getDataType(cuad.getOperando1());
-                        t2 = Memoria.getDataType(cuad.getOperando2());
-                        
-                        if (t1 == Memoria.DATA_TYPE.INT){
-                            if (t2 == Memoria.DATA_TYPE.INT){
-                               mv.saveVar(cuad.getResultado(), mv.getInt(cuad.getOperando1()) % mv.getInt(cuad.getOperando2()));
-                            }
-                            else if (t2 == Memoria.DATA_TYPE.FLOAT){
-                                mv.saveVar(cuad.getResultado(), mv.getInt(cuad.getOperando1()) % mv.getFloat(cuad.getOperando2()));
-                            }
-                        }
-                        else if (t1 == Memoria.DATA_TYPE.FLOAT){
-                            if (t2 == Memoria.DATA_TYPE.INT){
-                                mv.saveVar(cuad.getResultado(), mv.getFloat(cuad.getOperando1()) % mv.getInt(cuad.getOperando2()));
-                            }
-                            else if (t2 == Memoria.DATA_TYPE.FLOAT){
-                                mv.saveVar(cuad.getResultado(), mv.getFloat(cuad.getOperando1()) % mv.getFloat(cuad.getOperando2()));
-                            }
-                        }
+                        mod(cuad.getOperando1(),cuad.getOperando2(),cuad.getResultado());
                         break;
+                    case DATA.MOD1:
+                        dir1 = mv.getInt(cuad.getOperando1());
+                        mod(dir1,cuad.getOperando2(),cuad.getResultado());
+                        break;
+                    case DATA.MOD2:
+                        dir2 = mv.getInt(cuad.getOperando2());
+                        mod(cuad.getOperando1(),dir2,cuad.getResultado());
+                        break;
+                    case DATA.MOD3:
+                        dir1 = mv.getInt(cuad.getOperando1());
+                        dir2 = mv.getInt(cuad.getOperando2());
+                        mod(dir1,dir2,cuad.getResultado());
+                        break;
+                        
                     case DATA.AND:
                         mv.saveVar(cuad.getResultado(), mv.getBoolean(cuad.getOperando1()) && mv.getBoolean(cuad.getOperando2()));
                         break;
@@ -290,17 +409,22 @@ public class Ejecutador {
                         }
                         break;
                     case DATA.EQS:
-                        t1 = Memoria.getDataType(cuad.getOperando1());
-                        
-                        if (t1 == Memoria.DATA_TYPE.INT)
-                            mv.saveVar(cuad.getResultado(), mv.getInt(cuad.getOperando1()));
-                        else if (t1 == Memoria.DATA_TYPE.FLOAT)
-                            mv.saveVar(cuad.getResultado(), mv.getFloat(cuad.getOperando1()));
-                        else if (t1 == Memoria.DATA_TYPE.STRING)
-                            mv.saveVar(cuad.getResultado(), mv.getString(cuad.getOperando1()));
-                        else if (t1 == Memoria.DATA_TYPE.BOOLEAN)
-                            mv.saveVar(cuad.getResultado(), mv.getBoolean(cuad.getOperando1()));
+                        eqs(cuad.getOperando1(),cuad.getResultado());
                         break;
+                    case DATA.EQS1:
+                        dir1 = mv.getInt(cuad.getOperando1());
+                        eqs(dir1,cuad.getResultado());
+                        break;
+                    case DATA.EQS2:
+                        dirR = mv.getInt(cuad.getResultado());
+                        eqs(cuad.getOperando1(),dirR);
+                        break;
+                    case DATA.EQS3:
+                        dir1 = mv.getInt(cuad.getOperando1());
+                        dirR = mv.getInt(cuad.getResultado());
+                        eqs(dir1,dirR);
+                        break;
+                        
                     case DATA.GOT:
                         i = cuad.getResultado() - 1;
                         break;
@@ -397,24 +521,18 @@ public class Ejecutador {
                         mv.str2(cuad.getOperando1(), cuad.getResultado());
                         break;
                     case DATA.PRNT:
-                        t1 = Memoria.getDataType(cuad.getResultado());
-
-                        if (t1 == Memoria.DATA_TYPE.INT)
-                            System.out.println(mv.getInt(cuad.getResultado()));
-                        else if (t1 == Memoria.DATA_TYPE.FLOAT)
-                            System.out.println(mv.getFloat(cuad.getResultado()));
-                        else if (t1 == Memoria.DATA_TYPE.STRING)
-                            System.out.println(mv.getString(cuad.getResultado()));
-                        else if (t1 == Memoria.DATA_TYPE.BOOLEAN)
-                            System.out.println(mv.getBoolean(cuad.getResultado()));
-
+                        prnt(cuad.getResultado());
+                        break;
+                    case DATA.PRNT1:
+                        dirR = mv.getInt(cuad.getResultado());
+                        prnt(dirR);
                         break;
                     case DATA.PNTL:
                         System.out.println(mv.getString(cuad.getResultado()));
                         break;
                     case DATA.GAP:
                         int memoria = cuad.getOperando1();
-                        for (int j = cuad.getResultado(); j > 0 ; j--,memoria++){
+                        for (int j = cuad.getResultado(); j >= 1 ; j--,memoria++){
                             mv.saveVar(memoria, null);
                         }
                         break;

@@ -1,6 +1,7 @@
 
 package Entrega2;
 
+import API.VarType;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -31,8 +32,8 @@ public class Variables {
         return variables.containsKey(name);
     }
     
-    public int getDir(String name){
-        return variables.get(name).dir;
+    public VarType getDir(String name){
+        return variables.get(name).varDir;
     }
     
     public int getDataType(String name){
